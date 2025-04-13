@@ -37,6 +37,12 @@ body {
     color: #e7e7e7;
     text-decoration: none;
     font-weight: 500;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #9fef00;
+    transform: scale(1.1);
 }
 
 .cta-btn {
@@ -46,6 +52,13 @@ body {
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.cta-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(159, 239, 0, 0.5);
 }
 
 .hero {
@@ -92,6 +105,13 @@ body {
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.secondary-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .new-badge {
@@ -157,3 +177,4 @@ body {
     object-fit: cover; 
     opacity: 0.15; 
 }
+
