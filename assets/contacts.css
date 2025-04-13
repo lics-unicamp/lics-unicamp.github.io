@@ -13,12 +13,15 @@ body {
     color: #000000;
     line-height: 1.6;
 }
+
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
     background-color: rgba(0, 0, 0, 0.842);
+    position: relative;
+    z-index: 10;
 }
 
 .logo {
@@ -26,9 +29,9 @@ body {
     align-items: center;
 }
 
-.logo-img{
-    width: 9%;
-    margin-right: 2vh;
+.logo-img {
+    width: 40px;
+    margin-right: 10px;
 }
 
 .nav-links {
@@ -48,8 +51,17 @@ body {
     transform: scale(1.1);
 }
 
-  /* Container principal */
-  .container {
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Container principal */
+.container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
@@ -93,7 +105,7 @@ h1 {
 .contact-info h2 {
     color: #2c3e50;
     margin-top: 0;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px solid #000000;
     padding-bottom: 0.5rem;
     margin-bottom: 1.5rem;
 }
@@ -101,7 +113,7 @@ h1 {
 .contact-item {
     margin-bottom: 1rem;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 40px;
 }
 
@@ -109,6 +121,8 @@ h1 {
     margin-right: 10px;
     color: #3498db;
     font-weight: bold;
+    font-size: 1.2rem;
+    min-width: 24px;
 }
 
 /* Estilo do container do formulário */
@@ -124,7 +138,7 @@ h1 {
 .form-container h2 {
     color: #2c3e50;
     margin-top: 0;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px solid #000000;
     padding-bottom: 0.5rem;
     margin-bottom: 1.5rem;
 }
@@ -143,8 +157,64 @@ h1 {
     overflow: hidden;
 }
 
+/* Estilos para personalizar a aparência do iframe */
+iframe.embedded-form {
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+strong {
+    color: #f7f8fa;
+}
+
 /* Media queries para responsividade */
-@media (max-width: 768px) {
+@media screen and (max-width: 1024px) {
+    .container {
+        padding: 1.5rem;
+    }
+    
+    .navbar {
+        padding: 15px 5%;
+    }
+    
+    .nav-links {
+        gap: 30px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 15px 5%;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        transition: right 0.3s ease;
+        z-index: 100;
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
     .contact-section {
         flex-direction: column;
     }
@@ -160,15 +230,42 @@ h1 {
     .google-form {
         height: 750px;
     }
+    
+    .container {
+        padding: 1rem;
+    }
+    
+    .contact-info, .form-container {
+        padding: 1.5rem;
+    }
 }
 
-/* Estilos para personalizar a aparência do iframe */
-iframe.embedded-form {
-    max-width: 100%;
-    margin: 0 auto;
-    display: block;
-}
-
-strong{
-    color: #f7f8fa;
+@media screen and (max-width: 480px) {
+    .logo-img {
+        width: 30px;
+    }
+    
+    h1 {
+        font-size: 1.7rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .container {
+        padding: 1rem 0.5rem;
+    }
+    
+    .contact-info, .form-container {
+        padding: 1rem;
+    }
+    
+    .contact-item {
+        margin-bottom: 25px;
+    }
+    
+    .google-form {
+        height: 650px;
+    }
 }

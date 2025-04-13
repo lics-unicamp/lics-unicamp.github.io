@@ -16,6 +16,8 @@ body {
     align-items: center;
     padding: 20px 10%;
     background-color: rgba(0, 0, 0, 0.842);
+    position: relative;
+    z-index: 10;
 }
 
 .logo {
@@ -23,9 +25,9 @@ body {
     align-items: center;
 }
 
-.logo-img{
-    width: 9%;
-    margin-right: 2vh;
+.logo-img {
+    width: 40px;
+    margin-right: 10px;
 }
 
 .nav-links {
@@ -43,6 +45,15 @@ body {
 .nav-links a:hover {
     color: #9fef00;
     transform: scale(1.1);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
 }
 
 .container {
@@ -74,6 +85,7 @@ h1::after {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 25px;
+    margin-bottom: 50px;
 }
 
 .member-card {
@@ -86,6 +98,12 @@ h1::after {
     align-items: center;
     text-align: center;
     border: 1px solid #222;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .member-avatar {
@@ -142,9 +160,98 @@ h1::after {
     display: inline-block;
 }
 
-
 .cta-btn:hover {
     transform: scale(1.1);
     box-shadow: 0 0 10px rgba(159, 239, 0, 0.5);
 }
 
+/* Media queries para responsividade */
+
+/* Tablets e telas médias */
+@media screen and (max-width: 1024px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .members-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .navbar {
+        padding: 15px 5%;
+    }
+    
+    .nav-links {
+        gap: 30px;
+    }
+}
+
+/* Tablets pequenos e celulares grandes */
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 15px 5%;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        transition: right 0.3s ease;
+        z-index: 100;
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .members-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 15px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+}
+
+/* Celulares */
+@media screen and (max-width: 480px) {
+    .logo-img {
+        width: 30px;
+    }
+    
+    .members-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .member-card {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 1.3rem;
+        margin-bottom: 25px;
+    }
+    
+    h1::after {
+        width: 70px;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+}
