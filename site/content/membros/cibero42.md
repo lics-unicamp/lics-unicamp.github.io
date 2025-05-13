@@ -1,13 +1,14 @@
 ---
 title: "Renato Castro"
 description: "Nerd de cibersegurança apaixonado por CTI."
+patente: "algo"
 github: "cibero42"
 linkedin: "https://www.linkedin.com/in/renato-cf/"
-lattes: "https://www.lattes.cnpq.br/"
+lattes: ""
 areas:
-  - Training
+  - "training"
 badges:
-  - website
+  - "website"
 ---
 ## Formação
 ### Mestrado em Engenharia de Cibersegurança
