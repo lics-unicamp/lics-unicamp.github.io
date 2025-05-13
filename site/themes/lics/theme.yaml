@@ -1,0 +1,16 @@
+name: 'lics'
+license: 'MIT'
+licenselink: 'https://github.com/lics-unicamp/lics-unicamp.github.io/LICENSE'
+description: 'Theme description'
+homepage: 'https://github.com/lics-unicamp/lics-unicamp.github.io/'
+tags:
+  - 'company'
+features:
+  - 'none :)'
+authors:
+  - name: 'brennocm'
+    homepage: 'https://github.com/brennocm'
+  - name: 'VitorPortinari'
+    homepage: 'https://github.com/VitorPortinari'
+  - name: 'cibero42'
+    homepage: 'https://github.com/cibero42'

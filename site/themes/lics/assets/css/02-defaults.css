@@ -1,0 +1,31 @@
+* {
+    font-family: sans-serif !important; /* Fallback to a generic sans-serif font */
+  }
+
+body {
+  background-color: black;
+}
+
+a {
+  overflow-wrap: break-word;
+}
+
+.cust-content h2 {
+  margin-top: 4rem !important;
+}
+
+.cust-content h3 {
+  margin-top: 3rem !important;
+}
+
+.cust-content h4 {
+  margin-top: 2\rem !important;
+}
+
+.cust-content p img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}

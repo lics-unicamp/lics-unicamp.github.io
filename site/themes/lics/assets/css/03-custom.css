@@ -1,0 +1,56 @@
+/* Color Correction */
+.btn-secondary {
+    color: var(--bs-white);
+}
+
+/* Navbar */
+.navbar .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.cust-navlink{
+    font-size: 1.15em;
+}
+
+.cust-navlink.show,
+.dropdown:hover > .cust-navlink {
+    border-bottom: 2px solid var(--bs-primary);
+    color: var(--bs-primary);
+}
+
+/* Hover effects */
+.cust-hover-primary,
+.cust-hover-secondary,
+.cust-hover-item {
+    transition: 250ms;
+}
+
+.cust-hover-primary:hover {
+    color: var(--bs-primary) !important;
+}
+
+.cust-hover-secondary:hover {
+    color: var(--bs-secondary) !important;
+}
+
+.cust-hover-item:hover {
+    background-color: var(--bs-offwhite);
+}
+
+select option:checked {
+    background-color: var(--bs-primary) !important; /* Replace with your primary color */
+    color: white;
+}
+
+/* Blur */
+.cust-blur {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Animations */
+.ani-fade-up {animation:fade-up 1s ease backwards;}
+@keyframes fade-up{
+  0%{transform:translate(0px, 100px); opacity: 0;}
+  100%{transform:translate(0px, 0); opacity: 1;}
+}
