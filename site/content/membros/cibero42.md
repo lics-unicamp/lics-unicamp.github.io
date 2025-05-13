@@ -1,8 +1,8 @@
 ---
 title: "Renato Castro"
 description: "Nerd de cibersegurança apaixonado por CTI."
-github: "malveste"
-linkedin: "https://www.linkedin.com/in/arthur-malveste-5008842aa/"
+github: "cibero42"
+linkedin: "https://www.linkedin.com/in/renato-cf/"
 lattes: "https://www.lattes.cnpq.br/"
 areas:
   - Training
