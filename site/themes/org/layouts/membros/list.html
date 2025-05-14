@@ -1,0 +1,17 @@
+{{ define "main" }}
+<section class="bg-black">
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container">
+         
+        
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+<section class="bg-black">
+    <div class="border-top border-white" style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container">
+        {{ .Content }}
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+{{ end }}
