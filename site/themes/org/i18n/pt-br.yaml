@@ -8,6 +8,25 @@ home-s1-p1: Preparando os futuros líderes em segurança cibernética
 # Membros #
 ###########
 # List
+members-list-s1-h1: Nossos Membros
+members-list-s1-p1: Os membros da LICS são estudantes dedicados e apaixonados por tecnologia, segurança da informação e inovação. Cada integrante contribui com habilidades únicas, colaborando em projetos, eventos e competições que fortalecem nosso compromisso com a cibersegurança dentro e fora da universidade.
 
 # Single
 members-single-s2-h1: Conquistas
+
+
+############
+# Partials #
+############
+# Areas
+partial-areas-op1: Trainning
+partial-areas-op2: Relações Exteriores
+partial-areas-op3: Recursos Humanos
+partial-areas-op4: Diretoria
+
+# Roles
+partial-roles-op1: Desafiante
+partial-roles-op2: Pesquisador
+partial-roles-op3: Tutor
+partial-roles-op4: Agente
+partial-roles-op5: Associado

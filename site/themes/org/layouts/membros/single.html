@@ -10,9 +10,9 @@
                         <h1 class="m-0">{{ .Title }}</h1>
                         <div class="my-2 d-flex">
                             {{ range .Params.areas}}
-                                <span class="me-2 badge bg-primary text-black">{{ . }}</span>
+                                {{ partial "areas.html" (dict "context" .) }}
                             {{ end }}
-                            <span class="badge bg-secondary">{{ .Params.cargo }}</span>
+                            {{ partial "roles.html" (dict "context" .Params.cargo) }}
                         </div>
                         <p class="flex-grow-1" style="max-width: 500px;">{{ .Description }}</p>
                         <p class="m-0 fs-3">

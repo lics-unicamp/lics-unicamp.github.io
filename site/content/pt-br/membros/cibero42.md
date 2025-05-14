@@ -1,6 +1,6 @@
 ---
 title: "Renato Castro"
-description: "Zindlewump frobblequix marzintok splooberflan draggowex quindlefarb snorzlepit vankaroo tremlix globberdant wixlefrazz toopenclam blarnish!"
+description: "Sou um nerd de cibersegurança apaixonado por Linux, CTI e ensinar."
 cargo: "tutor"
 github: "cibero42"
 linkedin: "https://www.linkedin.com/in/renato-cf/"
@@ -11,6 +11,10 @@ badges:
   - "website"
 translationKey: "member_cibero42"
 ---
+## Experiência
+### Docker Working Group Lead
+Mautic
+
 ## Formação
 ### Mestrado em Engenharia de Cibersegurança
 - Escola: Télécom SudParis

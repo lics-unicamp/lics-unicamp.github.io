@@ -1,5 +1,12 @@
+@font-face {
+    font-family: 'lexend'; /* A name you choose for your font */
+    src: url('/fonts/Lexend-VariableFont_wght.woff') format('woff'); 
+    font-style: normal; 
+    font-display: swap;
+}
+
 * {
-    font-family: sans-serif !important; /* Fallback to a generic sans-serif font */
+    font-family: "lexend", sans-serif !important; /* Fallback to a generic sans-serif font */
   }
 
 body {
