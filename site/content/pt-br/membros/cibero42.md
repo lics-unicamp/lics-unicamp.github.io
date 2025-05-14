@@ -8,7 +8,7 @@ external: "https://google.com"
 areas:
   - "training"
 badges:
-  - "website"
+  - "website_contributor"
 translationKey: "member_cibero42"
 ---
 ## Experiência

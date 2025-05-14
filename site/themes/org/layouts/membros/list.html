@@ -1,4 +1,13 @@
 {{ define "main" }}
+{{ $data_index := index site.Data site.Language.Lang }}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  });
+</script>
 <section class="bg-black">
     <div style="height: {{ .Site.Params.spacing_size }};"></div>
     <div class="container">
@@ -7,7 +16,7 @@
             <p class="text-center">{{ T "members-list-s1-p1" }}</p>
         </div>
         <div class="d-flex flex-wrap justify-content-center">
-            <a class="m-2 fw-semibold btn btn-primary" style="width: 200px;" href="/sobre/">Tornar-se membro</a>
+            <a class="m-2 btn btn-primary" style="width: 200px;" href="/sobre/">Tornar-se membro</a>
             <a class="m-2 btn btn-outline-light" style="width: 200px;" href="https://github.com/casfergroup/pandora">btn 2</a>
         </div>
     </div>
@@ -23,18 +32,25 @@
                         <div class="card-body">
                             <div class="d-flex">
                                 <img class="me-4 rounded" height="100px" width="100px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic" onerror="this.onerror=null;this.src='/media/images/members/default.jpg';">
-                                <div>
-                                    <h3 class="fs-5 fw-semibold">{{ .Title }}</h3>
-                                    <div class="my-2 d-flex">
+                                <div class="d-flex flex-column justify-content-between">
+                                    <h3 class="m-0 ms-1 fs-5 fw-semibold">{{ .Title }}</h3>
+                                    <div class="ms-1 d-flex">
                                         {{ range .Params.areas}}
                                             {{ partial "areas.html" (dict "context" .) }}
                                         {{ end }}
                                         {{ partial "roles.html" (dict "context" .Params.cargo) }}
                                     </div>
+                                    <div class="d-flex">
+                                        {{ range first 5 .Params.badges }}
+                                            {{ $badgeKey := . }}
+                                            {{ $badge := index $data_index.badges $badgeKey }}
+                                            <img class="m-1" height="25px" width="25px" src="/media/images/badges/{{ $badge.icon }}" data-bs-toggle="tooltip" title="{{ $badge.title }}" alt="{{ $badge.title }}">
+                                        {{ end }}
+                                    </div>
                                 </div>
                             </div>
                             <p class="my-3 small">{{ .Description }}</p>
-                            <a class="btn btn-primary fw-semibold" href="{{ .Permalink }}">Ver perfil</a>
+                            <a class="btn btn-primary" href="{{ .Permalink }}">Ver perfil</a>
                         </div>
                     </div>
                 </div>

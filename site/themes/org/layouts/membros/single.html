@@ -1,4 +1,13 @@
 {{ define "main" }}
+{{ $data_index := index site.Data site.Language.Lang }}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  });
+</script>
 <section class="bg-black">
     <div style="height: {{ .Site.Params.spacing_size }};"></div>
     <div class="container">
@@ -33,24 +42,15 @@
             </div>
             <div class="col-12 col-lg-4">
                 <div class="card bg-secondary align-self-center d-flex align-items-center">
-                    <div class="card-body">
-                        <p class="mx-2 card-title h4">{{ T "members-single-s2-h1"}}</p>
-                        <div>
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
-                            <img class="m-1" height="50px" width="50px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic">
+                    <div class="w-100 card-body">
+                        <p class="mx-2 d-lg-none card-title h4 text-center ">{{ T "members-single-s2-h1"}}</p>
+                        <p class="mx-2 d-none d-lg-block card-title h4">{{ T "members-single-s2-h1"}}</p>
+                        <div class="w-100">
+                            {{ range .Params.badges }}
+                                {{ $badgeKey := . }}
+                                {{ $badge := index $data_index.badges $badgeKey }}
+                                <img class="m-1" height="50px" width="50px" src="/media/images/badges/{{ $badge.icon }}" data-bs-toggle="tooltip" title="{{ $badge.title }}" alt="{{ $badge.title }}">
+                            {{ end }}
                         </div>
                     </div>
                     
