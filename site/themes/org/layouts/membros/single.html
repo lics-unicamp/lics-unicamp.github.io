@@ -2,8 +2,8 @@
 <section class="bg-black">
     <div style="height: {{ .Site.Params.spacing_size }};"></div>
     <div class="container">
-        <div class="row">
-            <div class="col-8">
+        <div class="row g-4">
+            <div class="col-12 col-lg-8">
                 <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-start">
                     <img class="mb-4 mb-md-0 me-md-4 rounded" height="200px" width="200px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic" onerror="this.onerror=null;this.src='/media/images/members/default.jpg';">
                     <div class="h-100 d-flex flex-column" style="min-height: 200px;">
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-12 col-lg-4">
                 <div class="card bg-secondary align-self-center d-flex align-items-center">
                     <div class="card-body">
                         <p class="mx-2 card-title h4">{{ T "members-single-s2-h1"}}</p>
