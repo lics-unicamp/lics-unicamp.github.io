@@ -1,10 +1,10 @@
 ---
 title: "Renato Castro"
-description: "Nerd de cibersegurança apaixonado por CTI."
-patente: "algo"
+description: "Zindlewump frobblequix marzintok splooberflan draggowex quindlefarb snorzlepit vankaroo tremlix globberdant wixlefrazz toopenclam blarnish!"
+cargo: "tutor"
 github: "cibero42"
 linkedin: "https://www.linkedin.com/in/renato-cf/"
-lattes: ""
+external: "https://google.com"
 areas:
   - "training"
 badges:

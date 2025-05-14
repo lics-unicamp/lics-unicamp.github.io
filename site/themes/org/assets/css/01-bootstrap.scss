@@ -1,0 +1,31 @@
+/** Colors **/
+/* Main Colors */
+$primary: #9fef00;
+$secondary: #454837;
+$black: #171814;
+
+@import "scss/functions";
+@import "scss/variables";
+
+$white: #e3dedbff;
+$custom-colors: (
+    "military-black": #22241c
+);
+$theme-colors: map-merge($theme-colors, $custom-colors);
+$navbar-light-color: $black;
+
+
+$body-color: $white;
+
+/** Fonts **/
+$font-size-base: 1.1em;
+
+/** Borders **/
+$border-radius: .3rem;
+$btn-border-radius: $border-radius;
+$btn-border-radius-lg: $btn-border-radius;
+
+@import "scss/bootstrap.scss";
+
+$bootstrap-icons-font-dir: "/fonts";
+@import "scss/bootstrap-icons";

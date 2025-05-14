@@ -1,10 +1,10 @@
 ---
 title: "Renato Castro"
 description: "Cybercurity geek with a passion for CTI."
-patente: "algo"
+cargo: "tutor"
 github: "cibero42"
 linkedin: "https://www.linkedin.com/in/renato-cf/"
-lattes: ""
+external: "https://google.com"
 areas:
   - "training"
 badges:

@@ -1,0 +1,52 @@
+{{ define "main" }}
+<section class="bg-black">
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-start">
+            <img class="mb-4 mb-md-0 me-md-4 rounded" height="200px" width="200px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic" onerror="this.onerror=null;this.src='/media/images/members/default.jpg';">
+            <div class="h-100 d-flex flex-column" style="min-height: 200px;">
+                <div class="d-flex align-items-center">
+                    <h1 class="m-0">{{ .Title }}</h1>
+                    {{ range .Params.areas}}
+                        <span class="ms-3 badge bg-primary text-black">{{ . }}</span>
+                    {{ end }}
+                    <span class="ms-3 badge bg-secondary">{{ .Params.cargo }}</span>
+                </div>
+                <p class="flex-grow-1" style="max-width: 500px;">{{ .Description }}</p>
+                <p class="m-0 fs-3">
+                    {{ if and (.Params.github) (ne .Params.github "") }}
+                        <a href="https://www.github.com/{{ .Params.github }}/"><span class="bi bi-github"></span></a>
+                        &nbsp;
+                    {{ end }}
+                    {{ if and (.Params.linkedin) (ne .Params.linkedin "") }}
+                        <a href="https://www.linkedin.com/in/{{ .Params.linkedin }}/"><span class="bi bi-linkedin"></span></a>
+                        &nbsp;
+                    {{ end }}
+                    {{ if and (.Params.external) (ne .Params.external "") }}
+                        <a href="{{ .Params.external }}"><span class="bi bi-globe-americas"></span></a>
+                    {{ end }}
+                </p>
+            </div>
+        </div>
+        
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+<section class="bg-black">
+    <div class="border-top border-white " style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container">
+        <h2>Conquistas</h2>
+        <div>
+            
+        </div>
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+<section class="bg-black">
+    <div class="border-top border-white " style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container">
+        {{ .Content }}
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+{{ end }}
