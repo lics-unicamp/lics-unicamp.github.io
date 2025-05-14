@@ -9,6 +9,7 @@ areas:
   - "training"
 badges:
   - "website"
+translationKey: "member_cibero42"
 ---
 ## Formação
 ### Mestrado em Engenharia de Cibersegurança
