@@ -18,11 +18,11 @@
     <div class="container">
         <div class="row">
             {{ range .Pages }}
-                <div class="col-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="card bg-military-black">
                         <div class="card-body">
                             <div class="d-flex">
-                                <img class="mb-4 mb-md-0 me-md-4 rounded" height="100px" width="100px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic" onerror="this.onerror=null;this.src='/media/images/members/default.jpg';">
+                                <img class="me-4 rounded" height="100px" width="100px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic" onerror="this.onerror=null;this.src='/media/images/members/default.jpg';">
                                 <div>
                                     <h3 class="fs-4">{{ .Title }}</h3>
                                     <div class="my-2 d-flex">
@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="py-3 small">{{ .Description }}</p>
+                            <p class="my-3 small">{{ .Description }}</p>
                             <a class="btn btn-primary fw-bold" href="{{ .Permalink }}">Ver perfil</a>
                         </div>
                     </div>
