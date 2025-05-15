@@ -1,0 +1,12 @@
+missions:
+  - title: Conhecimento
+    paragraph: Promover e disseminar conhecimentos em cibersegurança através de cursos, workshops e treinamentos práticos que capacitem estudantes e profissionais a identificar, prevenir e mitigar riscos digitais.
+  - title: Comunidade
+    paragraph: Conectar estudantes a parceiros externos de cibersegurança, ampliando seus horizontes nesse contexto.
+  - title: Pesquisa
+    paragraph: Desenvolver projetos de pesquisa aplicada em temas relevantes da cibersegurança.
+
+partners:
+  - name: Universidade Estadual de Campinas
+    link: https://www.unicamp.br/
+    logo: unicamp.png

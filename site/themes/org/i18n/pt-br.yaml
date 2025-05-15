@@ -20,6 +20,14 @@ members-single-s2-h1: Conquistas
 members-single-pts: pts
 members-single-pts-description: Este membros possui esta quantidade de pontos
 
+#########
+# Sobre #
+#########
+about-s2-h1: Nossa Missão
+about-s3-h1: Parceiros
+about-s3-p1: Nossos parceiros são organizações que apoiam e fortalecem nosso projeto, promovendo treinamentos, palestras e contribuindo financeiramente.
+about-s3-btn1: Quero apoiar a LICS
+
 ############
 # Partials #
 ############
