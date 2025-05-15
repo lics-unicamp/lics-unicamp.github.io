@@ -17,7 +17,8 @@ members-list-s1-p1: Os membros da LICS são estudantes dedicados e apaixonados p
 
 # Single
 members-single-s2-h1: Conquistas
-
+members-single-pts: pts
+members-single-pts-description: Este membros possui esta quantidade de pontos
 
 ############
 # Partials #

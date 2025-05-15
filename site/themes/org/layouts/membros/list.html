@@ -26,7 +26,9 @@
     <div style="height: {{ .Site.Params.spacing_size }};"></div>
     <div class="container">
         <div class="row">
-            {{ range .Pages }}
+            {{ $pages := where .Site.Pages "Params.points" "ne" nil }}
+            {{ $sortedPages := sort $pages ".Params.points" "desc" }}
+            {{ range $sortedPages }}
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="h-100 card bg-military-black">
                         <div class="card-body">
@@ -35,6 +37,7 @@
                                 <div class="d-flex flex-column justify-content-between">
                                     <h3 class="m-0 ms-1 fs-5 fw-semibold">{{ .Title }}</h3>
                                     <div class="ms-1 d-flex">
+                                        <span class="me-2 badge bg-white text-black" data-bs-toggle="tooltip" title='{{ T "members-single-pts-description" }}'>{{ .Params.points }}&nbsp;{{ T "members-single-pts" }}</span>
                                         {{ range .Params.areas}}
                                             {{ partial "areas.html" (dict "context" .) }}
                                         {{ end }}

@@ -5,6 +5,7 @@ cargo: "tutor"
 github: "cibero42"
 linkedin: "https://www.linkedin.com/in/renato-cf/"
 external: "https://google.com"
+points: 50
 areas:
   - "training"
 badges:
