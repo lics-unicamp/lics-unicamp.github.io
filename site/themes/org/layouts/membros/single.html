@@ -48,9 +48,11 @@
                         <p class="mx-2 d-none d-lg-block card-title h4">{{ T "members-single-s2-h1"}}</p>
                         <div class="w-100">
                             {{ range .Params.badges }}
-                                {{ $badgeKey := . }}
-                                {{ $badge := index $data_index.badges $badgeKey }}
-                                <img class="m-1" height="50px" width="50px" src="/media/images/badges/{{ $badge.icon }}" data-bs-toggle="tooltip" title="{{ $badge.title }}" alt="{{ $badge.title }}">
+                                {{ if ne . ""}}
+                                    {{ $badgeKey := . }}
+                                    {{ $badge := index $data_index.badges $badgeKey }}
+                                    <img class="m-1" height="50px" width="50px" src="/media/images/badges/{{ $badge.icon }}" data-bs-toggle="tooltip" title="{{ $badge.title }}" alt="{{ $badge.title }}">
+                                {{ end }}
                             {{ end }}
                         </div>
                     </div>

@@ -1,9 +1,9 @@
 {{ if eq .context "training" }}
   <span class="me-2 badge bg-primary text-black">{{ T "partial-areas-op1" }}</span>
-{{ else if .context "external_relations" }}
+{{ else if eq .context "external_relations" }}
   <span class="me-2 badge bg-primary text-black">{{ T "partial-areas-op2" }}</span>
-{{ else if .context "human_resources" }}
+{{ else if eq .context "human_resources" }}
   <span class="me-2 badge bg-primary text-black">{{ T "partial-areas-op3" }}</span>
-{{ else if .context "management" }}
+{{ else if eq .context "management" }}
   <span class="me-2 badge bg-primary text-black">{{ T "partial-areas-op4" }}</span>
 {{ end }}
