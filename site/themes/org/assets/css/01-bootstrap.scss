@@ -25,6 +25,15 @@ $border-radius: 0.3rem;
 $btn-border-radius: $border-radius;
 $btn-border-radius-lg: $btn-border-radius;
 
+/** Forms **/
+$input-bg: $secondary;
+$input-focus-bg: $input-bg;
+$form-select-bg: $input-bg;
+$form-check-input-bg: $input-bg;
+$input-border-width: 0;
+$form-select-border-width: $input-border-width;
+$form-check-input-border: none;
+
 @import "scss/bootstrap.scss";
 
 $bootstrap-icons-font-dir: "/fonts";

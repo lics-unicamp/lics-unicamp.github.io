@@ -23,10 +23,27 @@ members-single-pts-description: Este membros possui esta quantidade de pontos
 #########
 # Sobre #
 #########
+about-s2-p2: PROTEGENDO O FUTURO DIGITAL
 about-s2-h1: Nossa Missão
 about-s3-h1: Parceiros
 about-s3-p1: Nossos parceiros são organizações que apoiam e fortalecem nosso projeto, promovendo treinamentos, palestras e contribuindo financeiramente.
 about-s3-btn1: Quero apoiar a LICS
+
+###########
+# Contato #
+###########
+contact-form-fd1: Nome
+contact-form-fd2: Sobrenome
+contact-form-fd3: E-mail
+contact-form-fd4: Telefone
+contact-form-fd5: Assunto
+contact-form-select: Selecione uma opção...
+contact-form-fd6: Mensagem
+contact-form-ck1: Aceito a Política de Privacidade
+contact-form-ck2: Desejo receber atualizações sobre os eventos da LICS por e-mail
+contact-form-btn1: Enviar
+contact-s2-h1: Localização
+contact-s2-p1: Nós somos uma organização estudantil da FT/UNICAMP, situada no Campus I Limeira da Universidade Estadual de Campinas
 
 ############
 # Partials #

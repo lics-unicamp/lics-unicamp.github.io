@@ -12,7 +12,7 @@
 <section class="bg-black">
     <div style="height: {{ .Site.Params.spacing_size }};"></div>
     <div class="container">
-        <div class="row">
+        <div class="row g-4">
             <div class="col-12 col-md-6">
                 <h1 class="mb-4 text-primary">{{ .Title }}</h1>
                 <div>
@@ -62,7 +62,7 @@
         <div class="d-flex flex-wrap align-items-center justify-content-center">
             {{ range $data_index.about.partners }}
                 <div class="m-2 bg-white rounded">
-                    <a style="height: 150px; width: 150px;" href=""><img class="h-100 image-fluid" src="/media/images/partners/{{ .logo }}" data-bs-toggle="tooltip" title="{{ .name }}" alt="{{ .name }}"></a>
+                    <a style="height: 150px; width: 150px;" href="{{ .link }}"><img class="h-100 image-fluid" src="/media/images/partners/{{ .logo }}" data-bs-toggle="tooltip" title="{{ .name }}" alt="{{ .name }}"></a>
                 </div>
             {{ end }}
         </div>
