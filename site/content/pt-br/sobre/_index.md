@@ -1,6 +1,7 @@
 ---
 title: "Quem Somos"
 description: "Sobre"
+translationKey: "about"
 ---
 
 A **LICS - Liga de Cibersegurança UNICAMP** foi fundada em 2024 por um grupo de estudantes apaixonados por segurança digital, com o objetivo de promover conhecimento e desenvolvimento de habilidades na área de cibersegurança.

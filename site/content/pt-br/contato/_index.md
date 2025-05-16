@@ -1,5 +1,6 @@
 ---
 title: "Contato"
 description: "Contato"
+translationKey: "contact"
 ---
-Fique à vontade para nos contatar com dúvidas, sugestões ou para obter mais informações sobre nossos produtos. Entraremos em contato o mais breve possível.
+Fique à vontade para nos contatar com dúvidas, sugestões ou para estabelecer uma parceria. Entraremos em contato o mais breve possível.

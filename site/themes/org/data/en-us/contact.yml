@@ -1,0 +1,13 @@
+form_topics:
+  - name: I want to be a member
+    value: new-member
+  - name: I want to organize an event
+    value: event
+  - name: Partnership with companies
+    value: partnership-company
+  - name: Partnership with NGOs
+    value: partnership-ngo
+  - name: Partnership with government
+    value: partnership-government
+  - name: Other
+    value: other
