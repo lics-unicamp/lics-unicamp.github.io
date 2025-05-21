@@ -1,1 +1,24 @@
 {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+<div class="fixed-top bg-white shadow-sm">
+    <nav class="container navbar navbar-expand-lg">
+        <a href="/{{ .Lang }}/" class="navbar-brand">
+            <img class="img-fluid" style="width: 60px" src="/media/images/logo/logo-background.png" alt="Logo LICS">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#headernavbar" aria-controls="headernavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="headernavbar" style="height: 70px;">
+            <ul class="navbar-nav">
+                {{- $currentNode := . }}
+                {{- range .Site.Menus.header }}
+                    {{- if .Name }}
+                    <li class="nav-item">
+                        <a href="{{ .URL }}" class="cust-navlink nav-link {{ if or ($currentNode.IsMenuCurrent "header" .) ($currentNode.HasMenuCurrent "header" .) }} active{{ end }}">{{ .Name }}</a>
+                    </li>
+                    {{ end }}
+                {{ end }}
+            </ul>
+        </div>
+    </nav>
+</div>
