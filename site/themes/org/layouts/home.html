@@ -13,7 +13,28 @@
 
         <div class="position-absolute top-0 start-0 w-100 h-100 bg-military-black z-0" style="opacity: 90%;"></div>
 
-        <div class="z-1 ">
+        <div class="h-100 z-1 d-flex flex-column justify-content-between ">
+          <div class="vw-100">
+            <div class="my-3 mx-4 d-flex justify-content-end">
+              <a class="text-decoration-none fs-2" style="height: fit-content;"
+              href="#" role="button" id="dropdownMenuLink" 
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="bi bi-globe"></span>
+              </a>
+              <!-- Get other languages for page -->
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              {{ range .Page.AllTranslations }}
+                  {{ $current := .}}
+                  {{ range .Site.Languages }}
+                      {{ if eq $current.Lang .Lang }}
+                        <a class="dropdown-item text-black" href="{{ $current.Permalink }}">{{ .LanguageName }}</a>
+                        
+                      {{ end }}
+                  {{ end }}
+              {{ end }}
+              </div>
+          </div>
+          </div>
             <div class="text-center px-3">
               <img height="300px" width="300px" src="/media/images/logo/logo.png" alt="Logo LICS">
               <h1 class="text-primary fw-semibold" style="font-size: 2.5em;">
@@ -29,6 +50,7 @@
                   <a class="m-2 fs-semibold btn btn-outline-light" style="width: 150px;" href="/{{ .Lang }}/contato/">{{ T "home-s1-nav4" }}</a>
               </nav>
             </div>
+            <div style="height: 50px;"></div>
         </div>
     </section>
   </main>
