@@ -3,9 +3,9 @@ title: "Renato Castro"
 description: "Sou um nerd de cibersegurança apaixonado por Linux, CTI e ensinar."
 cargo: "tutor"
 github: "cibero42"
-linkedin: "https://www.linkedin.com/in/renato-cf/"
-external: "https://google.com"
-points: 50
+linkedin: "renato-cf"
+external: ""
+points: 0
 areas:
   - "training"
 badges:
@@ -29,3 +29,4 @@ Mautic
 ### TOEIC
 Atestação de nível C1 de inglês
 - Emissão: 2025
+
