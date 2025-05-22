@@ -1,63 +1,78 @@
 ########
 # Home #
 ########
-home-s1-h1: UNICAMP Cybersecurity League
-home-s1-p1: Preparing future leaders in cybersecurity
-home-s1-nav1: Members
-home-s1-nav2: About
-home-s1-nav3: Events
-home-s1-nav4: Contact
+home-s1-h1: UNICAMP Cybersecurity League  
+home-s1-p1: Preparing future leaders in cybersecurity  
+home-s1-nav1: Members  
+home-s1-nav2: About  
+home-s1-nav3: Events  
+home-s1-nav4: Contact  
 
 ###########
 # Members #
 ###########
-# List
-members-list-s1-h1: Our Members
-members-list-s1-p1: LICS members are dedicated students passionate about technology, information security, and innovation. Each member brings unique skills, collaborating on projects, events, and competitions that strengthen our commitment to cybersecurity both within and beyond the university.
-members-list-s1-btn1: Become a member
+# List  
+members-list-s1-h1: Our Members  
+members-list-s1-p1: The members of LICS are dedicated students passionate about technology, information security, and innovation. Each member contributes unique skills, collaborating on projects, events, and competitions that strengthen our commitment to cybersecurity both within and beyond the university.  
+members-list-s1-btn1: Join the team  
+members-list-card-btn1: View profile  
 
-# Single
-members-single-s2-h1: Achievements
-members-single-pts: pts
-members-single-pts-description: This member has this number of points
+# Single  
+members-single-s2-h1: Achievements  
+members-single-pts: pts  
+members-single-pts-description: This member has this amount of points  
+
+###########
+# Events #
+###########
+# List  
+events-list-s1-h1: Event Calendar  
+events-list-s1-p1: Check out the events we organize and register for upcoming ones open to the general public!  
+events-list-card-btn1: Sign up  
+events-list-card-btn2: Discover  
+event-lsit-card-public1: Public  
+event-lsit-card-public1: For members  
+
+# Single  
+events-single-s2-h1: Information  
 
 #########
 # About #
 #########
-about-s2-p2: PROTECTING THE DIGITAL FUTURE
-about-s2-h1: Our Mission
-about-s3-h1: Partners
-about-s3-p1: Our partners are organizations that support and strengthen our project, promoting training, lectures, and contributing financially.
-about-s3-btn1: I want to support LICS
+about-s2-p2: PROTECTING THE DIGITAL FUTURE  
+about-s2-h1: Our Mission  
+about-s3-h1: Partners  
+about-s3-p1: Our partners are organizations that support and strengthen our project by promoting training sessions, lectures, and contributing financially.  
+about-s3-btn1: I want to support LICS  
 
 ###########
 # Contact #
 ###########
-contact-form-fd1: First Name
-contact-form-fd2: Last Name
-contact-form-fd3: Email
-contact-form-fd4: Phone
-contact-form-fd5: Subject
-contact-form-select: Select an option...
-contact-form-fd6: Message
-contact-form-ck1: I accept the Privacy Policy
-contact-form-ck2: I want to receive updates about LICS events via email
-contact-form-btn1: Send
-contact-s2-h1: Location
-contact-s2-p1: We are a student organization from FT/UNICAMP, located at the Limeira Campus I of the State University of Campinas
+contact-form-fd1: First Name  
+contact-form-fd2: Last Name  
+contact-form-fd3: Email  
+contact-form-fd4: Phone  
+contact-form-fd5: Subject  
+contact-form-select: Select an option...  
+contact-form-fd6: Message  
+contact-form-ck1: I accept the Privacy Policy  
+contact-form-ck2: I want to receive updates about LICS events by email  
+contact-form-btn1: Send  
+contact-s2-h1: Location  
+contact-s2-p1: We are a student organization from FT/UNICAMP, located at the Limeira Campus I of the State University of Campinas  
 
 ############
 # Partials #
 ############
-# Areas
-partial-areas-op1: Training
-partial-areas-op2: External Relations
-partial-areas-op3: Human Resources
-partial-areas-op4: Board
+# Areas  
+partial-areas-op1: Training  
+partial-areas-op2: External Relations  
+partial-areas-op3: Human Resources  
+partial-areas-op4: Board  
 
-# Roles
-partial-roles-op1: Challenger
-partial-roles-op2: Researcher
-partial-roles-op3: Tutor
-partial-roles-op4: Agent
-partial-roles-op5: Associate
+# Roles  
+partial-roles-op1: Challenger  
+partial-roles-op2: Researcher  
+partial-roles-op3: Mentor  
+partial-roles-op4: Agent  
+partial-roles-op5: Associate  

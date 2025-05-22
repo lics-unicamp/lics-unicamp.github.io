@@ -1,16 +1,21 @@
 ---
 title: "Renato Castro"
-description: "Cybercurity geek with a passion for CTI."
+description: "Sou um nerd de cibersegurança apaixonado por Linux, CTI e ensinar."
 cargo: "tutor"
 github: "cibero42"
-linkedin: "https://www.linkedin.com/in/renato-cf/"
-external: "https://google.com"
+linkedin: "renato-cf"
+external: ""
+points: 0
 areas:
   - "training"
 badges:
-  - "website"
+  - "website_contributor"
 translationKey: "member_cibero42"
 ---
+## Experiência
+### Docker Working Group Lead
+Mautic
+
 ## Formação
 ### Mestrado em Engenharia de Cibersegurança
 - Escola: Télécom SudParis
@@ -24,3 +29,4 @@ translationKey: "member_cibero42"
 ### TOEIC
 Atestação de nível C1 de inglês
 - Emissão: 2025
+
