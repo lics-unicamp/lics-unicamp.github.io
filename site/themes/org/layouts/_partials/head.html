@@ -1,5 +1,31 @@
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<meta name="language" content="{{ .Lang }}">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- ViewPort-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="/media/images/favicon./favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/media/images/favicon./favicon.svg" />
+<link rel="shortcut icon" href="/media/images/favicon./favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/media/images/favicon./apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="LICS" />
+<link rel="manifest" href="/media/images/favicon./site.webmanifest" />
+
+<!-- OpenGraph -->
+<meta property="og:type" content="page">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:title" content="{{ .Params.Title }}">
+<meta property="og:description" content="{{ .Params.Description }}">
+
 {{ partialCached "head/css.html" . }}
 {{ partialCached "head/js.html" . }}
+
+<!-- Sitemap -->
+<link rel="sitemap" type="application/xml" title="Sitemap" href="https://www.lics.org.br/sitemap.xml">
+
+<!-- SEO -->
+<meta name="description" content="{{ .Params.Description }}">
+<meta name="robots" content="index,follow">
