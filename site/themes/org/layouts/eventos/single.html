@@ -1,0 +1,78 @@
+{{ define "main" }}
+{{ $data_index := index site.Data site.Language.Lang }}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  });
+</script>
+<section class="bg-black">
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-start">
+            <div class="d-flex flex-column">
+                <h1 class="text-primary text-center">
+                    {{ .Title }}
+                    {{ $country := .Params.country }}
+                    {{ range $i, $c := $data_index.countries }}
+                        {{ if eq $c.isocode $country }}
+                            <span data-bs-toggle="tooltip" title="{{ $c.speakermsg }}">{{ $c.emoji }}</span>
+                        {{ end }}
+                    {{ end }}
+                </h1>
+                <p class="mt-4 text-center">{{ .Description }}</p>
+            </div>
+        </div>
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+<section class="bg-black">
+    <div class="container d-flex justify-content-center">
+        <div class="card bg-secondary align-self-center d-flex align-items-center" style="max-width: 800px;">
+            <div class="w-100 card-body">
+                <h2 class="h4 text-center">{{ T "events-single-s2-h1"}}</h2>
+                <div class="row fs-5">
+                    <p class="col-md-6">
+                        <span class="bi bi-person-fill text-primary"></span>&nbsp;{{ .Params.speaker }}
+                    </p>
+                    <p class="col-md-6">
+                        <span class="bi bi-easel2 text-primary"></span>
+                        {{ $eventtype := .Params.format }}
+                        {{ range $i, $c := $data_index.event.type }}
+                            {{ if eq $c.key $eventtype }}
+                                {{ $c.value }}
+                            {{ end }}
+                        {{ end }}
+                    </p>
+                    <p class="col-md-6">
+                        <span class="bi bi-calendar text-primary"></span>&nbsp;{{ (.Params.eventdate | time).Format "2006-01-02T15:04:05Z07:00" }}
+                    </p>
+                    <p class="col-md-6">
+                        <span class="bi bi-clock text-primary">&nbsp;</span>{{ .Params.duration }}
+                    </p>
+                    <p class="col-md-6">
+                        <span class="bi bi-people-fill text-primary"></span>
+                        {{ if .Params.ispublic}}
+                        Aberto ao público
+                        {{ else }}
+                        Apenas para membros
+                        {{ end }}
+                    </p>
+                    
+                </div>
+                <a class="btn btn-primary w-100" href="{{ .Params.inscriptionlink }}">{{ T "events-list-card-btn1" }}</a>
+            </div>
+        </div>
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+<section class="bg-black">
+    <div class="container">
+        {{ .Content }}
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+{{ end }}

@@ -1,0 +1,9 @@
+type:
+  - key: workshop
+    value: Workshop
+  - key: speech
+    value: Palestra
+  - key: ctf
+    value: CTF
+  - key: course
+    value: Curso

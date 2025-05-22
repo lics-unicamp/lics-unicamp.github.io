@@ -27,7 +27,7 @@
     <div style="height: {{ .Site.Params.spacing_size }};"></div>
     <div class="container">
         <div class="row g-4">
-            {{ $pages := where .Site.Pages "Params.points" "ne" nil }}
+            {{ $pages := where .Pages "Params.points" "ne" nil }}
             {{ $sortedPages := sort $pages ".Params.points" "desc" }}
             {{ range $sortedPages }}
                 <div class="col-12 col-lg-6 col-xxl-4">
@@ -59,7 +59,7 @@
                                     </div>
                                     <p class="my-3 small">{{ .Description }}</p>
                                 </div>
-                                <a class="btn btn-primary" href="{{ .Permalink }}">Ver perfil</a>
+                                <a class="btn btn-primary" href="{{ .Permalink }}">{{ T "members-list-card-btn1" }}</a>
                             </div>
                         </div>
                     </div>
