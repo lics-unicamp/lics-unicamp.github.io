@@ -1,14 +1,6 @@
 {{ define "main" }}
 {{ $data_index := index site.Data site.Language.Lang }}
 {{- $contentChildren := split .Content "<p>#|break|#</p>" -}}
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-      new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-  });
-</script>
 <section class="bg-black">
     <div style="height: {{ .Site.Params.spacing_size }};"></div>
     <div style="height: {{ .Site.Params.spacing_size }};"></div>
