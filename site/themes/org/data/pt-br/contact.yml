@@ -7,7 +7,7 @@ form_topics:
     value: partnership-company
   - name: Parceria com ONGs
     value: partnership-ngo
-  - name: Parceria com Governo
+  - name: Parceria com governo
     value: partnership-government
   - name: Outro
     value: other

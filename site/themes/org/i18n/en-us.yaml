@@ -57,7 +57,9 @@ contact-form-select: Select an option...
 contact-form-fd6: Message  
 contact-form-ck1: I accept the Privacy Policy  
 contact-form-ck2: I want to receive updates about LICS events by email  
-contact-form-btn1: Send  
+contact-form-btn1: Send
+contact-form-msg-success: Your request has been successfully submitted! We will get in touch with you shortly.
+contact-form-msg-error: There was an error submitting your request. Please try again later.
 contact-s2-h1: Location  
 contact-s2-p1: We are a student organization from FT/UNICAMP, located at the Limeira Campus I of the State University of Campinas  
 

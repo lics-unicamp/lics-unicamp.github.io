@@ -13,35 +13,36 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <form class="mt-4 mt-xl-0">
+                <div id="alertMessage" class="alert d-none" role="alert"></div>
+                <form class="mt-4 mt-xl-0" id="contactForm" onsubmit="submitForm(event)">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="nome" placeholder='{{ T "contact-form-fd1" }} *' required>
+                                <input type="text" class="form-control" id="nome" placeholder='{{ T "contact-form-fd1" }} *' name="entry.2126993480" required>
                                 <label for="nome">{{ T "contact-form-fd1" }} *</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="sobrenome" placeholder='{{ T "contact-form-fd2" }} *' required>
+                                <input type="text" class="form-control" id="sobrenome" placeholder='{{ T "contact-form-fd2" }} *' name="entry.489689806" required>
                                 <label for="sobrenome">{{ T "contact-form-fd2" }} *</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="email" class="form-control" id="email" placeholder='{{ T "contact-form-fd3" }} *' required>
+                                <input type="email" class="form-control" id="email" placeholder='{{ T "contact-form-fd3" }} *' name="entry.903872647" required>
                                 <label for="email">{{ T "contact-form-fd3" }} *</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="tel" class="form-control" id="telefone" placeholder='{{ T "contact-form-fd4" }}'>
+                                <input type="tel" class="form-control" id="telefone" placeholder='{{ T "contact-form-fd4" }}' name="entry.317166107">
                                 <label for="telefone">{{ T "contact-form-fd4" }}</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <select class="form-select" id="assunto" required aria-label="{{ T "contact-form-fd5" }}">
+                                <select class="form-select" id="assunto" required aria-label="{{ T "contact-form-fd5" }}" name="entry.726047374">
                                     <option value="" disabled selected>{{ T "contact-form-select" }}</option>
                                     {{ $data_index := index site.Data site.Language.Lang }}
                                     {{ range $index, $data := $data_index.contact.form_topics }}
@@ -53,13 +54,13 @@
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" id="descricao" placeholder='{{ T "contact-form-fd6" }} *' style="height: 150px;" required></textarea>
+                                <textarea class="form-control" id="descricao" placeholder='{{ T "contact-form-fd6" }} *' style="height: 150px;" name="entry.1305457940" required></textarea>
                                 <label for="descricao">{{ T "contact-form-fd6" }} *</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="privacidade" required>
+                                <input class="form-check-input" type="checkbox" id="privacidade" name="entry.1304611298" value="sim" required>
                                 <label class="form-check-label" for="privacidade">
                                     {{ T "contact-form-ck1" }} *
                                 </label>
@@ -67,12 +68,13 @@
                         </div>
                         <div class="col-12">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="mkt">
-                                <label class="form-check-label" for="mkt">
+                                <input class="form-check-input" type="checkbox" id="mkt" value="sim">
+                                <label class="form-check-label" for="mkt" name="entry.328030185">
                                     {{ T "contact-form-ck2" }}
                                 </label>
                             </div>
                         </div>
+                        <input type="hidden" id="language" name="entry.403390572" value="{{ .Lang }}">
                         <div class="col-12 mt-3">
                             <button type="submit" class="btn btn-primary w-100">{{ T "contact-form-btn1" }}</button>
                         </div>
@@ -114,4 +116,57 @@
     </div>
     <div style="height: {{ .Site.Params.spacing_size }};"></div>
 </section>
+
+<script>
+    async function submitForm(event) {
+        event.preventDefault();
+
+        const alertMessage = document.getElementById("alertMessage");
+        alertMessage.classList.add("d-none");
+
+        const formData = new FormData(event.target);
+
+        // Validate email
+        const email = formData.get("entry.903872647") || "";
+        const emailRegex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
+        if (!emailRegex.test(email)) {
+            showAlert('{{ T "contact-form-invalid-email"}}', "danger");
+            return;
+        }
+
+        // Validate telefone (remove non-digit characters)
+        let telefone = formData.get("entry.317166107") || "";
+        telefone = telefone.replace(/\D/g, ""); 
+        formData.set("entry.317166107", telefone);
+
+        // Convert form data to JSON
+        const jsonData = Object.fromEntries(formData.entries());
+
+        // Send POST request
+        fetch("https://docs.google.com/forms/d/e/1FAIpQLSc7MIuN9YwON3ZUPjt29isFus-LTBA-MJ_IdW2Aeog_PJ3ivg/formResponse", {  // Replace with your API endpoint
+            method: "POST",
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams(formData).toString(),
+        })
+        .then(data => {
+            showAlert('{{ T "contact-form-msg-success" }}', "success");
+        })
+        .catch(error => {
+            showAlert('{{ T "contact-form-msg-error" }}', "danger");
+            console.error("Error:", error);
+        });
+        document.getElementById('contactForm').reset();
+    }
+
+    // Function to show Bootstrap alert
+    function showAlert(message, type) {
+        const alertMessage = document.getElementById("alertMessage");
+        alertMessage.textContent = message;
+        alertMessage.className = `alert alert-${type} mt-3`;
+        alertMessage.classList.remove("d-none");
+    }
+</script>
 {{ end }}
