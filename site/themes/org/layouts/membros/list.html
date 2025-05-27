@@ -1,0 +1,65 @@
+{{ define "main" }}
+{{ $data_index := index site.Data site.Language.Lang }}
+<section class="bg-black">
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container">
+        <div>
+            <h1 class="text-center text-primary">{{ T "members-list-s1-h1" }}</h1>
+            <p class="text-center">{{ T "members-list-s1-p1" }}</p>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center">
+            <a class="m-2 btn btn-primary" style="width: 300px;" href="/{{ .Lang }}/contato/">{{ T "members-list-s1-btn1" }}</a>
+        </div>
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+<section class="bg-black">
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container">
+        <div class="row g-4">
+            {{ $pages := where .Pages "Params.points" "ne" nil }}
+            {{ $sortedPages := sort $pages ".Params.points" "desc" }}
+            {{ range $sortedPages }}
+                <div class="col-12 col-lg-6 col-xxl-4">
+                    <div class="h-100 card bg-military-black">
+                        <div class="card-body">
+                            <div class="h-100 d-flex flex-column justify-content-between">
+                                <div class="flex-grow-1">
+                                    <div class="d-flex">
+                                        <img class="me-4 rounded" height="100px" width="100px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic" onerror="this.onerror=null;this.src='/media/images/members/default.jpg';">
+                                        <div class="d-flex flex-column justify-content-between">
+                                            <h3 class="m-0 ms-1 fs-5 fw-semibold">{{ .Title }}</h3>
+                                            <div class="ms-1 d-flex">
+                                                <span class="me-2 badge bg-white text-black" data-bs-toggle="tooltip" title='{{ T "members-single-pts-description" }}'>{{ .Params.points }}&nbsp;{{ T "members-single-pts" }}</span>
+                                                {{ range .Params.areas}}
+                                                    {{ partial "areas.html" (dict "context" .) }}
+                                                {{ end }}
+                                                {{ partial "roles.html" (dict "context" .Params.cargo) }}
+                                            </div>
+                                            <div class="d-flex" style="height: 30px;">
+                                                {{ range first 5 .Params.badges }}
+                                                    {{ if ne . ""}}
+                                                        {{ $badgeKey := . }}
+                                                        {{ $badge := index $data_index.badges $badgeKey }}
+                                                        <img class="m-1" height="25px" width="25px" src="/media/images/badges/{{ $badge.icon }}" data-bs-toggle="tooltip" title="{{ $badge.title }}" alt="{{ $badge.title }}">
+                                                    {{ end }}
+                                                {{ end }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="my-3 small">{{ .Description }}</p>
+                                </div>
+                                <a class="btn btn-primary" href="{{ .Permalink }}">{{ T "members-list-card-btn1" }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            {{ end }}
+        </div>
+    </div>
+    
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+{{ end }}

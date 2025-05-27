@@ -1,0 +1,12 @@
+missions:
+  - title: Knowledge
+    paragraph: Promote and disseminate knowledge in cybersecurity through courses, workshops, and hands-on training that empower students and professionals to identify, prevent, and mitigate digital risks.
+  - title: Community
+    paragraph: Connect students with external cybersecurity partners, broadening their horizons in this field.
+  - title: Research
+    paragraph: Develop applied research projects on relevant cybersecurity topics.
+
+partners:
+  - name: University of Campinas
+    link: https://www.unicamp.br/
+    logo: unicamp.png

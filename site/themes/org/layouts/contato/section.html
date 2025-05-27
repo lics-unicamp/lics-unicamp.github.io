@@ -1,0 +1,172 @@
+{{ define "main" }}
+{{ $data_index := index site.Data site.Language.Lang }}
+{{- $contentChildren := split .Content "<p>#|break|#</p>" -}}
+<section class="bg-black">
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-12 col-md-6">
+                <h1 class="mb-4 text-primary">{{ .Title }}</h1>
+                <div>
+                    {{- index $contentChildren 0 | safeHTML  -}}
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div id="alertMessage" class="alert d-none" role="alert"></div>
+                <form class="mt-4 mt-xl-0" id="contactForm" onsubmit="submitForm(event)">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="nome" placeholder='{{ T "contact-form-fd1" }} *' name="entry.2126993480" required>
+                                <label for="nome">{{ T "contact-form-fd1" }} *</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="sobrenome" placeholder='{{ T "contact-form-fd2" }} *' name="entry.489689806" required>
+                                <label for="sobrenome">{{ T "contact-form-fd2" }} *</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" placeholder='{{ T "contact-form-fd3" }} *' name="entry.903872647" required>
+                                <label for="email">{{ T "contact-form-fd3" }} *</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="tel" class="form-control" id="telefone" placeholder='{{ T "contact-form-fd4" }}' name="entry.317166107">
+                                <label for="telefone">{{ T "contact-form-fd4" }}</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <select class="form-select" id="assunto" required aria-label="{{ T "contact-form-fd5" }}" name="entry.726047374">
+                                    <option value="" disabled selected>{{ T "contact-form-select" }}</option>
+                                    {{ $data_index := index site.Data site.Language.Lang }}
+                                    {{ range $index, $data := $data_index.contact.form_topics }}
+                                    <option value="{{ .value }}">{{ .name }}</option>
+                                    {{ end }}
+                                </select>
+                                <label for="assunto">{{ T "contact-form-fd5" }} *</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" id="descricao" placeholder='{{ T "contact-form-fd6" }} *' style="height: 150px;" name="entry.1305457940" required></textarea>
+                                <label for="descricao">{{ T "contact-form-fd6" }} *</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="privacidade" name="entry.1304611298" value="sim" required>
+                                <label class="form-check-label" for="privacidade">
+                                    {{ T "contact-form-ck1" }} *
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="mkt" value="sim">
+                                <label class="form-check-label" for="mkt" name="entry.328030185">
+                                    {{ T "contact-form-ck2" }}
+                                </label>
+                            </div>
+                        </div>
+                        <input type="hidden" id="language" name="entry.403390572" value="{{ .Lang }}">
+                        <div class="col-12 mt-3">
+                            <button type="submit" class="btn btn-primary w-100">{{ T "contact-form-btn1" }}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+<section class="bg-black">
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+        <div class="container py-5 px-4 px-sm-5 rounded bg-military-black d-flex flex-column align-items-center">
+            <h2 class="mb-4 text-center text-primary fs-1">{{ T "contact-s2-h1" }}</h2>
+            <p class="mb-5 text-center" style="max-width: 800px;">{{ T "contact-s2-p1" }}</p>
+            <div class="w-100 position-relative" style="height: 500px;">
+                <div class="start-0 top-0 placeholder-glow" id="gmaps-placeholder">
+                    <div class="placeholder w-100 bg-secondary" style="height: 500px;"></div>
+                </div>
+                <iframe id="gmaps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1655.605082982017!2d-47.425175445094425!3d-22.56252228282793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8806cf1fc392d%3A0xf7f5dbc6128be719!2sFaculdade%20de%20Tecnologia%20da%20Universidade%20Estadual%20de%20Campinas%20(FT%2FUNICAMP)!5e0!3m2!1spt-BR!2sfr!4v1747412767411!5m2!1spt-BR!2sfr"
+                        width="100%" height="500" class="z-1 start-0 top-0 position-absolute" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    Loading...
+                </iframe>
+            </div>
+        </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+<section class="bg-black">
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container d-flex flex-column align-items-center">
+        <h2 class="mb-4 fs-1 text-center text-primary">{{ T "about-s3-h1" }}</h2>
+        <div class="d-flex flex-wrap align-items-center justify-content-center">
+            {{ range $data_index.about.partners }}
+                <div class="m-2 bg-white rounded">
+                    <a style="height: 150px; width: 150px;" href=""><img class="h-100 image-fluid" src="/media/images/partners/{{ .logo }}" data-bs-toggle="tooltip" title="{{ .name }}" alt="{{ .name }}"></a>
+                </div>
+            {{ end }}
+        </div>
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+
+<script>
+    async function submitForm(event) {
+        event.preventDefault();
+
+        const alertMessage = document.getElementById("alertMessage");
+        alertMessage.classList.add("d-none");
+
+        const formData = new FormData(event.target);
+
+        // Validate email
+        const email = formData.get("entry.903872647") || "";
+        const emailRegex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
+        if (!emailRegex.test(email)) {
+            showAlert('{{ T "contact-form-invalid-email"}}', "danger");
+            return;
+        }
+
+        // Validate telefone (remove non-digit characters)
+        let telefone = formData.get("entry.317166107") || "";
+        telefone = telefone.replace(/\D/g, ""); 
+        formData.set("entry.317166107", telefone);
+
+        // Convert form data to JSON
+        const jsonData = Object.fromEntries(formData.entries());
+
+        // Send POST request
+        fetch("https://docs.google.com/forms/d/e/1FAIpQLSc7MIuN9YwON3ZUPjt29isFus-LTBA-MJ_IdW2Aeog_PJ3ivg/formResponse", {  // Replace with your API endpoint
+            method: "POST",
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams(formData).toString(),
+        })
+        .then(data => {
+            showAlert('{{ T "contact-form-msg-success" }}', "success");
+        })
+        .catch(error => {
+            showAlert('{{ T "contact-form-msg-error" }}', "danger");
+            console.error("Error:", error);
+        });
+        document.getElementById('contactForm').reset();
+    }
+
+    // Function to show Bootstrap alert
+    function showAlert(message, type) {
+        const alertMessage = document.getElementById("alertMessage");
+        alertMessage.textContent = message;
+        alertMessage.className = `alert alert-${type} mt-3`;
+        alertMessage.classList.remove("d-none");
+    }
+</script>
+{{ end }}

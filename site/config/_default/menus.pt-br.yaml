@@ -1,0 +1,17 @@
+header:
+  - identifier: members
+    name: Membros
+    url: /pt-br/membros/
+    weight: 1
+  - identifier: about
+    name: Sobre
+    url: /pt-br/sobre/
+    weight: 2
+  - identifier: events
+    name: Eventos
+    url: /pt-br/eventos/
+    weight: 3
+  - identifier: contact
+    name: Contato
+    url: /pt-br/contato/
+    weight: 4

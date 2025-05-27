@@ -1,0 +1,66 @@
+{{ $data_index := index site.Data site.Language.Lang }}
+<footer class="bg-secondary">
+   <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="d-flex flex-column align-items-center">
+                    <img class="mb-4" height="150px" width="150px" src="/media/images/logo/logo-background.png" alt="Logo LICS">
+                    <p class="w-100 m-0 fs-2 d-flex justify-content-around" style="max-width: 250px;">
+                        <a href="https://www.linkedin.com/company/lics-liga-de-ciberseguranca"><span class="bi bi-linkedin"></span></a>
+                        <a href="https://www.instagram;com/lics_unicamp"><span class="bi bi-instagram"></span></a>
+                        <a href="https://www.youtube.com/@LICSforEducation"><span class="bi bi-youtube"></span></a>
+                        <a href="https://github.com/lics-unicamp"><span class="bi bi-github"></span></a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="h-100 d-flex align-items-end">
+                    <p class="w-100 m-0 small text-center">Build {{ now.Format "2006-01-02T15:04:05Z" }}. MIT License.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="h-100 d-flex flex-column align-items-center">
+                    <ul class="flex-grow-1 d-flex flex-column align-items-center justify-content-center list-unstyled">
+                        {{ range $data_index.footer.links}}
+                            <li><a class="text-white text-decoration-none" href="{{ .link }}">{{ .name }}</a></li>
+                        {{ end }}
+                    </ul>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <!-- Translation selector -->
+                        {{ $pageLang := .Page.Lang}}
+                        <!-- Get Current Page Version -->
+                        {{ range .Page.AllTranslations }}
+                            {{ $current := .}}
+                            {{ range .Site.Languages }}
+                                {{ if eq $current.Lang .Lang }}
+                                    {{ if eq $pageLang .Lang}}
+                                        <a class="btn btn-outline-primary dropdown-toggle" style="height: fit-content;"
+                                        href="#" role="button" id="dropdownMenuLink" 
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ .LanguageName }}
+                                        </a>
+                                    {{ end }}
+                                {{ end }}
+                            {{ end }}
+                        {{ end }}
+                        <!-- Get other languages for page -->
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        {{ range .Page.AllTranslations }}
+                            {{ $current := .}}
+                            {{ range .Site.Languages }}
+                                {{ if eq $current.Lang .Lang }}
+                                    {{ if ne $pageLang .Lang}}
+                                        <a class="dropdown-item text-black" href="{{ $current.Permalink }}">{{ .LanguageName }}</a>
+                                    {{ end }}
+                                {{ end }}
+                            {{ end }}
+                        {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</footer>

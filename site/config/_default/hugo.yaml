@@ -1,0 +1,36 @@
+baseURL: https://lics-unicamp.github.io/
+languageCode: pt-br
+theme: org
+
+defaultContentLanguage: pt-br
+defaultContentLanguageInSubdir: true
+
+outputs:
+  home:
+    - HTML
+  section:
+    - HTML
+  taxonomy:
+    - HTML
+
+sitemap:
+  changefreq: "monthly"
+  priority: 0.5
+  filename: "sitemap.xml"
+
+languages:
+  pt-br:
+    contentDir: content/pt-br
+    disabled: false
+    languageCode: pt-br
+    languageDirection: ltr
+    languageName: Português (Brasil)
+    title: Liga de Cyber da UNICAMP | LICS
+    weight: 1
+  en-us:
+    contentDir: content/en-us
+    disabled: false
+    languageCode: en-US
+    languageDirection: ltr
+    languageName: English (US)
+    title: UNICAMP Cyber League | LICS

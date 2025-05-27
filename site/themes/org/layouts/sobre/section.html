@@ -1,0 +1,65 @@
+{{ define "main" }}
+{{ $data_index := index site.Data site.Language.Lang }}
+{{- $contentChildren := split .Content "<p>#|break|#</p>" -}}
+<section class="bg-black">
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <h1 class="mb-4 text-primary">{{ .Title }}</h1>
+                <div>
+                    {{- index $contentChildren 0 | safeHTML  -}}
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="h-100 w-100 rounded" style="background-image: url('/media/images/background/cyberpunk-haxxer.png'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                    <div class="h-100 w-100 p-4 rounded d-flex align-items-center" style="background-color: rgb(0, 0, 0, 0.6);">
+                        <p class="fs-1 text-center fw-semibold">{{ T "about-s2-p2" }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+<section class="bg-black">
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+        <div class="container p-5 rounded bg-military-black">
+            <h2 class="mb-4 text-center text-primary fs-1">{{ T "about-s2-h1" }}</h2>
+            <div class="row g-4">
+                {{ range $data_index.about.missions }}
+                <div class="col-12 col-lg-4 col-xl-4">
+                    <div class="h-100 p-4 card bg-secondary">
+                        <h3 class="card-title text-primary fs-4">{{ .title }}</h3>
+                        <div class="w-100 border-top border-primary border-2 mb-4"></div>
+                        <p>{{ .paragraph }}</p>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+
+        </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+<section class="bg-black">
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container d-flex flex-column align-items-center">
+        <h2 class="mb-4 fs-1 text-center text-primary">{{ T "about-s3-h1" }}</h2>
+        <p class="mb-3 text-center" style="max-width: 800px;">
+            {{ T "about-s3-p1" }}
+        </p>
+        <p class="mb-5 text-center">
+            <a class="btn btn-outline-primary" href="/{{ .Lang }}/contato/">{{ T "about-s3-btn1" }}</a>
+        </p>
+        <div class="d-flex flex-wrap align-items-center justify-content-center">
+            {{ range $data_index.about.partners }}
+                <div class="m-2 bg-white rounded">
+                    <a style="height: 150px; width: 150px;" href="{{ .link }}"><img class="h-100 image-fluid" src="/media/images/partners/{{ .logo }}" data-bs-toggle="tooltip" title="{{ .name }}" alt="{{ .name }}"></a>
+                </div>
+            {{ end }}
+        </div>
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+{{ end }}

@@ -1,0 +1,68 @@
+{{ define "main" }}
+{{ $data_index := index site.Data site.Language.Lang }}
+<section class="bg-black">
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-12 col-lg-8">
+                <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-start">
+                    <img class="mb-4 mb-md-0 me-md-4 rounded" height="200px" width="200px" src="/media/images/members/{{ .Params.github }}.jpg" alt="Profile pic" onerror="this.onerror=null;this.src='/media/images/members/default.jpg';">
+                    <div class="h-100 d-flex flex-column" style="min-height: 200px;">
+                        <h1 class="m-0">{{ .Title }}</h1>
+                        <div class="my-2 d-flex">
+                            <span class="me-2 badge bg-white text-black" data-bs-toggle="tooltip" title='{{ T "members-single-pts-description" }}'>{{ .Params.points }}&nbsp;{{ T "members-single-pts" }}</span>
+                            {{ range .Params.areas}}
+                                {{ partial "areas.html" (dict "context" .) }}
+                            {{ end }}
+                            {{ partial "roles.html" (dict "context" .Params.cargo) }}
+                        </div>
+                        <p class="flex-grow-1" style="max-width: 500px;">{{ .Description }}</p>
+                        <p class="m-0 fs-3">
+                            {{ if and (.Params.github) (ne .Params.github "") }}
+                                <a href="https://www.github.com/{{ .Params.github }}/"><span class="bi bi-github"></span></a>
+                                &nbsp;
+                            {{ end }}
+                            {{ if and (.Params.linkedin) (ne .Params.linkedin "") }}
+                                <a href="https://www.linkedin.com/in/{{ .Params.linkedin }}/"><span class="bi bi-linkedin"></span></a>
+                                &nbsp;
+                            {{ end }}
+                            {{ if and (.Params.external) (ne .Params.external "") }}
+                                <a href="{{ .Params.external }}"><span class="bi bi-globe-americas"></span></a>
+                            {{ end }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="card bg-secondary align-self-center d-flex align-items-center">
+                    <div class="w-100 card-body">
+                        <p class="mx-2 d-lg-none card-title h4 text-center ">{{ T "members-single-s2-h1"}}</p>
+                        <p class="mx-2 d-none d-lg-block card-title h4">{{ T "members-single-s2-h1"}}</p>
+                        <div class="w-100">
+                            {{ range .Params.badges }}
+                                {{ if ne . ""}}
+                                    {{ $badgeKey := . }}
+                                    {{ $badge := index $data_index.badges $badgeKey }}
+                                    <img class="m-1" height="50px" width="50px" src="/media/images/badges/{{ $badge.icon }}" data-bs-toggle="tooltip" title="{{ $badge.title }}" alt="{{ $badge.title }}">
+                                {{ end }}
+                            {{ end }}
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+<section class="bg-black">
+    <div class="border-top border-white" style="height: {{ .Site.Params.spacing_size }};"></div>
+    <div class="container">
+        {{ .Content }}
+    </div>
+    <div style="height: {{ .Site.Params.spacing_size }};"></div>
+</section>
+{{ end }}
