@@ -29,9 +29,10 @@ members-single-pts-description: This member has this amount of points
 events-list-s1-h1: Event Calendar  
 events-list-s1-p1: Check out the events we organize and register for upcoming ones open to the general public!  
 events-list-card-btn1: Sign up  
-events-list-card-btn2: Discover  
-event-lsit-card-public1: Public  
-event-lsit-card-public1: For members  
+events-list-card-btn2: Discover
+events-list-card-btn3: Highlights  
+event-list-card-public1: Public  
+event-list-card-public2: For members  
 
 # Single  
 events-single-s2-h1: Information  
