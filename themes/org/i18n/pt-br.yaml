@@ -30,8 +30,9 @@ events-list-s1-h1: Calendário de Eventos
 events-list-s1-p1: Confira os eventos organizados por nós, e cadastre-se para os próximos abertos ao público geral!
 events-list-card-btn1: Inscreva-se
 events-list-card-btn2: Descobrir
-event-lsit-card-public1: Público
-event-lsit-card-public1: Para membros
+events-list-card-btn3: Destaques
+event-list-card-public1: Público
+event-list-card-public2: Para membros
 
 # Single
 events-single-s2-h1: Informações

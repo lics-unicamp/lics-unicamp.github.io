@@ -35,9 +35,9 @@
                                         </h3>
                                         <p>
                                             {{ if .Params.ispublic}}
-                                            <span class="me-2 badge bg-success">{{ T "event-lsit-card-public1" }}</span>
+                                            <span class="me-2 badge bg-success">{{ T "event-list-card-public1" }}</span>
                                             {{ else }}
-                                            <span class="me-2 badge bg-danger">{{ T "event-lsit-card-public2" }}</span>
+                                            <span class="me-2 badge bg-danger">{{ T "event-list-card-public2" }}</span>
                                             {{ end }}
 
                                             {{ $eventtype := .Params.format }}
@@ -56,8 +56,13 @@
                                         <p><span class="bi bi-person"></span>&nbsp;{{ .Params.speaker }}</p>
                                     </div>
                                 </div>
+                                {{ if gt (.Params.eventdate | time) (now) }}
                                 <a class="btn btn-primary" href="{{ .Params.inscriptionlink }}">{{ T "events-list-card-btn1" }}</a>
                                 <a class="mt-2 btn btn-outline-light" href="{{ .Permalink }}">{{ T "events-list-card-btn2" }}</a>
+                                {{ else }}
+                                <a class="mt-2 btn btn-secondary" href="{{ .Permalink }}">{{ T "events-list-card-btn3" }}</a>
+                                {{ end }}
+                                
                             </div>
                         </div>
                     </div>
