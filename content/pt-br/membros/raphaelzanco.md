@@ -2,7 +2,7 @@
 title: "Raphael Zanco"
 description: "Utilizando a tecnologia para impactar pessoas. Adoro economia e negócios, sempre buscando novos desafios."
 cargo: ""
-github: "zanco"
+github: "raphaelzanco"
 linkedin: "raphael-zanco"
 external: ""
 points: "0"
