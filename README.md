@@ -21,4 +21,4 @@ Sinta-se à vontade para sugerir melhorias ou abrir issues! Este projeto é cola
 ### 📬 Contato
 
 Quer saber mais sobre a LICS ou participar da Liga?
-Entre em contato via o [formulário de contato](http://www.lics.tec.br/pt-br/contato/!
+Entre em contato via o [formulário de contato](http://www.lics.tec.br/pt-br/contato/)!
