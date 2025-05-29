@@ -5,18 +5,14 @@ Este é o repositório oficial do site da LICS - Liga de Cibersegurança da UNIC
 ## 🔍 Sobre a LICS
 
 A LICS (Liga de Cibersegurança) é um grupo estudantil da UNICAMP focado em:
-
-    Disseminar conhecimento sobre segurança da informação;
-
-    Promover palestras, workshops e competições como CTFs (Capture The Flag);
-
-    Conectar estudantes interessados à comunidade acadêmica e ao mercado de cibersegurança;
-
-    Realizar projetos colaborativos e pesquisas práticas na área.
+ - Disseminar conhecimento sobre segurança da informação;
+ - Promover palestras, workshops e competições como CTFs (Capture The Flag);
+ - Conectar estudantes interessados à comunidade acadêmica e ao mercado de cibersegurança;
+ - Realizar projetos colaborativos e pesquisas práticas na área.
 
 ## 🌐 Acesse o site
 
-O site está disponível em: https://lics-unicamp.github.io/
+O site está disponível em: [https://www.lics.tec.br/](https://www.lics.tec.br/)
 
 ### 👥 Contribuições
 
@@ -25,4 +21,4 @@ Sinta-se à vontade para sugerir melhorias ou abrir issues! Este projeto é cola
 ### 📬 Contato
 
 Quer saber mais sobre a LICS ou participar da Liga?
-Entre em contato via nosso e-mail: lics.unicamp@gmail.com
+Entre em contato via o [formulário de contato](http://www.lics.tec.br/pt-br/contato/!
