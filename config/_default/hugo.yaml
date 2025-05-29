@@ -25,7 +25,7 @@ languages:
     languageCode: pt-br
     languageDirection: ltr
     languageName: Português (Brasil)
-    title: Liga de Cyber da UNICAMP | LICS
+    title: Liga de Cyber da UNICAMP
     weight: 1
   en-us:
     contentDir: content/en-us
@@ -33,4 +33,4 @@ languages:
     languageCode: en-US
     languageDirection: ltr
     languageName: English (US)
-    title: UNICAMP Cyber League | LICS
+    title: UNICAMP Cyber League

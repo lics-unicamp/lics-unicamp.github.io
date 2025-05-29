@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="language" content="{{ .Lang }}">
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+<title>{{ printf "%s | %s" .Title site.Title }}</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <!-- ViewPort-->
@@ -17,7 +17,7 @@
 <!-- OpenGraph -->
 <meta property="og:type" content="page">
 <meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:title" content="{{ .Params.Title }}">
+<meta property="og:title" content="{{ .Title }}">
 <meta property="og:description" content="{{ .Params.Description }}">
 
 {{ partialCached "head/css.html" . }}
