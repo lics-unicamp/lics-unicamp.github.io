@@ -1,7 +1,7 @@
 ---
 title: "João Vitor"
 description: "Usuario de linux desde pequeno. Gosto de eletrônica."
-cargo: ""
+cargo: "associate"
 github: "joaovitor"
 linkedin: ""
 external: ""

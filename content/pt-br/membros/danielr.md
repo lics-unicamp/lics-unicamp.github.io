@@ -1,7 +1,7 @@
 ---
 title: "Daniel Rosell"
 description: "Sempre em busca de desafios e novas tecnologias."
-cargo: ""
+cargo: "associate"
 github: "danielr"
 linkedin: "daniel-aniceto-rosell-48bb48305"
 external: ""

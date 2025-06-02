@@ -1,7 +1,7 @@
 ---
 title: "Enzo Corrêa"
 description: "Entusiasta da Tecnologia e Jogador Profissional de Valorant & Braw Star."
-cargo: ""
+cargo: "associate"
 github: "wheresvortex"
 linkedin: "enzohenrique"
 external: ""

@@ -1,7 +1,7 @@
 ---
 title: "Matheus Bolito"
 description: "Membro de relações exteriores, procuro um bom networking. Gosto de Kamen Rider."
-cargo: ""
+cargo: "associate"
 github: "bolito"
 linkedin: "matheus-leveghim-bolito-8a3b5b35b"
 external: ""

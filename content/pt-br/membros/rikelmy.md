@@ -1,7 +1,7 @@
 ---
 title: "Rikelmy Barbosa"
 description: "Estudante de telecom, aprendendo mais sobre computação e cibersec, entusiasta de animes e rock."
-cargo: ""
+cargo: "associate"
 github: "rikelmy"
 linkedin: ""
 external: ""

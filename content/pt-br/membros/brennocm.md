@@ -1,7 +1,7 @@
 ---
 title: "Brenno Miranda"
 description: "Viciado em cibersegurança e leitor de Liev Tolstói nas horas vagas."
-cargo: "tutor"
+cargo: "agent"
 github: "brennocm"
 linkedin: "brennocm"
 external: "https://brennocm.github.io/"

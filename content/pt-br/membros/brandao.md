@@ -1,7 +1,7 @@
 ---
 title: "Giovanni Brandão"
 description: "Aspirante em diferentes áreas da arte e nerd na maioria das horas. Let's be friends!"
-cargo: ""
+cargo: "associate"
 github: "brandao"
 linkedin: "giovanni-brandao"
 external: ""

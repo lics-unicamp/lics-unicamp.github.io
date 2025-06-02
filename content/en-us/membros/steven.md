@@ -1,7 +1,7 @@
 ---
 title: "Steven Li Xiang"
 description: "Viciado em cibersegurança e Hollow Knight."
-cargo: ""
+cargo: "associate"
 github: "steven"
 linkedin: ""
 external: ""

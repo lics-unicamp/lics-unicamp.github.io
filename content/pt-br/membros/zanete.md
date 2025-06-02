@@ -1,7 +1,7 @@
 ---
 title: "Vinicius Zanete"
 description: "Busco conhecimento."
-cargo: ""
+cargo: "associate"
 github: "zanete"
 linkedin: ""
 external: ""

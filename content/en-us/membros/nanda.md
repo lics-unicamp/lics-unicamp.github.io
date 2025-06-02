@@ -1,7 +1,7 @@
 ---
 title: "Fernanda Alves"
 description: "Viciada em sistemas embarcados, redes IoT e cibersegurança, nas horas vagas jogo um baska."
-cargo: ""
+cargo: "associate"
 github: "nanda"
 linkedin: "fernanda-alves-239926233"
 external: ""

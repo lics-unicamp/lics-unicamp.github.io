@@ -1,7 +1,7 @@
 ---
 title: "Isadora Assumpção"
 description: "Estudando a tempos e tentando aprender crochê a mais tempos."
-cargo: ""
+cargo: "associate"
 github: "isadora"
 linkedin: "isadora-assumpção-99b848345"
 external: ""

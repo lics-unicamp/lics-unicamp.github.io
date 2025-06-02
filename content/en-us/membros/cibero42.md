@@ -1,11 +1,11 @@
 ---
 title: "Renato Castro"
 description: "Sou um nerd de cibersegurança apaixonado por Linux, CTI e ensinar."
-cargo: "tutor"
+cargo: "agent"
 github: "cibero42"
 linkedin: "renato-cf"
 external: ""
-points: 666
+points: 0
 areas:
   - "training"
 badges:
