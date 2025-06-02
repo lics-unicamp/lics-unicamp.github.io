@@ -1,7 +1,7 @@
 ---
 title: "Natalia Emboava"
 description: "Offsec, engenharia reversa, análise de malware e um pouco de café."
-cargo: "tutor"
+cargo: "agent"
 github: "nemboava"
 linkedin: "nataliaemboava"
 external: ""

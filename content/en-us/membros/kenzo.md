@@ -1,7 +1,7 @@
 ---
 title: "Adriano Kenzo"
 description: "Rookie em Cibersegurança."
-cargo: ""
+cargo: "associate"
 github: "kenzo"
 linkedin: "kenzo-osako-b565a4358"
 external: ""
