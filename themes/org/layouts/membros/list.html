@@ -31,7 +31,7 @@
                                         <div class="d-flex flex-column justify-content-between">
                                             <h3 class="m-0 ms-1 fs-5 fw-semibold">{{ .Title }}</h3>
                                             <div class="ms-1 d-flex flex-wrap">
-                                                <span class="me-2 badge bg-white text-black" data-bs-toggle="tooltip" title='{{ T "members-single-pts-description" }}'>{{ .Params.points }}&nbsp;{{ T "members-single-pts" }}</span>
+                                                <span class="me-1 mb-1 badge bg-white text-black" data-bs-toggle="tooltip" title='{{ T "members-single-pts-description" }}'>{{ .Params.points }}&nbsp;{{ T "members-single-pts" }}</span>
                                                 {{ range .Params.areas}}
                                                     {{ partial "areas.html" (dict "context" .) }}
                                                 {{ end }}
