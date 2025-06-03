@@ -1,8 +1,9 @@
 ---
 title: "Cybersecurity and Risk Management"
 speaker: "Cynthia Schultz"
+company: "Independent"
 country: "us"
-description: "Estamos muito felizes de anunciar a primeira edição do LICS CyberFest, contando com palestrantes nacionais e internacionais, que ocorrerá no mês de maio. "
+description: "Learn how large companies and governments manage cybersecurity risks and avoid negligence in digital security."
 eventdate: 2025-05-12T18:00:00-03:00
 duration: "1:00"
 format: "speech"

@@ -31,6 +31,10 @@
                         <span class="bi bi-person-fill text-primary"></span>&nbsp;{{ .Params.speaker }}
                     </p>
                     <p class="col-md-6">
+                        <span class="bi bi-building-fill text-primary"></span>&nbsp;{{ .Params.company }}
+                    </p>
+
+                    <p class="col-md-6">
                         <span class="bi bi-easel2 text-primary"></span>
                         {{ $eventtype := .Params.format }}
                         {{ range $i, $c := $data_index.event.type }}
@@ -40,18 +44,18 @@
                         {{ end }}
                     </p>
                     <p class="col-md-6">
-                        <span class="bi bi-calendar text-primary"></span>&nbsp;{{ (.Params.eventdate | time).Format "2006-01-02T15:04:05Z07:00" }}
-                    </p>
-                    <p class="col-md-6">
-                        <span class="bi bi-clock text-primary">&nbsp;</span>{{ .Params.duration }}
-                    </p>
-                    <p class="col-md-6">
                         <span class="bi bi-people-fill text-primary"></span>
                         {{ if .Params.ispublic}}
                         {{ T "event-list-card-public1" }}
                         {{ else }}
                         {{ T "event-list-card-public2" }}
                         {{ end }}
+                    </p>
+                    <p class="col-md-6">
+                        <span class="bi bi-calendar text-primary"></span>&nbsp;{{ (.Params.eventdate | time).Format "2006-01-02T15:04:05Z07:00" }}
+                    </p>
+                    <p class="col-md-6">
+                        <span class="bi bi-clock text-primary">&nbsp;</span>{{ .Params.duration }}
                     </p>
                     
                 </div>

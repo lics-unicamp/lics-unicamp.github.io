@@ -1,8 +1,9 @@
 ---
 title: "Introduction To Cyber Risk Management"
 speaker: "Israel Reyes & Valeria Moreno"
+company: "Independent"
 country: "us"
-description: "Estamos muito felizes de anunciar a primeira edição do LICS CyberFest, contando com palestrantes nacionais e internacionais, que ocorrerá no mês de maio. "
+description: "Explore how cyber risk management addresses cyberattacks and protects critical infrastructure from disruption."
 eventdate: 2025-05-26T18:00:00-03:00
 duration: "1:00"
 format: "speech"
