@@ -1,8 +1,9 @@
 ---
 title: "Introdução ao IAM Corporativa e Sua Evolução"
 speaker: "Vini Lima & Evandro Macahuba"
+company: "Okta"
 country: "br"
-description: "Estamos muito felizes de anunciar a primeira edição do LICS CyberFest, contando com palestrantes nacionais e internacionais, que ocorrerá no mês de maio. "
+description: "Descubra como a Gestão de Identidade e Acesso, um pilar essencial, garante o acesso adequado aos recursos da organização pelas pessoas certas."
 eventdate: 2025-05-05T18:00:00-03:00
 duration: "1:00"
 format: "speech"

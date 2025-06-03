@@ -1,8 +1,9 @@
 ---
 title: "Fraudes Que Enganam Até Os Nerds"
 speaker: "Fernando Guariento"
+company: "Serasa Experian"
 country: "br"
-description: "Estamos muito felizes de anunciar a primeira edição do LICS CyberFest, contando com palestrantes nacionais e internacionais, que ocorrerá no mês de maio. "
+description: "Nesta palestra, entenda como as fraudes acontecem, descubra sua vulnerabilidade e aprenda a se proteger dos tipos mais comuns de golpes, mesmo que você se considere precavido(a)."
 eventdate: 2025-05-19T18:00:00-03:00
 duration: "1:00"
 format: "speech"
