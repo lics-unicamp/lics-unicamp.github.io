@@ -35,15 +35,15 @@
                                         </h3>
                                         <p>
                                             {{ if .Params.ispublic}}
-                                            <span class="me-2 badge bg-success">{{ T "event-list-card-public1" }}</span>
+                                            <span class="me-1 badge bg-success">{{ T "event-list-card-public1" }}</span>
                                             {{ else }}
-                                            <span class="me-2 badge bg-danger">{{ T "event-list-card-public2" }}</span>
+                                            <span class="me-1 badge bg-danger">{{ T "event-list-card-public2" }}</span>
                                             {{ end }}
 
                                             {{ $eventtype := .Params.format }}
                                             {{ range $i, $c := $data_index.event.type }}
                                                 {{ if eq $c.key $eventtype }}
-                                                    <span class="me-2 badge bg-white text-black">{{ $c.value }}</span>
+                                                    <span class="me-1 badge bg-white text-black">{{ $c.value }}</span>
                                                 {{ end }}
                                             {{ end }}
                                         </p>
