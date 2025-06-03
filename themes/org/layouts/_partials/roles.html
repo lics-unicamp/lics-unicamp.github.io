@@ -1,11 +1,11 @@
 {{ if eq .context "challenger" }}
-    <span class="badge bg-secondary">{{ T "partial-roles-op1" }}</span>
+    <span class="mb-1 badge bg-secondary">{{ T "partial-roles-op1" }}</span>
 {{ else if eq .context "researcher" }}
-    <span class="badge bg-secondary">{{ T "partial-roles-op2" }}</span>
+    <span class="mb-1 badge bg-secondary">{{ T "partial-roles-op2" }}</span>
 {{ else if eq .context "tutor" }}
-    <span class="badge bg-secondary">{{ T "partial-roles-op3" }}</span>
+    <span class="mb-1 badge bg-secondary">{{ T "partial-roles-op3" }}</span>
 {{ else if eq .context "agent" }}
-    <span class="badge bg-secondary">{{ T "partial-roles-op4" }}</span>
+    <span class="mb-1 badge bg-secondary">{{ T "partial-roles-op4" }}</span>
 {{ else if eq .context "associate" }}
-    <span class="badge bg-secondary">{{ T "partial-roles-op5" }}</span>
+    <span class="mb-1 badge bg-secondary">{{ T "partial-roles-op5" }}</span>
 {{ end }}

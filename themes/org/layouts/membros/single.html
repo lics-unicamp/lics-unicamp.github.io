@@ -11,7 +11,7 @@
                     <div class="h-100 d-flex flex-column" style="min-height: 200px;">
                         <h1 class="m-0">{{ .Title }}</h1>
                         <div class="my-2 d-flex">
-                            <span class="me-2 badge bg-white text-black" data-bs-toggle="tooltip" title='{{ T "members-single-pts-description" }}'>{{ .Params.points }}&nbsp;{{ T "members-single-pts" }}</span>
+                            <span class="me-1 mb-1 badge bg-white text-black" data-bs-toggle="tooltip" title='{{ T "members-single-pts-description" }}'>{{ .Params.points }}&nbsp;{{ T "members-single-pts" }}</span>
                             {{ range .Params.areas}}
                                 {{ partial "areas.html" (dict "context" .) }}
                             {{ end }}
