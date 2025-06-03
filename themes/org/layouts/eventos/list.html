@@ -47,11 +47,9 @@
                                                 {{ end }}
                                             {{ end }}
                                         </p>
-                                        <p>
-                                            <span class="bi bi-calendar"></span>&nbsp;{{ (.Params.eventdate | time).Format "2006-01-02T15:04:05Z07:00" }}
-                                            &nbsp;
-                                            <span class="bi bi-clock">&nbsp;{{ .Params.duration }}</span>
-                                        
+                                        <p class="d-flex flex-wrap">
+                                            <div class="bi bi-calendar me-1 mb-1">&nbsp;{{ (.Params.eventdate | time).Format "2006-01-02T15:04:05Z07:00" }}</div>
+                                            <div class="bi bi-clock">&nbsp;{{ .Params.duration }}</div>
                                         </p>
                                         <p><span class="bi bi-person"></span>&nbsp;{{ .Params.speaker }}</p>
                                     </div>
