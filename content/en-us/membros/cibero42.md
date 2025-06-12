@@ -4,7 +4,7 @@ description: "Sou um nerd de cibersegurança apaixonado por Linux, CTI e ensinar
 cargo: "agent"
 github: "cibero42"
 linkedin: "renato-cf"
-external: ""
+external: "https://www.google.com/"
 points: 0
 areas:
   - "training"
