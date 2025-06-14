@@ -1,6 +1,6 @@
 ---
 title: "Brenno Miranda"
-description: "Viciado em cibersegurança e leitor de Liev Tolstói nas horas vagas."
+description: "Addicted to cybersecurity and a Liev Tolstoy reader in my spare time."
 cargo: "agent"
 github: "brennocm"
 linkedin: "brennocm"
@@ -17,42 +17,42 @@ translationKey: "member_brennocm"
 Darede - Da Rede a Nuvem
 - Duração: 06/2023 - 07/2024
 
-## Formação
-### Técnólogo em Análise e Desenvolvimento de Sistemas
-- Instituição: FT/UNICAMP
-- Duração: 2022 - 2026
+## Education
+### Technologist in Systems Analysis and Development
+- Institution: FT/UNICAMP
+- Duration: 2022 - 2026
 
-### Programa de Formação Interdisciplinar Superior
-- Escola: UNICAMP
-- Duração: 2020 - 2022
+### Interdisciplinary Higher Education Program
+- Institution: UNICAMP
+- Duration: 2020 - 2022
 
-# Certificações
+# Certifications
 ### CBP
 Certified Blockchain Practitioner
-- Emissão: 2025
-- Empresa emissora: The SecOps Group
+- Issued: 2025
+- Issuing Organization: The SecOps Group
 
 ### CCSP-AWS
 Certified Cloud Security Practitioner – AWS
-- Emissão: 2025
-- Empresa emissora: The SecOps Group
+- Issued: 2025
+- Issuing Organization: The SecOps Group
 
 ### CNSP
 Certified Network Security Practitioner – AWS
-- Emissão: 2025
-- Empresa emissora: The SecOps Group
+- Issued: 2025
+- Issuing Organization: The SecOps Group
 
 ### CAP
 Certified AppSec Practitioner (CAP)
-- Emissão: 2025
-- Empresa emissora: The SecOps Group
+- Issued: 2025
+- Issuing Organization: The SecOps Group
 
 ### MCRTA
 Multi-Cloud Red Team Analyst (MCRTA)
-- Emissão: 2024
-- Empresa emissora: CyberWarFare Labs
+- Issued: 2024
+- Issuing Organization: CyberWarFare Labs
 
 ### AWS CCP
 AWS Certified Cloud Practitioner
-- Emissão: 2023
-- Empresa emissora: Amazon Web Services (AWS)
+- Issued: 2023
+- Issuing Organization: Amazon Web Services (AWS)
