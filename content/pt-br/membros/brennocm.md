@@ -13,8 +13,8 @@ badges:
 translationKey: "member_brennocm"
 ---
 ## Experiência
-### Cyber Defense Analyst | SOC
-Darede - Da Rede a Nuvem
+### Analista de Segurança Defensiva | SOC
+Darede - Da Rede à Nuvem
 - Duração: 06/2023 - 07/2024
 
 ## Formação
