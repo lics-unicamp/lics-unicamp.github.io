@@ -105,7 +105,7 @@ function setupEventListeners() {
  * Render the summary stats
  */
 function renderStats() {
-  const members = membersCache.filter(m => m.role !== 'pendente' && m.role !== 'admin' && m.email !== 'lics.unicamp@gmail.com');
+  const members = membersCache.filter(m => m.role !== 'pendente' && m.role !== 'admin');
   const totalMembers = members.length;
   const activeMembers = members.filter(m => getStatus(m.pontosSemestre).status === 'Ativo').length;
   const alertMembers = members.filter(m => getStatus(m.pontosSemestre).status === 'Em Alerta').length;
@@ -132,7 +132,7 @@ function renderRanking() {
   const tbody = document.getElementById('ranking-body');
   if (!tbody) return;
 
-  let members = [...membersCache].filter(m => m.role !== 'pendente' && m.role !== 'admin' && m.email !== 'lics.unicamp@gmail.com');
+  let members = [...membersCache].filter(m => m.role !== 'pendente' && m.role !== 'admin');
 
   // Filter by search
   if (searchQuery) {

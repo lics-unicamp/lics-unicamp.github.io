@@ -12,7 +12,7 @@ import { showToast } from './utils.js';
 
 // Allowed domains
 const ALLOWED_DOMAINS = ['dac.unicamp.br'];
-const ADMIN_EMAIL = 'lics.unicamp@gmail.com';
+const ADMIN_EMAILS = ['lics.unicamp@gmail.com', 'lics@unicamp.br'];
 
 // Cached user datav (Firestore)
 let currentUserData = null;
@@ -27,7 +27,7 @@ const authReadyPromise = new Promise(resolve => { authReadyResolve = resolve; })
  */
 function isEmailAllowed(email) {
     if (!email) return false;
-    if (email === ADMIN_EMAIL) return true;
+    if (ADMIN_EMAILS.includes(email)) return true;
     return ALLOWED_DOMAINS.some(domain => email.endsWith(`@${domain}`));
 }
 

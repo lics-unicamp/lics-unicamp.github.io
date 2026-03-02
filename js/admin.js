@@ -136,7 +136,7 @@ function renderMemberSelectList() {
     const currentUser = getCurrentUser();
     let members = [...membersCache]
         .filter(m => m.role !== 'pendente' && m.role !== 'bloqueado')
-        .filter(m => m.uid !== currentUser.uid && m.email !== 'lics.unicamp@gmail.com' && m.role !== 'admin'); // Admin doesn't appear in the list
+        .filter(m => m.uid !== currentUser.uid && m.role !== 'admin'); // Admin doesn't appear in the list
 
     if (adminSearchQuery) {
         members = members.filter(m =>
@@ -193,7 +193,7 @@ function toggleSelectAll() {
     const currentUser = getCurrentUser();
     const selectableMembers = membersCache
         .filter(m => m.role !== 'pendente' && m.role !== 'bloqueado')
-        .filter(m => m.uid !== currentUser.uid && m.email !== 'lics.unicamp@gmail.com' && m.role !== 'admin');
+        .filter(m => m.uid !== currentUser.uid && m.role !== 'admin');
 
     if (selectedMembers.size === selectableMembers.length) {
         selectedMembers.clear();
@@ -279,21 +279,21 @@ function renderManageMembers() {
 
     // Active members (exclude admin self)
     const activeMembers = membersCache.filter(m =>
-        m.role !== 'pendente' && m.role !== 'bloqueado' && m.uid !== currentUser.uid && m.email !== 'lics.unicamp@gmail.com' && m.role !== 'admin' &&
+        m.role !== 'pendente' && m.role !== 'bloqueado' && m.uid !== currentUser.uid && m.role !== 'admin' &&
         getStatus(m.pontosSemestre).status === 'Ativo'
     );
     renderMemberStatusSection('ativo', activeMembers, 'Membros Ativos', 'text-ativo');
 
     // Alert members
     const alertMembers = membersCache.filter(m =>
-        m.role !== 'pendente' && m.role !== 'bloqueado' && m.uid !== currentUser.uid && m.email !== 'lics.unicamp@gmail.com' && m.role !== 'admin' &&
+        m.role !== 'pendente' && m.role !== 'bloqueado' && m.uid !== currentUser.uid && m.role !== 'admin' &&
         getStatus(m.pontosSemestre).status === 'Em Alerta'
     );
     renderMemberStatusSection('alerta', alertMembers, 'Membros em Alerta', 'text-alerta');
 
     // Inactive members
     const inactiveMembers = membersCache.filter(m =>
-        m.role !== 'pendente' && m.role !== 'bloqueado' && m.uid !== currentUser.uid && m.email !== 'lics.unicamp@gmail.com' && m.role !== 'admin' &&
+        m.role !== 'pendente' && m.role !== 'bloqueado' && m.uid !== currentUser.uid && m.role !== 'admin' &&
         getStatus(m.pontosSemestre).status === 'Inativo'
     );
     renderMemberStatusSection('inativo', inactiveMembers, 'Membros Inativos', 'text-inativo');
@@ -493,7 +493,7 @@ async function exportRankingPDF() {
         // Prepare data (exclude pending, blocked, and admin)
         const currentUser = getCurrentUser();
         const members = [...membersCache]
-            .filter(m => m.role !== 'pendente' && m.role !== 'bloqueado' && m.uid !== currentUser.uid && m.email !== 'lics.unicamp@gmail.com' && m.role !== 'admin')
+            .filter(m => m.role !== 'pendente' && m.role !== 'bloqueado' && m.uid !== currentUser.uid && m.role !== 'admin')
             .sort((a, b) => b.pontosTotais - a.pontosTotais);
 
         const tableData = members.map((m, i) => {
