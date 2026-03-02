@@ -470,12 +470,10 @@ async function exportRankingPDF() {
     showToast('Gerando PDF...', 'success', 2000);
 
     try {
-        // Lazy load jsPDF library and attach to window
-        const jspdfModule = await import('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js');
-        window.jspdf = jspdfModule;
-
-        // AutoTable requires jsPDF on window
-        await import('https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js');
+        // Ensure jsPDF is loaded via script tag
+        if (!window.jspdf || !window.jspdf.jsPDF) {
+            throw new Error("jsPDF library not found");
+        }
 
         const doc = new window.jspdf.jsPDF();
         const semestre = getSemestreAtual();
