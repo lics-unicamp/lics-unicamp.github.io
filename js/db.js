@@ -1,24 +1,24 @@
 /* ============================================
    LICS Dashboard — Firestore Database Module
    ============================================
-   Módulo centralizado para todas as operações
-   de leitura e escrita no Firestore.
+   Centralized module for all read/write
+   Firestore operations.
    ============================================ */
 
 import { db } from './firebase-init.js';
 import {
-    collection, doc, getDoc, getDocs, setDoc, updateDoc, addDoc,
+    collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc,
     query, where, orderBy, limit, writeBatch, increment, Timestamp, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getSemestreAtual } from './utils.js';
 
-// Referências das coleções
+// Collection references
 const usersRef = collection(db, 'users');
 const transactionsRef = collection(db, 'transactions');
 
 /**
- * Buscar todos os membros (exclui pendentes para não-admins)
- * @param {boolean} includesPending - Se true, inclui membros pendentes
+ * Fetch all members (excludes pending for non-admins)
+ * @param {boolean} includesPending - If true, include pending members
  * @returns {Promise<Array>}
  */
 export async function fetchAllMembers(includesPending = false) {
@@ -27,7 +27,7 @@ export async function fetchAllMembers(includesPending = false) {
     snapshot.forEach(docSnap => {
         const data = docSnap.data();
         data.uid = docSnap.id;
-        if (includesPending || data.role !== 'pendente') {
+        if (includesPending || (data.role !== 'pendente' && data.role !== 'bloqueado')) {
             members.push(data);
         }
     });
@@ -35,7 +35,7 @@ export async function fetchAllMembers(includesPending = false) {
 }
 
 /**
- * Buscar um membro por UID
+ * Fetch a member by UID
  * @param {string} uid
  * @returns {Promise<Object|null>}
  */
@@ -50,9 +50,9 @@ export async function fetchMemberByUid(uid) {
 }
 
 /**
- * Buscar transações, opcionalmente filtradas por userId
- * @param {string|null} userId - Se fornecido, filtra por userId
- * @param {number} maxResults - Limite de resultados
+ * Fetch transactions, optionally filtered by userId
+ * @param {string|null} userId - If provided, filter by userId
+ * @param {number} maxResults - Max results limit
  * @returns {Promise<Array>}
  */
 export async function fetchTransactions(userId = null, maxResults = 50) {
@@ -68,7 +68,7 @@ export async function fetchTransactions(userId = null, maxResults = 50) {
     snapshot.forEach(docSnap => {
         const data = docSnap.data();
         data.id = docSnap.id;
-        // Converte Timestamp para Date
+        // Convert Timestamp to Date
         if (data.data && data.data.toDate) {
             data.data = data.data.toDate();
         }
@@ -78,7 +78,7 @@ export async function fetchTransactions(userId = null, maxResults = 50) {
 }
 
 /**
- * Criar documento do usuário no primeiro login (role 'pendente')
+ * Create user document on first login (role 'pendente')
  * @param {string} uid
  * @param {string} nome
  * @param {string} email
@@ -98,7 +98,7 @@ export async function createUserDoc(uid, nome, email) {
 }
 
 /**
- * Aprovar um membro pendente (mudar role para 'membro')
+ * Approve a pending member (change role to 'membro')
  * @param {string} uid
  * @returns {Promise<void>}
  */
@@ -107,11 +107,11 @@ export async function approveMember(uid) {
 }
 
 /**
- * Lançar pontos para múltiplos membros (batch write atômico)
- * Cria transações imutáveis + incrementa pontos nos documentos dos membros
- * @param {Array<string>} uids - Lista de UIDs dos membros
- * @param {Object} transactionData - Dados da atividade
- * @param {Object} admin - Dados do admin logado {uid, nome}
+ * Submit points to multiple members (atomic batch write)
+ * Creates immutable transactions and increments member points
+ * @param {Array<string>} uids - List of member UIDs
+ * @param {Object} transactionData - Activity data
+ * @param {Object} admin - Logged-in admin data {uid, nome}
  * @returns {Promise<void>}
  */
 export async function submitPointsBatch(uids, transactionData, admin) {
@@ -119,7 +119,7 @@ export async function submitPointsBatch(uids, transactionData, admin) {
     const semestreAtual = getSemestreAtual();
 
     for (const uid of uids) {
-        // 1. Criar documento na coleção transactions (ledger imutável)
+        // 1. Create document in transactions collection (immutable ledger)
         const txRef = doc(transactionsRef);
         batch.set(txRef, {
             userId: uid,
@@ -133,7 +133,7 @@ export async function submitPointsBatch(uids, transactionData, admin) {
             semestreId: transactionData.semestreId || semestreAtual
         });
 
-        // 2. Incrementar pontos no documento do membro
+        // 2. Increment points in member document
         const userRef = doc(db, 'users', uid);
         batch.update(userRef, {
             pontosTotais: increment(transactionData.pontos),
@@ -141,6 +141,62 @@ export async function submitPointsBatch(uids, transactionData, admin) {
         });
     }
 
-    // Executa tudo atomicamente
+    // Execute atomically
     await batch.commit();
+}
+
+/**
+ * Reject a pending member (delete Firestore doc)
+ * User can re-register in the future
+ * @param {string} uid
+ * @returns {Promise<void>}
+ */
+export async function rejectMember(uid) {
+    await deleteDoc(doc(db, 'users', uid));
+}
+
+/**
+ * Expel/block a member (change role to 'bloqueado')
+ * Maintain history and data in Firestore
+ * @param {string} uid
+ * @returns {Promise<void>}
+ */
+export async function blockMember(uid) {
+    await updateDoc(doc(db, 'users', uid), { role: 'bloqueado' });
+}
+
+/**
+ * Lazy Reset — verify if the semester changed and reset pontosSemestre
+ * Called automatically when admin loads the dashboard
+ * @returns {Promise<boolean>} true if reset was executed
+ */
+export async function checkAndResetSemestre() {
+    const semestreAtual = getSemestreAtual();
+    const snapshot = await getDocs(usersRef);
+
+    // Verify if any member has a different semester
+    let needsReset = false;
+    snapshot.forEach(docSnap => {
+        const data = docSnap.data();
+        if (data.role !== 'pendente' && data.role !== 'bloqueado' && data.semestreAtual !== semestreAtual) {
+            needsReset = true;
+        }
+    });
+
+    if (!needsReset) return false;
+
+    // Execute reset via batch
+    const batch = writeBatch(db);
+    snapshot.forEach(docSnap => {
+        const data = docSnap.data();
+        if (data.role !== 'pendente' && data.role !== 'bloqueado') {
+            batch.update(doc(db, 'users', docSnap.id), {
+                pontosSemestre: 0,
+                semestreAtual: semestreAtual
+            });
+        }
+    });
+
+    await batch.commit();
+    return true;
 }

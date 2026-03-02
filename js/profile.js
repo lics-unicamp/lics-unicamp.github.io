@@ -17,7 +17,7 @@ async function initProfile() {
 
   updateHeaderUser(user);
 
-  // Esconde link admin para não-admin
+  // Hide admin link for non-admins
   if (!isAdmin()) {
     const navAdmin = document.getElementById('nav-admin');
     if (navAdmin) navAdmin.style.display = 'none';
@@ -46,7 +46,7 @@ async function initProfile() {
  * @param {string} uid
  */
 async function renderProfile(uid) {
-  // Buscar membro do Firestore
+  // Fetch member from Firestore
   let member;
   try {
     member = await fetchMemberByUid(uid);
@@ -106,7 +106,7 @@ async function renderProfile(uid) {
  * @param {string} uid
  */
 async function renderTimeline(uid) {
-  // Buscar transações do Firestore
+  // Fetch transactions from Firestore
   let allTransactions = [];
   try {
     allTransactions = await fetchTransactions(uid);
@@ -174,7 +174,7 @@ function filterTimeline(category, uid) {
   renderTimeline(uid);
 }
 
-// Expor funções para onclick do HTML
+// Expose functions for HTML onclick
 window._filterTimeline = filterTimeline;
 
 // Initialize on page load

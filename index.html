@@ -25,10 +25,8 @@
   <!-- Login Page -->
   <div class="login-page">
     <div class="login-container">
-      <!-- Logo -->
       <img src="assets/img/logo-without-bg.png" alt="LICS Logo" class="login-logo">
 
-      <!-- Title -->
       <h1 class="login-title">BEM-VINDO AO <span>SCOREBOARD</span></h1>
       <p class="login-subtitle">Sistema de Pontuação Interno da LICS</p>
 
@@ -97,16 +95,32 @@
     </div>
   </div>
 
-  <!-- Tela de Aguardando Aprovação (visível quando ?status=pendente) -->
-  <div id="pending-screen" style="display: none;">
+  <!-- Pending Approval Screen -->
+  <div id="pending-screen" class="status-screen" style="display: none;">
     <div class="login-container">
       <img src="assets/img/logo-without-bg.png" alt="LICS Logo" class="login-logo">
-      <h1 class="login-title" style="font-size: 1.2rem;">AGUARDANDO <span>APROVAÇÃO</span></h1>
+      <h1 class="login-title" style="font-size: 1.4rem;">AGUARDANDO <span>APROVAÇÃO</span></h1>
       <div class="login-terminal" style="margin-top: var(--space-lg);">
         <div><span class="prompt">> STATUS:</span> <span class="value"
             style="color: var(--color-warning);">PENDING_APPROVAL</span></div>
         <div><span class="prompt">> INFO:</span> <span class="value">Sua conta foi criada. Aguarde a aprovação da
             diretoria LICS.</span></div>
+      </div>
+      <button class="btn" style="margin-top: var(--space-lg);" onclick="doLogout()">Voltar ao Login</button>
+    </div>
+  </div>
+
+  <!-- Revoked Access Screen -->
+  <div id="blocked-screen" class="status-screen" style="display: none;">
+    <div class="login-container">
+      <img src="assets/img/logo-without-bg.png" alt="LICS Logo" class="login-logo">
+      <h1 class="login-title" style="font-size: 1.4rem;">ACESSO <span
+          style="color: var(--color-danger);">REVOGADO</span></h1>
+      <div class="login-terminal" style="margin-top: var(--space-lg);">
+        <div><span class="prompt">> STATUS:</span> <span class="value"
+            style="color: var(--color-danger);">ACCESS_REVOKED</span></div>
+        <div><span class="prompt">> INFO:</span> <span class="value">Seu acesso foi revogado pela diretoria LICS.</span>
+        </div>
       </div>
       <button class="btn" style="margin-top: var(--space-lg);" onclick="doLogout()">Voltar ao Login</button>
     </div>
@@ -121,11 +135,12 @@
 
   <script type="module" src="js/auth.js"></script>
   <script type="module">
-    // Mostrar tela de pendente se redirecionado
     const params = new URLSearchParams(window.location.search);
-    if (params.get('status') === 'pendente') {
+    const status = params.get('status');
+    if (status === 'pendente' || status === 'bloqueado') {
       document.querySelector('.login-page').style.display = 'none';
-      document.getElementById('pending-screen').style.display = 'flex';
+      const screenId = status === 'bloqueado' ? 'blocked-screen' : 'pending-screen';
+      document.getElementById(screenId).style.display = 'flex';
     }
   </script>
 </body>

@@ -1,8 +1,8 @@
 /* ============================================
    LICS Dashboard — Authentication Module
    ============================================
-   Firebase Auth com Google Sign-In
-   Domínios permitidos: @dac.unicamp.br + lics.unicamp@gmail.com
+   Firebase Auth with Google Sign-In
+   Allowed domains: @dac.unicamp.br + lics.unicamp@gmail.com
    ============================================ */
 
 import { auth, provider } from './firebase-init.js';
@@ -10,18 +10,18 @@ import { signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstati
 import { createUserDoc, fetchMemberByUid } from './db.js';
 import { showToast } from './utils.js';
 
-// Domínios permitidos
+// Allowed domains
 const ALLOWED_DOMAINS = ['dac.unicamp.br'];
 const ADMIN_EMAIL = 'lics.unicamp@gmail.com';
 
-// Cache do usuário atual (dados do Firestore)
+// Cached user datav (Firestore)
 let currentUserData = null;
 let authReady = false;
 let authReadyResolve = null;
 const authReadyPromise = new Promise(resolve => { authReadyResolve = resolve; });
 
 /**
- * Verifica se o e-mail é permitido
+ * Check if the email is allowed
  * @param {string} email
  * @returns {boolean}
  */
@@ -32,7 +32,7 @@ function isEmailAllowed(email) {
 }
 
 /**
- * Retorna os dados do usuário logado (do Firestore cache)
+ * Return the logged-in user data from cache
  * @returns {Object|null}
  */
 export function getCurrentUser() {
@@ -40,7 +40,7 @@ export function getCurrentUser() {
 }
 
 /**
- * Aguarda o auth estar pronto (onAuthStateChanged)
+ * Wait for auth to be ready (onAuthStateChanged)
  * @returns {Promise<Object|null>}
  */
 export function waitForAuth() {
@@ -48,7 +48,7 @@ export function waitForAuth() {
 }
 
 /**
- * Verifica se o usuário é admin
+ * Check if the user is an admin
  * @returns {boolean}
  */
 export function isAdmin() {
@@ -56,7 +56,7 @@ export function isAdmin() {
 }
 
 /**
- * Verifica se o usuário está pendente
+ * Check if the user is pending
  * @returns {boolean}
  */
 export function isPending() {
@@ -64,35 +64,38 @@ export function isPending() {
 }
 
 /**
- * Login com Google
- * Fluxo: Google Sign-In → Verificar domínio → Verificar/criar doc Firestore
+ * Google Login
+ * Flow: Google Sign-In -> Verify domain -> Verify/create Firestore doc
  */
 export async function doLogin() {
     try {
         const result = await signInWithPopup(auth, provider);
         const user = result.user;
 
-        // Verificar domínio do e-mail
+        // Verify email domain
         if (!isEmailAllowed(user.email)) {
             await signOut(auth);
             showToast('Acesso restrito a membros LICS (@dac.unicamp.br)', 'error', 5000);
             return;
         }
 
-        // Verificar se o doc existe no Firestore
+        // Verify if the doc exists in Firestore
         let userData = await fetchMemberByUid(user.uid);
 
         if (!userData) {
-            // Primeiro login — criar doc como 'pendente'
+            // First login - create doc as 'pendente'
             await createUserDoc(user.uid, user.displayName || user.email.split('@')[0], user.email);
             userData = await fetchMemberByUid(user.uid);
         }
 
         currentUserData = userData;
 
-        // Redirecionar baseado no role
+        // Redirect based on role
         if (userData.role === 'pendente') {
             window.location.href = 'index.html?status=pendente';
+        } else if (userData.role === 'bloqueado') {
+            await signOut(auth);
+            window.location.href = 'index.html?status=bloqueado';
         } else {
             window.location.href = 'dashboard.html';
         }
@@ -100,7 +103,7 @@ export async function doLogin() {
     } catch (error) {
         console.error('Erro no login:', error);
         if (error.code === 'auth/popup-closed-by-user') {
-            return; // Usuário fechou o popup — sem ação
+            return; // User closed the popup
         }
         showToast('Erro ao fazer login. Tente novamente.', 'error');
     }
@@ -121,9 +124,9 @@ export async function doLogout() {
 }
 
 /**
- * Protege uma página — redireciona se não autenticado
- * @param {boolean} requireAdminRole - Se true, exige role 'admin'
- * @returns {Promise<Object|null>} dados do usuário ou null
+ * Protect a page - redirect if not authenticated
+ * @param {boolean} requireAdminRole - If true, requires 'admin' role
+ * @returns {Promise<Object|null>} user data or null
  */
 export async function requireAuth(requireAdminRole = false) {
     const userData = await waitForAuth();
@@ -138,6 +141,11 @@ export async function requireAuth(requireAdminRole = false) {
         return null;
     }
 
+    if (userData.role === 'bloqueado') {
+        window.location.href = 'index.html?status=bloqueado';
+        return null;
+    }
+
     if (requireAdminRole && userData.role !== 'admin') {
         window.location.href = 'dashboard.html';
         return null;
@@ -147,7 +155,7 @@ export async function requireAuth(requireAdminRole = false) {
 }
 
 /**
- * Atualiza o header com informações do usuário
+ * Update the header with user info
  * @param {Object} user
  */
 export function updateHeaderUser(user) {
@@ -159,13 +167,13 @@ export function updateHeaderUser(user) {
 }
 
 /**
- * Inicializa listener do Firebase Auth
- * Chamado automaticamente quando o módulo é importado
+ * Initialize Firebase Auth listener
+ * Called automatically when the module is imported
  */
 function initAuthListener() {
     onAuthStateChanged(auth, async (firebaseUser) => {
         if (firebaseUser) {
-            // Usuário logado — buscar dados do Firestore
+            // User is logged in - fetch Firestore data
             const userData = await fetchMemberByUid(firebaseUser.uid);
             currentUserData = userData;
         } else {
@@ -176,9 +184,9 @@ function initAuthListener() {
     });
 }
 
-// Inicializar listener ao carregar o módulo
+// Initialize listener on load
 initAuthListener();
 
-// Expor funções para uso em onclick do HTML
+// Expose functions for HTML onclick
 window.doLogin = doLogin;
 window.doLogout = doLogout;

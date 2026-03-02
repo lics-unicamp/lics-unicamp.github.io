@@ -49,15 +49,15 @@ lics-dashboard/
 
 ```
 ┌────────────────────────────────────────────────────┐
-│              GitHub Pages (Frontend)                │
-│              ES Modules (type="module")              │
+│              GitHub Pages (Frontend)               │
+│              ES Modules (type="module")            │
 │                                                    │
 │  index.html ──► dashboard.html ──► admin.html      │
 │                      │                             │
 │                 profile.html                       │
 │                                                    │
 │  firebase-init.js ──► auth.js ──► dashboard.js     │
-│         │              │          admin.js          │
+│         │              │          admin.js         │
 │         └──► db.js ◄───┘          profile.js       │
 │              │                                     │
 │         utils.js (helpers)                         │
@@ -65,9 +65,9 @@ lics-dashboard/
                        │
                        ▼
              ┌─────────────────┐
-             │     Firebase     │
+             │     Firebase    │
              │                 │
-             │  Auth (Google)  │
+             │     Auth        │
              │  Firestore DB   │
              └─────────────────┘
 ```
@@ -155,23 +155,24 @@ lics-dashboard/
 
 | Página         | Acesso    | Descrição |
 |---------------|-----------|-----------|
-| `index.html`  | Público   | Login com Google (@unicamp.br) |
+| `index.html`  | Público   | Login com Google (@dac.unicamp.br + admin Gmail) |
 | `dashboard.html`| Membros | Ranking, busca, filtro total/semestre |
 | `profile.html`| Membros   | Perfil individual, histórico de pontos |
-| `admin.html`  | Admin     | Lançar pontos, gerir membros, histórico |
+| `admin.html`  | Admin     | Lançar pontos, gerir membros, histórico, exportar PDF |
 
 ### Controle de Acesso
 
-- **Novo login** → role `pendente` → tela de aguardando aprovação
+- **Novo login** → role `pendente` → tela "Aguardando Aprovação"
 - **Admin aprova** → role muda para `membro`
-- **Coluna "Situação"** → visível apenas para admin
-- **Cards de status** (Ativos/Em Alerta/Inativos) → visíveis apenas para admin
-- **Perfil LICS** → botão no modal direciona para `lics.tec.br/pt-br/membros/{slug}/`
+- **Admin recusa** → documento excluído do Firestore
+- **Admin expulsa** → role muda para `bloqueado` → tela "Acesso Revogado"
+- **Admin não aparece** nas listas de gestão (proteção contra auto-exclusão)
+- **Coluna "Situação"** e **cards de status** → visíveis apenas para admin
 
 ### Semestre
 
 - Gerado automaticamente: Jan–Jun = `.1`, Jul–Dez = `.2`
-- Exemplo: `2026.1` para primeiro semestre de 2026
+- **Lazy Reset:** quando o admin acessa o dashboard no novo semestre, `pontosSemestre` é resetado automaticamente para todos os membros
 
 ---
 
@@ -183,16 +184,4 @@ lics-dashboard/
 - **Admin verificado via Firestore** — campo `role` no documento, não no client
 - **API Key pública** é normal no Firebase — Security Rules são a proteção real
 
----
-
-## O que Falta (TO-DO List)
-
-- [x] Integração real com Firebase Auth (substituir mock)
-- [x] Integração real com Firestore (substituir dados mock)
-- [x] Fluxo de aprovação de pendentes (tela "Aguardando Aprovação")
-- [x] Firestore Security Rules em produção
-- [x] Remover Dev Toolbar em produção
-- [ ] Reset automático de `pontosSemestre` a cada semestre
-- [ ] Exportação de dados (CSV/PDF)
-- [ ] Notificações (e-mail ou in-app) para mudanças de status
 

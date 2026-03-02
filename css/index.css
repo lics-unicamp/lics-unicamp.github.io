@@ -204,41 +204,14 @@
     color: var(--color-text-muted);
 }
 
-/* ---------- Dev Toolbar (testing only) ---------- */
-.dev-toolbar {
-    position: fixed;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
+/* ---------- Status Screens (Pending / Blocked) ---------- */
+.status-screen {
+    min-height: 100vh;
     display: flex;
-    gap: 8px;
-    padding: 8px 16px;
-    background-color: rgba(0, 0, 0, 0.8);
-    border: 1px solid var(--color-warning);
-    z-index: 100;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-}
-
-.dev-toolbar span {
-    color: var(--color-warning);
-    margin-right: 8px;
-}
-
-.dev-toolbar button {
-    padding: 4px 12px;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    background: transparent;
-    border: 1px solid var(--color-text-muted);
-    color: var(--color-text);
-    cursor: pointer;
-    transition: all 150ms ease;
-}
-
-.dev-toolbar button:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 /* ---------- Responsive: Tablet ---------- */
@@ -277,16 +250,7 @@
         font-size: 0.55rem;
     }
 
-    .dev-toolbar {
-        bottom: 40px;
-        padding: 6px 12px;
-        font-size: 0.6rem;
-    }
 
-    .dev-toolbar button {
-        padding: 3px 8px;
-        font-size: 0.6rem;
-    }
 }
 
 /* ---------- Responsive: Mobile ---------- */

@@ -42,12 +42,14 @@
         <!-- Main Content -->
         <main class="page-content">
             <div class="container">
-                <!-- Binary decoration -->
                 <div class="binary-decoration" style="margin-bottom: var(--space-md);">0010101 0010110 ADMIN_PANEL
                     0010110</div>
 
-                <h1 style="margin-bottom: var(--space-lg); text-transform: uppercase; letter-spacing: 0.05em;">
+                <h1
+                    style="margin-bottom: var(--space-lg); text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
                     Painel Administrativo
+                    <button class="btn btn-sm" onclick="window._exportRankingPDF()" style="font-size: 0.7rem;">Exportar
+                        PDF</button>
                 </h1>
 
                 <!-- Tabs -->
@@ -57,7 +59,7 @@
                     <button class="tab" data-tab="historico">Histórico</button>
                 </div>
 
-                <!-- Tab: Lançar Pontos -->
+                <!-- Tab: Submit Points -->
                 <div class="tab-content active" id="tab-lancar-pontos">
                     <div class="admin-layout">
                         <!-- Left: Member Selection -->
@@ -142,7 +144,7 @@
                     </div>
                 </div>
 
-                <!-- Tab: Gerir Membros -->
+                <!-- Tab: Manage Members -->
                 <div class="tab-content" id="tab-gerir-membros">
                     <div class="members-management">
                         <!-- Pending -->
@@ -168,7 +170,7 @@
                     </div>
                 </div>
 
-                <!-- Tab: Histórico -->
+                <!-- Tab: History -->
                 <div class="tab-content" id="tab-historico">
                     <div class="transaction-log">
                         <div class="transaction-log-header">

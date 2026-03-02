@@ -3,8 +3,8 @@
    ============================================ */
 
 import { getCurrentUser, isAdmin, requireAuth, updateHeaderUser } from './auth.js';
-import { fetchAllMembers, fetchTransactions } from './db.js';
-import { getTitulo, getStatus, formatDate, debounce } from './utils.js';
+import { fetchAllMembers, fetchTransactions, checkAndResetSemestre } from './db.js';
+import { getTitulo, getStatus, formatDate, debounce, showToast } from './utils.js';
 
 // State
 let currentViewMode = 'total'; // 'total' | 'semestre'
@@ -22,7 +22,7 @@ async function initDashboard() {
 
   updateHeaderUser(user);
 
-  // Esconde coluna "Situação" e link admin para não-admin
+  // Hide "Status" column and admin link for non-admins
   if (!isAdmin()) {
     const statusTh = document.querySelector('th[data-sort="status"]');
     if (statusTh) statusTh.style.display = 'none';
@@ -30,8 +30,15 @@ async function initDashboard() {
     if (navAdmin) navAdmin.style.display = 'none';
   }
 
-  // Buscar membros do Firestore
+  // Fetch members from Firestore
   try {
+    // Lazy reset: if admin loads and semester changed, reset pontosSemestre
+    if (isAdmin()) {
+      const didReset = await checkAndResetSemestre();
+      if (didReset) {
+        showToast('Novo semestre detectado! Pontos semestrais resetados.', 'success', 5000);
+      }
+    }
     membersCache = await fetchAllMembers(false);
   } catch (error) {
     console.error('Erro ao buscar membros:', error);
@@ -106,7 +113,7 @@ function renderStats() {
 
   document.getElementById('stat-total').textContent = totalMembers;
 
-  // Stats de status só visíveis para admin
+  // Status stats only visible to admin
   const hideStats = !isAdmin();
   const statActive = document.getElementById('stat-active');
   const statAlert = document.getElementById('stat-alert');
@@ -219,7 +226,7 @@ async function openProfileModal(uid) {
   const titulo = getTitulo(member.pontosTotais);
   const status = getStatus(member.pontosSemestre);
 
-  // Buscar transações do Firestore (com cache)
+  // Fetch transactions from Firestore (with cache)
   let transactions = transactionsCache[uid];
   if (!transactions) {
     try {
@@ -234,8 +241,6 @@ async function openProfileModal(uid) {
   const modal = document.getElementById('profile-modal');
   const content = document.getElementById('profile-modal-content');
 
-  const licsProfileUrl = `https://www.lics.tec.br/pt-br/membros/${member.slug || member.nome.toLowerCase().replace(/\s+/g, '')}/`;
-
   content.innerHTML = `
     <!-- Profile Header -->
     <div class="profile-card-header">
@@ -244,7 +249,6 @@ async function openProfileModal(uid) {
         <h3>${member.nome}</h3>
         <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 4px;">
           <span class="badge-title">${titulo.icone} ${titulo.titulo}</span>
-          <a href="${licsProfileUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm" style="font-size: 0.65rem; padding: 2px 8px;">Perfil LICS ↗</a>
         </div>
         <div style="margin-top: 4px;">
           <span class="mono text-muted" style="font-size: 0.75rem;">${member.email}</span>
@@ -308,7 +312,7 @@ function closeProfileModal() {
   }
 }
 
-// Expor funções para onclick do HTML
+// Expose functions for HTML onclick
 window._openProfileModal = openProfileModal;
 window.closeProfileModal = closeProfileModal;
 
