@@ -497,14 +497,10 @@ async function exportRankingPDF() {
             .sort((a, b) => b.pontosTotais - a.pontosTotais);
 
         const tableData = members.map((m, i) => {
-            const titulo = getTitulo(m.pontosTotais);
-            const status = getStatus(m.pontosSemestre);
             return [
                 i + 1,
                 m.nome,
                 m.email,
-                titulo.titulo,
-                status.status,
                 m.pontosTotais,
                 m.pontosSemestre
             ];
@@ -513,15 +509,15 @@ async function exportRankingPDF() {
         // Table using autoTable natively on the doc interface
         doc.autoTable({
             startY: 40,
-            head: [['#', 'Nome', 'E-mail', 'Título', 'Situação', 'Pts Total', 'Pts Semestre']],
+            head: [['#', 'Nome', 'E-mail', 'Pts Total', 'Pts Semestre']],
             body: tableData,
             styles: { fontSize: 8, cellPadding: 2 },
             headStyles: { fillColor: [34, 36, 28], textColor: [0, 170, 0] },
             alternateRowStyles: { fillColor: [240, 240, 240] },
             columnStyles: {
                 0: { halign: 'center', cellWidth: 10 },
-                5: { halign: 'right' },
-                6: { halign: 'right' }
+                3: { halign: 'right' },
+                4: { halign: 'right' }
             }
         });
 
