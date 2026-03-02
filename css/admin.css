@@ -196,6 +196,7 @@
 .members-management {
     display: grid;
     gap: var(--space-xl);
+    overflow-x: hidden;
 }
 
 .members-status-section {
@@ -242,6 +243,8 @@
 
 .members-status-body {
     padding: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .manage-table {

@@ -60,6 +60,11 @@
     width: 100%;
 }
 
+.table-responsive-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 .ranking-table .rank-pos {
     width: 60px;
     text-align: center;
