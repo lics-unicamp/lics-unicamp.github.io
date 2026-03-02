@@ -1,0 +1,266 @@
+/* ============================================
+   LICS Dashboard — Dashboard Styles
+   ============================================ */
+
+/* ---------- Dashboard Layout ---------- */
+.dashboard-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+    flex-wrap: wrap;
+}
+
+.dashboard-title-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.dashboard-title-row h1 {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.dashboard-title-row .badge {
+    font-size: 0.65rem;
+}
+
+/* ---------- Search & Toggle Row ---------- */
+.dashboard-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.dashboard-search {
+    position: relative;
+    min-width: 220px;
+}
+
+.dashboard-search input {
+    padding-left: 36px;
+}
+
+.dashboard-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+
+/* ---------- Ranking Table ---------- */
+.ranking-table {
+    width: 100%;
+}
+
+.ranking-table .rank-pos {
+    width: 60px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+}
+
+.ranking-table .rank-pos-1 {
+    color: #ffd700;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.ranking-table .rank-pos-2 {
+    color: #c0c0c0;
+    text-shadow: 0 0 8px rgba(192, 192, 192, 0.3);
+}
+
+.ranking-table .rank-pos-3 {
+    color: #cd7f32;
+    text-shadow: 0 0 8px rgba(205, 127, 50, 0.3);
+}
+
+.ranking-table .member-name {
+    font-weight: 600;
+    color: var(--color-text-bright);
+}
+
+.ranking-table .member-email {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 2px;
+}
+
+.ranking-table .points-cell {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-primary);
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* ---------- Dashboard Stats ---------- */
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.dashboard-stat {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--border-dim);
+    padding: var(--space-lg);
+    text-align: center;
+}
+
+.dashboard-stat-value {
+    font-family: var(--font-mono);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-shadow: var(--glow-sm);
+}
+
+.dashboard-stat-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin-top: var(--space-xs);
+}
+
+/* ---------- Member Profile Card (Modal) ---------- */
+.profile-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    background-color: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--border-dim);
+}
+
+.profile-card-avatar {
+    width: 64px;
+    height: 64px;
+    background-color: var(--color-bg-primary);
+    border: 2px solid var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.profile-card-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.profile-card-info .badge {
+    margin-right: var(--space-sm);
+}
+
+.profile-card-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+}
+
+.profile-card-stat {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--border-dim);
+    padding: var(--space-md);
+    text-align: center;
+}
+
+/* ---------- Responsive: Tablet ---------- */
+@media (max-width: 768px) {
+    .dashboard-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .dashboard-title-row h1 {
+        font-size: 1.1rem;
+    }
+
+    .dashboard-actions {
+        flex-direction: column;
+    }
+
+    .dashboard-search {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .toggle-group {
+        width: 100%;
+    }
+
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-stat {
+        padding: var(--space-md);
+    }
+
+    .dashboard-stat-value {
+        font-size: 1.4rem;
+    }
+
+    .ranking-table .member-email {
+        display: none;
+    }
+
+    .ranking-table .rank-pos {
+        width: 40px;
+        font-size: 0.9rem;
+    }
+
+    .ranking-table .points-cell {
+        font-size: 0.85rem;
+    }
+
+    .profile-card-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-card-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- Responsive: Mobile ---------- */
+@media (max-width: 480px) {
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-stat-value {
+        font-size: 1.2rem;
+    }
+
+    .ranking-table .rank-pos {
+        width: 30px;
+        font-size: 0.8rem;
+    }
+
+    .profile-card-avatar {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+    }
+}

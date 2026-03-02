@@ -1,0 +1,179 @@
+/* ============================================
+   LICS Dashboard — Profile Page Styles
+   ============================================ */
+
+/* ---------- Profile Layout ---------- */
+.profile-hero {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-xl);
+    box-shadow: var(--glow-sm);
+}
+
+.profile-hero-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    background-color: var(--color-bg-primary);
+    border: 2px solid var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--glow-md);
+}
+
+.profile-avatar-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.profile-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Logo already has dark bg with light bird — no filter needed */
+    padding: 12px;
+}
+
+.profile-details {
+    flex: 1;
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-text-bright);
+    margin-bottom: var(--space-xs);
+}
+
+.profile-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-top: var(--space-sm);
+}
+
+.profile-email {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+/* ---------- Stats Cards ---------- */
+.profile-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.profile-stat-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--border-dim);
+    padding: var(--space-xl);
+    text-align: center;
+}
+
+.profile-stat-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+}
+
+.profile-stat-value {
+    font-family: var(--font-mono);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-shadow: var(--glow-md);
+    line-height: 1;
+}
+
+.profile-stat-unit {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-left: 4px;
+}
+
+/* ---------- Timeline Section ---------- */
+.profile-timeline-section {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--border-dim);
+    padding: var(--space-xl);
+}
+
+.profile-timeline-title {
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border-dim);
+}
+
+.profile-timeline-filters {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+}
+
+.filter-chip {
+    padding: var(--space-xs) var(--space-md);
+    font-family: var(--font-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: transparent;
+    border: 1px solid var(--border-dim);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.filter-chip:hover {
+    border-color: var(--color-primary);
+    color: var(--color-text);
+}
+
+.filter-chip.active {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-bg-primary);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .profile-hero-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-meta {
+        justify-content: center;
+    }
+
+    .profile-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-stat-value {
+        font-size: 2rem;
+    }
+
+    .profile-name {
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,395 @@
+/* ============================================
+   LICS Dashboard — Admin Panel Styles
+   ============================================ */
+
+/* ---------- Admin Layout ---------- */
+.admin-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+}
+
+/* ---------- Member Selection Panel ---------- */
+.member-select-panel {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--border-dim);
+}
+
+.member-select-header {
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-dim);
+}
+
+.member-select-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-bright);
+    margin-bottom: var(--space-md);
+}
+
+.member-select-search {
+    position: relative;
+}
+
+.member-select-search input {
+    padding-left: 36px;
+}
+
+.member-select-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    pointer-events: none;
+}
+
+.member-select-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.member-select-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.member-select-list::-webkit-scrollbar-track {
+    background: var(--color-bg-primary);
+}
+
+.member-select-list::-webkit-scrollbar-thumb {
+    background: var(--border-dim);
+}
+
+.member-select-list::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+}
+
+.member-select-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.member-select-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.7rem;
+}
+
+.member-select-table tbody td {
+    padding: var(--space-sm) var(--space-md);
+}
+
+.member-select-table tbody tr {
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.member-select-table tbody tr:hover {
+    background-color: var(--color-primary-dim);
+}
+
+.member-select-table tbody tr.selected {
+    background-color: rgba(0, 170, 0, 0.15);
+    border-left: 3px solid var(--color-primary);
+}
+
+.member-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.selected-count {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-primary);
+    padding: var(--space-sm) var(--space-lg);
+    border-top: 1px solid var(--border-dim);
+    background-color: var(--color-bg-secondary);
+}
+
+/* ---------- Activity Form Panel ---------- */
+.activity-form-panel {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--border-dim);
+}
+
+.activity-form-header {
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-dim);
+}
+
+.activity-form-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-bright);
+}
+
+.activity-form-body {
+    padding: var(--space-lg);
+}
+
+/* ---------- Submit Section ---------- */
+.submit-section {
+    grid-column: 1 / -1;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--border-dim);
+    padding: var(--space-xl);
+    text-align: center;
+}
+
+.submit-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-bright);
+    margin-bottom: var(--space-lg);
+}
+
+.submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    min-width: 300px;
+    padding: var(--space-md) var(--space-2xl);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background-color: var(--color-primary);
+    color: var(--color-bg-primary);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.submit-btn:hover {
+    background-color: #00cc00;
+    box-shadow: var(--glow-lg);
+    transform: translateY(-1px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ---------- Manage Members Tab ---------- */
+.members-management {
+    display: grid;
+    gap: var(--space-xl);
+}
+
+.members-status-section {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--border-dim);
+}
+
+.members-status-header {
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-dim);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.members-status-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.members-status-title.text-pending {
+    color: var(--color-text-muted);
+}
+
+.members-status-title.text-ativo {
+    color: var(--color-success);
+}
+
+.members-status-title.text-alerta {
+    color: var(--color-warning);
+}
+
+.members-status-title.text-inativo {
+    color: var(--color-danger);
+}
+
+.members-status-count {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+.members-status-body {
+    padding: 0;
+}
+
+.manage-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.manage-table th {
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.7rem;
+}
+
+.manage-table td {
+    padding: var(--space-sm) var(--space-md);
+}
+
+/* Prevent title badges from wrapping mid-word */
+.member-select-table .badge-title,
+.manage-table .badge-title {
+    white-space: nowrap;
+}
+
+.manage-table tbody tr {
+    border-bottom: 1px solid var(--border-dim);
+}
+
+/* ---------- Transaction Log ---------- */
+.transaction-log {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--border-dim);
+}
+
+.transaction-log-header {
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-dim);
+}
+
+.transaction-log-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-bright);
+}
+
+.transaction-log-body {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.transaction-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--border-dim);
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.transaction-row:hover {
+    background-color: var(--color-primary-dim);
+}
+
+.transaction-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+}
+
+.transaction-desc {
+    color: var(--color-text);
+}
+
+.transaction-desc strong {
+    color: var(--color-text-bright);
+}
+
+.transaction-points {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--color-primary);
+    white-space: nowrap;
+}
+
+/* ---------- Responsive: Tablet ---------- */
+@media (max-width: 900px) {
+    .admin-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .submit-section {
+        grid-column: 1;
+    }
+
+    .submit-btn {
+        width: 100%;
+        min-width: unset;
+    }
+}
+
+/* ---------- Responsive: Mobile ---------- */
+@media (max-width: 768px) {
+    .member-select-list {
+        max-height: 250px;
+    }
+
+    .member-select-table,
+    .manage-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .transaction-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-xs);
+    }
+
+    .transaction-date {
+        font-size: 0.7rem;
+    }
+
+    .transaction-points {
+        justify-self: start;
+    }
+
+    .submit-section {
+        padding: var(--space-md);
+    }
+
+    .activity-form-body {
+        padding: var(--space-md);
+    }
+
+    .member-select-header {
+        padding: var(--space-md);
+    }
+
+    .activity-form-header {
+        padding: var(--space-md);
+    }
+
+    .members-status-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+}

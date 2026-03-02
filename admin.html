@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | LICS Scoreboard</title>
+    <meta name="description" content="Painel administrativo da LICS — lançamento de pontos e gestão de membros.">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-brand">
+                    <img src="assets/img/logo-without-bg.png" alt="LICS">
+                    <div class="header-brand-text">
+                        <span class="header-brand-title">LICS Scoreboard</span>
+                        <span class="header-brand-subtitle">Liga de Cibersegurança da UNICAMP</span>
+                    </div>
+                </div>
+                <div class="header-nav">
+                    <a href="dashboard.html" class="btn btn-sm">Ranking</a>
+                    <a href="admin.html" class="btn btn-sm"
+                        style="background-color: var(--color-primary-dim);">Admin</a>
+                    <button class="btn btn-sm btn-danger" onclick="doLogout()">Logout</button>
+                </div>
+                <div class="header-user">
+                    <div class="header-user-info">
+                        <div class="header-user-name">Carregando...</div>
+                        <div class="header-user-role">ADMIN</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-content">
+            <div class="container">
+                <!-- Binary decoration -->
+                <div class="binary-decoration" style="margin-bottom: var(--space-md);">0010101 0010110 ADMIN_PANEL
+                    0010110</div>
+
+                <h1 style="margin-bottom: var(--space-lg); text-transform: uppercase; letter-spacing: 0.05em;">
+                    Painel Administrativo
+                </h1>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="lancar-pontos">Lançar Pontos</button>
+                    <button class="tab" data-tab="gerir-membros">Gerir Membros</button>
+                    <button class="tab" data-tab="historico">Histórico</button>
+                </div>
+
+                <!-- Tab: Lançar Pontos -->
+                <div class="tab-content active" id="tab-lancar-pontos">
+                    <div class="admin-layout">
+                        <!-- Left: Member Selection -->
+                        <div class="member-select-panel">
+                            <div class="member-select-header">
+                                <div class="member-select-title">1. Selecionar Membros</div>
+                                <div class="member-select-search">
+                                    <span class="member-select-search-icon">🔍</span>
+                                    <input type="text" class="form-input" id="admin-member-search"
+                                        placeholder="Filtrar membros...">
+                                </div>
+                                <div style="margin-top: var(--space-sm);">
+                                    <button class="btn btn-sm" onclick="toggleSelectAll()">Selecionar/Limpar
+                                        Todos</button>
+                                </div>
+                            </div>
+                            <div class="member-select-list">
+                                <table class="member-select-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 40px;">✓</th>
+                                            <th>Nome</th>
+                                            <th>E-mail</th>
+                                            <th>Título</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="member-select-body">
+                                        <!-- Populated by JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="selected-count" id="selected-count">0 membro(s) selecionado(s)</div>
+                        </div>
+
+                        <!-- Right: Activity Details -->
+                        <div class="activity-form-panel">
+                            <div class="activity-form-header">
+                                <div class="activity-form-title">2. Detalhes da Atividade</div>
+                            </div>
+                            <div class="activity-form-body">
+                                <div class="form-group">
+                                    <label class="form-label">Categoria</label>
+                                    <select class="form-select" id="select-categoria">
+                                        <option value="">Selecione a categoria...</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Atividade</label>
+                                    <select class="form-select" id="select-atividade">
+                                        <option value="">Selecione a atividade...</option>
+                                    </select>
+                                    <div class="points-preview" id="points-preview"
+                                        style="display: none; margin-top: 8px; font-family: var(--font-mono); font-size: 1.2rem; font-weight: 700; color: var(--color-primary); text-shadow: var(--glow-sm);">
+                                        <!-- Populated by JS -->
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Descrição <span class="text-muted"
+                                            style="text-transform: none; font-weight: 400;">(Opcional, máx. 100
+                                            caracteres)</span></label>
+                                    <textarea class="form-textarea" id="input-descricao" maxlength="100"
+                                        placeholder="ex: Título da Palestra sobre Buffer Overflow" rows="2"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Data</label>
+                                    <input type="date" class="form-input" id="input-data">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="submit-section">
+                            <div class="submit-title">3. Confirmar e Credenciar</div>
+                            <button class="submit-btn" id="btn-submit-points">
+                                Credenciar Pontos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Gerir Membros -->
+                <div class="tab-content" id="tab-gerir-membros">
+                    <div class="members-management">
+                        <!-- Pending -->
+                        <div class="members-status-section" id="manage-pending">
+                            <div class="members-status-header"></div>
+                            <div class="members-status-body"></div>
+                        </div>
+                        <!-- Active -->
+                        <div class="members-status-section" id="manage-ativo">
+                            <div class="members-status-header"></div>
+                            <div class="members-status-body"></div>
+                        </div>
+                        <!-- Alert -->
+                        <div class="members-status-section" id="manage-alerta">
+                            <div class="members-status-header"></div>
+                            <div class="members-status-body"></div>
+                        </div>
+                        <!-- Inactive -->
+                        <div class="members-status-section" id="manage-inativo">
+                            <div class="members-status-header"></div>
+                            <div class="members-status-body"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Histórico -->
+                <div class="tab-content" id="tab-historico">
+                    <div class="transaction-log">
+                        <div class="transaction-log-header">
+                            <span class="transaction-log-title">Registro de Transações (Últimas 20)</span>
+                        </div>
+                        <div class="transaction-log-body" id="transaction-log-body">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terminal Footer -->
+                <div style="margin-top: var(--space-xl);">
+                    <div class="binary-decoration">0010110</div>
+                    <div class="terminal-text" style="margin-top: var(--space-sm);">
+                        <span>&gt; MODE: <span style="color: var(--color-warning);">ADMIN_PANEL</span></span>
+                        <span style="margin-left: 24px;">&gt; ACCESS_LEVEL: <span
+                                style="color: var(--color-danger);">DIRETORIA</span></span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <span class="footer-binary">0010110</span>
+                <span>LICS — 2026.1 | Liga de Cibersegurança da UNICAMP </span>
+                <span class="footer-binary">0010110</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

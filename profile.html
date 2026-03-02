@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil | LICS Scoreboard</title>
+    <meta name="description" content="Perfil do membro da LICS — histórico de pontuação e evolução na liga.">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-brand">
+                    <img src="assets/img/logo-without-bg.png" alt="LICS">
+                    <div class="header-brand-text">
+                        <span class="header-brand-title">LICS Scoreboard</span>
+                        <span class="header-brand-subtitle">Liga de Cibersegurança da UNICAMP</span>
+                    </div>
+                </div>
+                <div class="header-nav">
+                    <a href="dashboard.html" class="btn btn-sm">Ranking</a>
+                    <a href="admin.html" class="btn btn-sm" id="nav-admin">Admin</a>
+                    <button class="btn btn-sm btn-danger" onclick="doLogout()">Logout</button>
+                </div>
+                <div class="header-user">
+                    <div class="header-user-info">
+                        <div class="header-user-name">Carregando...</div>
+                        <div class="header-user-role">---</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-content">
+            <div class="container" id="profile-content">
+                <!-- Binary decoration -->
+                <div class="binary-decoration" style="margin-bottom: var(--space-md);">0010101 0010110</div>
+
+                <!-- Breadcrumb -->
+                <div style="margin-bottom: var(--space-lg);">
+                    <a href="dashboard.html" class="terminal-text" style="font-size: 0.8rem;">← Voltar ao Ranking</a>
+                </div>
+
+                <!-- Profile Hero -->
+                <div class="profile-hero" id="profile-hero">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Stats -->
+                <div class="profile-stats" id="profile-stats">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Timeline -->
+                <div class="profile-timeline-section" id="profile-timeline">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Rank Icons -->
+                <div class="rank-icons" style="margin-top: var(--space-xl);">
+                    <div class="rank-icon">
+                        <span class="rank-icon-symbol">&gt;_</span>
+                        <span class="rank-icon-label">Script Kiddie</span>
+                    </div>
+                    <div class="rank-icon">
+                        <span class="rank-icon-symbol">$_</span>
+                        <span class="rank-icon-label">Trainee</span>
+                    </div>
+                    <div class="rank-icon">
+                        <span class="rank-icon-symbol">#_</span>
+                        <span class="rank-icon-label">Operator</span>
+                    </div>
+                    <div class="rank-icon">
+                        <span class="rank-icon-symbol">⚡</span>
+                        <span class="rank-icon-label">APT</span>
+                    </div>
+                    <div class="rank-icon">
+                        <span class="rank-icon-symbol">👑</span>
+                        <span class="rank-icon-label">Elite LICS</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <span class="footer-binary">0010110</span>
+                <span>LICS — 2026.1 | Liga de Cibersegurança da UNICAMP </span>
+                <span class="footer-binary">0010110</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+
+</html>
