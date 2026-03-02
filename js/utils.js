@@ -5,7 +5,7 @@
 /**
  * Point categories and activities catalog
  */
-const CATALOGO_PONTOS = {
+export const CATALOGO_PONTOS = {
   'Excelência Técnica': [
     { nome: 'Participação em CTF', pontos: 10 },
     { nome: 'Cursos voltados à sec', pontos: 10 },
@@ -29,21 +29,21 @@ const CATALOGO_PONTOS = {
 /**
  * Title thresholds based on total points
  */
-const TITULOS = [
+export const TITULOS = [
   { min: 1001, titulo: 'Elite LICS', subtitulo: 'God Mode', icone: '👑' },
-  { min: 501,  titulo: 'APT', subtitulo: 'Advanced Persistent Threat', icone: '⚡' },
-  { min: 201,  titulo: 'Operator', subtitulo: 'Operador de Campo', icone: '#_' },
-  { min: 51,   titulo: 'Trainee', subtitulo: 'Em Treinamento', icone: '$_' },
-  { min: 0,    titulo: 'Script Kiddie', subtitulo: 'Recém-chegado', icone: '>_' }
+  { min: 501, titulo: 'APT', subtitulo: 'Advanced Persistent Threat', icone: '⚡' },
+  { min: 201, titulo: 'Operator', subtitulo: 'Operador de Campo', icone: '#_' },
+  { min: 51, titulo: 'Trainee', subtitulo: 'Em Treinamento', icone: '$_' },
+  { min: 0, titulo: 'Script Kiddie', subtitulo: 'Recém-chegado', icone: '>_' }
 ];
 
 /**
  * Semester status thresholds
  */
-const STATUS_SEMESTRE = [
+export const STATUS_SEMESTRE = [
   { min: 60, status: 'Ativo', classe: 'badge-ativo', cor: '#00aa00' },
   { min: 30, status: 'Em Alerta', classe: 'badge-alerta', cor: '#ffaa00' },
-  { min: 0,  status: 'Inativo', classe: 'badge-inativo', cor: '#ff3333' }
+  { min: 0, status: 'Inativo', classe: 'badge-inativo', cor: '#ff3333' }
 ];
 
 /**
@@ -51,7 +51,7 @@ const STATUS_SEMESTRE = [
  * @param {number} pontosTotais
  * @returns {Object} { titulo, subtitulo, icone }
  */
-function getTitulo(pontosTotais) {
+export function getTitulo(pontosTotais) {
   for (const t of TITULOS) {
     if (pontosTotais >= t.min) {
       return { titulo: t.titulo, subtitulo: t.subtitulo, icone: t.icone };
@@ -65,7 +65,7 @@ function getTitulo(pontosTotais) {
  * @param {number} pontosSemestre
  * @returns {Object} { status, classe, cor }
  */
-function getStatus(pontosSemestre) {
+export function getStatus(pontosSemestre) {
   for (const s of STATUS_SEMESTRE) {
     if (pontosSemestre >= s.min) {
       return { status: s.status, classe: s.classe, cor: s.cor };
@@ -80,7 +80,7 @@ function getStatus(pontosSemestre) {
  * @param {Date} [date=new Date()]
  * @returns {string} e.g. "2026.1"
  */
-function getSemestreAtual(date = new Date()) {
+export function getSemestreAtual(date = new Date()) {
   const year = date.getFullYear();
   const month = date.getMonth() + 1; // 1-12
   const periodo = month <= 6 ? '1' : '2';
@@ -92,10 +92,10 @@ function getSemestreAtual(date = new Date()) {
  * @param {Date|string|{seconds:number}} date
  * @returns {string} e.g. "15/Mar/26"
  */
-function formatDate(date) {
+export function formatDate(date) {
   const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-                 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-  
+    'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+
   let d;
   if (date instanceof Date) {
     d = date;
@@ -109,7 +109,7 @@ function formatDate(date) {
   const dia = String(d.getDate()).padStart(2, '0');
   const mes = meses[d.getMonth()];
   const ano = String(d.getFullYear()).slice(-2);
-  
+
   return `${dia}/${mes}/${ano}`;
 }
 
@@ -118,7 +118,7 @@ function formatDate(date) {
  * @param {Date|string|{seconds:number}} date
  * @returns {string}
  */
-function formatDateFull(date) {
+export function formatDateFull(date) {
   let d;
   if (date instanceof Date) {
     d = date;
@@ -131,7 +131,7 @@ function formatDateFull(date) {
   const dia = String(d.getDate()).padStart(2, '0');
   const mes = String(d.getMonth() + 1).padStart(2, '0');
   const ano = d.getFullYear();
-  
+
   return `${dia}/${mes}/${ano}`;
 }
 
@@ -141,7 +141,7 @@ function formatDateFull(date) {
  * @param {string} type - 'success' | 'warning' | 'error'
  * @param {number} duration - ms
  */
-function showToast(message, type = 'success', duration = 3000) {
+export function showToast(message, type = 'success', duration = 3000) {
   // Remove existing toast
   const existing = document.querySelector('.toast');
   if (existing) existing.remove();
@@ -168,19 +168,11 @@ function showToast(message, type = 'success', duration = 3000) {
  * @param {string} atividade
  * @returns {number}
  */
-function getPontosAtividade(categoria, atividade) {
+export function getPontosAtividade(categoria, atividade) {
   const cat = CATALOGO_PONTOS[categoria];
   if (!cat) return 0;
   const item = cat.find(a => a.nome === atividade);
   return item ? item.pontos : 0;
-}
-
-/**
- * Generate a unique ID (for mock data)
- * @returns {string}
- */
-function generateId() {
-  return Date.now().toString(36) + Math.random().toString(36).substring(2, 9);
 }
 
 /**
@@ -189,7 +181,7 @@ function generateId() {
  * @param {number} wait
  * @returns {Function}
  */
-function debounce(func, wait = 300) {
+export function debounce(func, wait = 300) {
   let timeout;
   return function executedFunction(...args) {
     const later = () => {

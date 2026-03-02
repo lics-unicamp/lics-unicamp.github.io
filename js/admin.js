@@ -2,18 +2,40 @@
    LICS Dashboard — Admin Panel Logic
    ============================================ */
 
+import { getCurrentUser, isAdmin, requireAuth, updateHeaderUser } from './auth.js';
+import { fetchAllMembers, fetchTransactions, submitPointsBatch, approveMember as dbApproveMember } from './db.js';
+import { CATALOGO_PONTOS, getTitulo, getStatus, formatDate, getSemestreAtual, getPontosAtividade, showToast, debounce } from './utils.js';
+
 // State
 let selectedMembers = new Set();
 let adminSearchQuery = '';
 let currentAdminTab = 'lancar-pontos';
+let membersCache = [];
+let transactionsCache = [];
 
 /**
  * Initialize admin panel
  */
-function initAdmin() {
-    const user = getCurrentUser();
-    if (user) {
-        updateHeaderUser(user);
+async function initAdmin() {
+    const user = await requireAuth(true); // Exige admin
+    if (!user) return; // Redirecionado
+
+    updateHeaderUser(user);
+
+    // Buscar membros do Firestore (incluindo pendentes para gestão)
+    try {
+        membersCache = await fetchAllMembers(true);
+    } catch (error) {
+        console.error('Erro ao buscar membros:', error);
+        membersCache = [];
+    }
+
+    // Buscar transações recentes
+    try {
+        transactionsCache = await fetchTransactions(null, 20);
+    } catch (error) {
+        console.error('Erro ao buscar transações:', error);
+        transactionsCache = [];
     }
 
     setupAdminTabs();
@@ -124,7 +146,7 @@ function renderMemberSelectList() {
     const tbody = document.getElementById('member-select-body');
     if (!tbody) return;
 
-    let members = [...MOCK_MEMBERS].filter(m => m.role !== 'pendente');
+    let members = [...membersCache].filter(m => m.role !== 'pendente');
 
     if (adminSearchQuery) {
         members = members.filter(m =>
@@ -139,10 +161,10 @@ function renderMemberSelectList() {
         const isSelected = selectedMembers.has(m.uid);
 
         return `
-      <tr class="${isSelected ? 'selected' : ''}" onclick="toggleMemberSelection('${m.uid}')">
+      <tr class="${isSelected ? 'selected' : ''}" onclick="window._toggleMemberSelection('${m.uid}')">
         <td style="width: 40px; text-align: center;">
           <input type="checkbox" class="member-checkbox" ${isSelected ? 'checked' : ''} 
-            onclick="event.stopPropagation(); toggleMemberSelection('${m.uid}')">
+            onclick="event.stopPropagation(); window._toggleMemberSelection('${m.uid}')">
         </td>
         <td>
           <div style="font-weight: 600; color: var(--color-text-bright);">${m.nome}</div>
@@ -180,7 +202,7 @@ function toggleMemberSelection(uid) {
  * Select/deselect all members
  */
 function toggleSelectAll() {
-    const allMembers = MOCK_MEMBERS.filter(m => m.role !== 'pendente');
+    const allMembers = membersCache.filter(m => m.role !== 'pendente');
 
     if (selectedMembers.size === allMembers.length) {
         selectedMembers.clear();
@@ -194,7 +216,7 @@ function toggleSelectAll() {
 /**
  * Submit points to selected members
  */
-function submitPoints() {
+async function submitPoints() {
     const categoria = document.getElementById('select-categoria').value;
     const atividade = document.getElementById('select-atividade').value;
     const descricao = document.getElementById('input-descricao').value;
@@ -215,54 +237,64 @@ function submitPoints() {
     }
 
     const pontos = getPontosAtividade(categoria, atividade);
-    const data = dataInput ? new Date(dataInput) : new Date();
-    const semestreId = getSemestreAtual(data);
+    const data = dataInput || null;
+    const semestreId = getSemestreAtual(dataInput ? new Date(dataInput) : new Date());
     const user = getCurrentUser();
 
-    // Create mock transactions
-    selectedMembers.forEach(uid => {
-        const member = MOCK_MEMBERS.find(m => m.uid === uid);
-        if (!member) return;
+    // Disable button durante o envio
+    const submitBtn = document.getElementById('btn-submit-points');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Processando...';
 
-        const transaction = {
-            id: generateId(),
-            userId: uid,
-            adminId: user.uid,
-            adminNome: user.nome,
-            categoria: categoria,
-            atividade: atividade,
+    try {
+        const uids = [...selectedMembers];
+
+        await submitPointsBatch(uids, {
+            categoria,
+            atividade,
             descricao: descricao || atividade,
-            pontos: pontos,
-            data: data,
-            semestreId: semestreId
-        };
+            pontos,
+            data,
+            semestreId
+        }, { uid: user.uid, nome: user.nome });
 
-        MOCK_TRANSACTIONS.push(transaction);
+        const memberNames = uids
+            .map(uid => membersCache.find(m => m.uid === uid)?.nome)
+            .filter(Boolean)
+            .join(', ');
 
-        // Update member cache (simulates FieldValue.increment)
-        member.pontosTotais += pontos;
-        if (member.semestreAtual === semestreId) {
-            member.pontosSemestre += pontos;
-        }
-    });
+        showToast(`+${pontos} pts atribuídos a ${uids.length} membro(s): ${memberNames}`, 'success', 4000);
 
-    const memberNames = [...selectedMembers]
-        .map(uid => MOCK_MEMBERS.find(m => m.uid === uid)?.nome)
-        .filter(Boolean)
-        .join(', ');
+        // Atualizar cache local (simula o que o batch fez)
+        uids.forEach(uid => {
+            const member = membersCache.find(m => m.uid === uid);
+            if (member) {
+                member.pontosTotais += pontos;
+                member.pontosSemestre += pontos;
+            }
+        });
 
-    showToast(`+${pontos} pts atribuídos a ${selectedMembers.size} membro(s): ${memberNames}`, 'success', 4000);
+        // Reset form
+        selectedMembers.clear();
+        document.getElementById('select-categoria').value = '';
+        document.getElementById('select-atividade').innerHTML = '<option value="">Selecione a atividade...</option>';
+        document.getElementById('input-descricao').value = '';
+        document.getElementById('points-preview').style.display = 'none';
 
-    // Reset form
-    selectedMembers.clear();
-    document.getElementById('select-categoria').value = '';
-    document.getElementById('select-atividade').innerHTML = '<option value="">Selecione a atividade...</option>';
-    document.getElementById('input-descricao').value = '';
-    document.getElementById('points-preview').style.display = 'none';
+        renderMemberSelectList();
+        renderManageMembers();
 
-    renderMemberSelectList();
-    renderTransactionLog();
-    renderManageMembers();
+        // Recarregar transações do Firestore
+        transactionsCache = await fetchTransactions(null, 20);
+        renderTransactionLog();
+
+    } catch (error) {
+        console.error('Erro ao lançar pontos:', error);
+        showToast('Erro ao lançar pontos. Verifique as permissões.', 'error');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Credenciar Pontos';
+    }
 }
 
 /**
@@ -270,19 +302,19 @@ function submitPoints() {
  */
 function renderManageMembers() {
     // Pending members
-    const pendingMembers = MOCK_MEMBERS.filter(m => m.role === 'pendente');
+    const pendingMembers = membersCache.filter(m => m.role === 'pendente');
     renderMemberStatusSection('pending', pendingMembers, 'Membros Pendentes', 'text-pending');
 
     // Active members
-    const activeMembers = MOCK_MEMBERS.filter(m => m.role !== 'pendente' && getStatus(m.pontosSemestre).status === 'Ativo');
+    const activeMembers = membersCache.filter(m => m.role !== 'pendente' && getStatus(m.pontosSemestre).status === 'Ativo');
     renderMemberStatusSection('ativo', activeMembers, 'Membros Ativos', 'text-ativo');
 
     // Alert members
-    const alertMembers = MOCK_MEMBERS.filter(m => m.role !== 'pendente' && getStatus(m.pontosSemestre).status === 'Em Alerta');
+    const alertMembers = membersCache.filter(m => m.role !== 'pendente' && getStatus(m.pontosSemestre).status === 'Em Alerta');
     renderMemberStatusSection('alerta', alertMembers, 'Membros em Alerta', 'text-alerta');
 
     // Inactive members
-    const inactiveMembers = MOCK_MEMBERS.filter(m => m.role !== 'pendente' && getStatus(m.pontosSemestre).status === 'Inativo');
+    const inactiveMembers = membersCache.filter(m => m.role !== 'pendente' && getStatus(m.pontosSemestre).status === 'Inativo');
     renderMemberStatusSection('inativo', inactiveMembers, 'Membros Inativos', 'text-inativo');
 }
 
@@ -332,7 +364,7 @@ function renderMemberStatusSection(id, members, title, colorClass) {
               <td class="mono">${m.pontosSemestre} pts</td>
               ${id === 'pending' ? `
                 <td>
-                  <button class="btn btn-sm" onclick="approveMember('${m.uid}')">Aprovar</button>
+                  <button class="btn btn-sm" onclick="window._approveMember('${m.uid}')">Aprovar</button>
                 </td>
               ` : ''}
             </tr>
@@ -347,12 +379,19 @@ function renderMemberStatusSection(id, members, title, colorClass) {
  * Approve a pending member
  * @param {string} uid
  */
-function approveMember(uid) {
-    const member = MOCK_MEMBERS.find(m => m.uid === uid);
-    if (member) {
-        member.role = 'membro';
+async function handleApproveMember(uid) {
+    const member = membersCache.find(m => m.uid === uid);
+    if (!member) return;
+
+    try {
+        await dbApproveMember(uid);
+        member.role = 'membro'; // Atualiza cache local
         showToast(`${member.nome} aprovado como membro!`, 'success');
         renderManageMembers();
+        renderMemberSelectList();
+    } catch (error) {
+        console.error('Erro ao aprovar membro:', error);
+        showToast('Erro ao aprovar membro. Verifique as permissões.', 'error');
     }
 }
 
@@ -363,11 +402,7 @@ function renderTransactionLog() {
     const container = document.getElementById('transaction-log-body');
     if (!container) return;
 
-    const recent = [...MOCK_TRANSACTIONS]
-        .sort((a, b) => b.data - a.data)
-        .slice(0, 20);
-
-    if (recent.length === 0) {
+    if (transactionsCache.length === 0) {
         container.innerHTML = `
       <div style="padding: var(--space-lg); text-align: center;">
         <span class="text-muted">Nenhuma transação registrada.</span>
@@ -376,8 +411,8 @@ function renderTransactionLog() {
         return;
     }
 
-    container.innerHTML = recent.map(t => {
-        const member = MOCK_MEMBERS.find(m => m.uid === t.userId);
+    container.innerHTML = transactionsCache.map(t => {
+        const member = membersCache.find(m => m.uid === t.userId);
         return `
       <div class="transaction-row">
         <span class="transaction-date">${formatDate(t.data)}</span>
@@ -402,6 +437,11 @@ function setDefaultDate() {
         dateInput.value = `${yyyy}-${mm}-${dd}`;
     }
 }
+
+// Expor funções para onclick do HTML
+window._toggleMemberSelection = toggleMemberSelection;
+window._toggleSelectAll = toggleSelectAll;
+window._approveMember = handleApproveMember;
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {

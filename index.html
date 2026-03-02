@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LICS Scoreboard | Liga de Cibersegurança da UNICAMP</title>
+  <title>Scoreboard | LICS</title>
   <meta name="description"
     content="Sistema de Pontuação Interno da Liga de Cibersegurança da UNICAMP. Acompanhe o ranking, ganhe títulos e evolua na liga.">
   <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -17,7 +17,7 @@
   <div class="login-header-bar">
     <div class="login-header-content">
       <span class="login-binary">0010101</span>
-      <span class="login-header-title">LICS SCOREBOARD | Liga de Cibersegurança da UNICAMP</span>
+      <span class="login-header-title"> Liga de Cibersegurança da UNICAMP</span>
       <span class="login-binary">0010110</span>
     </div>
   </div>
@@ -29,8 +29,8 @@
       <img src="assets/img/logo-without-bg.png" alt="LICS Logo" class="login-logo">
 
       <!-- Title -->
-      <h1 class="login-title">BEM-VINDO AO <span>SCOREBOARD LICS</span></h1>
-      <p class="login-subtitle">Sistema de Pontuação Interno da Liga de Cibersegurança da UNICAMP</p>
+      <h1 class="login-title">BEM-VINDO AO <span>SCOREBOARD</span></h1>
+      <p class="login-subtitle">Sistema de Pontuação Interno da LICS</p>
 
       <!-- Login Box -->
       <div class="login-box">
@@ -97,22 +97,37 @@
     </div>
   </div>
 
-  <!-- Dev Toolbar (remove in production) -->
-  <div class="dev-toolbar">
-    <span>⚠ DEV:</span>
-    <button onclick="doLogin()">Login Membro</button>
-    <button onclick="doAdminLogin()">Login Admin</button>
+  <!-- Tela de Aguardando Aprovação (visível quando ?status=pendente) -->
+  <div id="pending-screen" style="display: none;">
+    <div class="login-container">
+      <img src="assets/img/logo-without-bg.png" alt="LICS Logo" class="login-logo">
+      <h1 class="login-title" style="font-size: 1.2rem;">AGUARDANDO <span>APROVAÇÃO</span></h1>
+      <div class="login-terminal" style="margin-top: var(--space-lg);">
+        <div><span class="prompt">> STATUS:</span> <span class="value"
+            style="color: var(--color-warning);">PENDING_APPROVAL</span></div>
+        <div><span class="prompt">> INFO:</span> <span class="value">Sua conta foi criada. Aguarde a aprovação da
+            diretoria LICS.</span></div>
+      </div>
+      <button class="btn" style="margin-top: var(--space-lg);" onclick="doLogout()">Voltar ao Login</button>
+    </div>
   </div>
 
   <!-- Footer -->
   <div class="login-footer">
     <div class="login-footer-content">
-      <span>LICS — 2026.1 | Liga de Cibersegurança da UNICAMP </span>
+      <span>LICS — 2026.1 </span>
     </div>
   </div>
 
-  <script src="js/utils.js"></script>
-  <script src="js/auth.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module">
+    // Mostrar tela de pendente se redirecionado
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('status') === 'pendente') {
+      document.querySelector('.login-page').style.display = 'none';
+      document.getElementById('pending-screen').style.display = 'flex';
+    }
+  </script>
 </body>
 
 </html>

@@ -2,23 +2,30 @@
    LICS Dashboard — Profile Page Logic
    ============================================ */
 
-// Reuse mock data from dashboard.js (imported via HTML script order)
-// In production, this would query Firestore directly
+import { getCurrentUser, isAdmin, requireAuth, updateHeaderUser } from './auth.js';
+import { fetchMemberByUid, fetchTransactions } from './db.js';
+import { getTitulo, getStatus, formatDate } from './utils.js';
 
 let profileFilterCategory = 'all';
 
 /**
  * Initialize the profile page
  */
-function initProfile() {
-  const user = getCurrentUser();
-  if (user) {
-    updateHeaderUser(user);
+async function initProfile() {
+  const user = await requireAuth();
+  if (!user) return;
+
+  updateHeaderUser(user);
+
+  // Esconde link admin para não-admin
+  if (!isAdmin()) {
+    const navAdmin = document.getElementById('nav-admin');
+    if (navAdmin) navAdmin.style.display = 'none';
   }
 
   // Get UID from URL params (or use current user)
   const urlParams = new URLSearchParams(window.location.search);
-  const uid = urlParams.get('uid') || (user ? user.uid : null);
+  const uid = urlParams.get('uid') || user.uid;
 
   if (!uid) {
     document.getElementById('profile-content').innerHTML = `
@@ -31,17 +38,21 @@ function initProfile() {
     return;
   }
 
-  renderProfile(uid);
+  await renderProfile(uid);
 }
 
 /**
  * Render the complete profile
  * @param {string} uid
  */
-function renderProfile(uid) {
-  // Use MOCK_MEMBERS from dashboard.js if available, otherwise use local mock
-  const members = (typeof MOCK_MEMBERS !== 'undefined') ? MOCK_MEMBERS : [];
-  const member = members.find(m => m.uid === uid);
+async function renderProfile(uid) {
+  // Buscar membro do Firestore
+  let member;
+  try {
+    member = await fetchMemberByUid(uid);
+  } catch (error) {
+    console.error('Erro ao buscar membro:', error);
+  }
 
   if (!member) {
     document.getElementById('profile-content').innerHTML = `
@@ -87,17 +98,23 @@ function renderProfile(uid) {
   `;
 
   // Render Timeline
-  renderTimeline(uid);
+  await renderTimeline(uid);
 }
 
 /**
  * Render transaction timeline
  * @param {string} uid
  */
-function renderTimeline(uid) {
-  const allTransactions = (typeof MOCK_TRANSACTIONS !== 'undefined') ? MOCK_TRANSACTIONS : [];
-  let transactions = allTransactions.filter(t => t.userId === uid)
-    .sort((a, b) => b.data - a.data);
+async function renderTimeline(uid) {
+  // Buscar transações do Firestore
+  let allTransactions = [];
+  try {
+    allTransactions = await fetchTransactions(uid);
+  } catch (error) {
+    console.error('Erro ao buscar transações:', error);
+  }
+
+  let transactions = [...allTransactions];
 
   // Apply category filter
   if (profileFilterCategory !== 'all') {
@@ -105,8 +122,7 @@ function renderTimeline(uid) {
   }
 
   // Get unique categories for filter chips
-  const allUserTransactions = allTransactions.filter(t => t.userId === uid);
-  const categories = [...new Set(allUserTransactions.map(t => t.categoria))];
+  const categories = [...new Set(allTransactions.map(t => t.categoria))];
 
   const container = document.getElementById('profile-timeline');
   container.innerHTML = `
@@ -114,11 +130,11 @@ function renderTimeline(uid) {
     
     <!-- Category Filters -->
     <div class="profile-timeline-filters">
-      <button class="filter-chip ${profileFilterCategory === 'all' ? 'active' : ''}" onclick="filterTimeline('all', '${uid}')">
+      <button class="filter-chip ${profileFilterCategory === 'all' ? 'active' : ''}" onclick="window._filterTimeline('all', '${uid}')">
         Todos
       </button>
       ${categories.map(cat => `
-        <button class="filter-chip ${profileFilterCategory === cat ? 'active' : ''}" onclick="filterTimeline('${cat}', '${uid}')">
+        <button class="filter-chip ${profileFilterCategory === cat ? 'active' : ''}" onclick="window._filterTimeline('${cat}', '${uid}')">
           ${cat}
         </button>
       `).join('')}
@@ -157,6 +173,9 @@ function filterTimeline(category, uid) {
   profileFilterCategory = category;
   renderTimeline(uid);
 }
+
+// Expor funções para onclick do HTML
+window._filterTimeline = filterTimeline;
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', initProfile);

@@ -1,26 +1,24 @@
-/* ============================================
-   LICS Dashboard — Firebase Configuration
-   ============================================
-   
-   INSTRUÇÕES:
-   1. Acesse o Firebase Console (https://console.firebase.google.com)
-   2. Vá em "Project Settings" > "General" > "Your apps" > Web app
-   3. Copie as credenciais do SDK e substitua os placeholders abaixo
-   4. Habilite Authentication (Google provider)
-   5. Habilite Firestore Database
-   
-   ============================================ */
+// js/firebase-init.js
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT.firebasestorage.app",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAgjBYC6mm6cxmUwsLy5KF9Py7KgvguulM",
+  authDomain: "lics-dashboard.firebaseapp.com",
+  projectId: "lics-dashboard",
+  storageBucket: "lics-dashboard.firebasestorage.app",
+  messagingSenderId: "397833913665",
+  appId: "1:397833913665:web:15cb97092b23c959668dc0"
 };
 
-// TODO: Uncomment the lines below after adding the Firebase SDK scripts in your HTML
-// firebase.initializeApp(firebaseConfig);
-// const auth = firebase.auth();
-// const db = firebase.firestore();
+// Inicializa Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
+
+// NÃO usamos hd pois o admin (lics.unicamp@gmail.com) não é @dac.unicamp.br
+// A validação de domínio é feita server-side pelas Firestore Security Rules
+
+export { auth, db, provider };

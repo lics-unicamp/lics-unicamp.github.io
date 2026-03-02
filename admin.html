@@ -70,7 +70,7 @@
                                         placeholder="Filtrar membros...">
                                 </div>
                                 <div style="margin-top: var(--space-sm);">
-                                    <button class="btn btn-sm" onclick="toggleSelectAll()">Selecionar/Limpar
+                                    <button class="btn btn-sm" onclick="window._toggleSelectAll()">Selecionar/Limpar
                                         Todos</button>
                                 </div>
                             </div>
@@ -196,16 +196,13 @@
         <footer class="footer">
             <div class="footer-content">
                 <span class="footer-binary">0010110</span>
-                <span>LICS — 2026.1 | Liga de Cibersegurança da UNICAMP </span>
+                <span>LICS — 2026.1 </span>
                 <span class="footer-binary">0010110</span>
             </div>
         </footer>
     </div>
 
-    <script src="js/utils.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/dashboard.js"></script>
-    <script src="js/admin.js"></script>
+    <script type="module" src="js/admin.js"></script>
 </body>
 
 </html>
