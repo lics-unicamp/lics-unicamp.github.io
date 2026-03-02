@@ -151,6 +151,9 @@ export async function requireAuth(requireAdminRole = false) {
         return null;
     }
 
+    // Authentication successful, reveal the page
+    document.body.style.display = '';
+
     return userData;
 }
 

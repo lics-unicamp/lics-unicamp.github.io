@@ -22,12 +22,12 @@ async function initDashboard() {
 
   updateHeaderUser(user);
 
-  // Hide "Status" column and admin link for non-admins
-  if (!isAdmin()) {
-    const statusTh = document.querySelector('th[data-sort="status"]');
-    if (statusTh) statusTh.style.display = 'none';
+  // Show "Status" column and admin link for admins
+  if (isAdmin()) {
+    const statusTh = document.getElementById('th-status');
+    if (statusTh) statusTh.style.display = '';
     const navAdmin = document.getElementById('nav-admin');
-    if (navAdmin) navAdmin.style.display = 'none';
+    if (navAdmin) navAdmin.style.display = 'inline-flex';
   }
 
   // Fetch members from Firestore
@@ -114,19 +114,14 @@ function renderStats() {
   document.getElementById('stat-total').textContent = totalMembers;
 
   // Status stats only visible to admin
-  const hideStats = !isAdmin();
-  const statActive = document.getElementById('stat-active');
-  const statAlert = document.getElementById('stat-alert');
-  const statInactive = document.getElementById('stat-inactive');
+  if (isAdmin()) {
+    const statActiveContainer = document.getElementById('stat-active-container');
+    const statAlertContainer = document.getElementById('stat-alert-container');
+    const statInactiveContainer = document.getElementById('stat-inactive-container');
 
-  if (hideStats) {
-    if (statActive) statActive.closest('.dashboard-stat').style.display = 'none';
-    if (statAlert) statAlert.closest('.dashboard-stat').style.display = 'none';
-    if (statInactive) statInactive.closest('.dashboard-stat').style.display = 'none';
-  } else {
-    if (statActive) { statActive.closest('.dashboard-stat').style.display = ''; statActive.textContent = activeMembers; }
-    if (statAlert) { statAlert.closest('.dashboard-stat').style.display = ''; statAlert.textContent = alertMembers; }
-    if (statInactive) { statInactive.closest('.dashboard-stat').style.display = ''; statInactive.textContent = inactiveMembers; }
+    if (statActiveContainer) { statActiveContainer.style.display = ''; document.getElementById('stat-active').textContent = activeMembers; }
+    if (statAlertContainer) { statAlertContainer.style.display = ''; document.getElementById('stat-alert').textContent = alertMembers; }
+    if (statInactiveContainer) { statInactiveContainer.style.display = ''; document.getElementById('stat-inactive').textContent = inactiveMembers; }
   }
 }
 

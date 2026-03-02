@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 
-<body>
+<body style="display: none;">
     <div class="page-wrapper">
         <!-- Header -->
         <header class="header">
@@ -27,7 +27,7 @@
                 <div class="header-nav">
                     <a href="dashboard.html" class="btn btn-sm"
                         style="background-color: var(--color-primary-dim);">Ranking</a>
-                    <a href="admin.html" class="btn btn-sm" id="nav-admin">Admin</a>
+                    <a href="admin.html" class="btn btn-sm" id="nav-admin" style="display: none;">Admin</a>
                     <button class="btn btn-sm btn-danger" onclick="doLogout()">Logout</button>
                 </div>
                 <div class="header-user">
@@ -70,15 +70,15 @@
                         <div class="dashboard-stat-value" id="stat-total">0</div>
                         <div class="dashboard-stat-label">Total Membros</div>
                     </div>
-                    <div class="dashboard-stat">
+                    <div class="dashboard-stat" id="stat-active-container" style="display: none;">
                         <div class="dashboard-stat-value" id="stat-active" style="color: var(--color-success);">0</div>
                         <div class="dashboard-stat-label">Ativos</div>
                     </div>
-                    <div class="dashboard-stat">
+                    <div class="dashboard-stat" id="stat-alert-container" style="display: none;">
                         <div class="dashboard-stat-value" id="stat-alert" style="color: var(--color-warning);">0</div>
                         <div class="dashboard-stat-label">Em Alerta</div>
                     </div>
-                    <div class="dashboard-stat">
+                    <div class="dashboard-stat" id="stat-inactive-container" style="display: none;">
                         <div class="dashboard-stat-value" id="stat-inactive" style="color: var(--color-danger);">0</div>
                         <div class="dashboard-stat-label">Inativos</div>
                     </div>
@@ -92,7 +92,8 @@
                                 <th data-sort="pontos" style="width: 70px;">Pos. <span class="sort-icon">▼</span></th>
                                 <th data-sort="nome">Nome <span class="sort-icon">⇅</span></th>
                                 <th data-sort="titulo">Título LICS <span class="sort-icon">⇅</span></th>
-                                <th data-sort="status">Situação <span class="sort-icon">⇅</span></th>
+                                <th data-sort="status" id="th-status" style="display: none;">Situação <span
+                                        class="sort-icon">⇅</span></th>
                                 <th data-sort="pontos" style="text-align: right;">Pontuação <span
                                         class="sort-icon">▼</span></th>
                             </tr>

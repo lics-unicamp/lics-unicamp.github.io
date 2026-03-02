@@ -470,11 +470,14 @@ async function exportRankingPDF() {
     showToast('Gerando PDF...', 'success', 2000);
 
     try {
-        // Lazy load jsPDF library
-        const { jsPDF } = await import('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js');
+        // Lazy load jsPDF library and attach to window
+        const jspdfModule = await import('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js');
+        window.jspdf = jspdfModule;
+
+        // AutoTable requires jsPDF on window
         await import('https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js');
 
-        const doc = new jsPDF();
+        const doc = new window.jspdf.jsPDF();
         const semestre = getSemestreAtual();
         const now = new Date();
         const dateStr = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
@@ -509,7 +512,7 @@ async function exportRankingPDF() {
             ];
         });
 
-        // Table
+        // Table using autoTable natively on the doc interface
         doc.autoTable({
             startY: 40,
             head: [['#', 'Nome', 'E-mail', 'Título', 'Situação', 'Pts Total', 'Pts Semestre']],
