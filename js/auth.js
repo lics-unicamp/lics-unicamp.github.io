@@ -184,14 +184,18 @@ function initAuthListener() {
         if (firebaseUser) {
             // Check session timeout
             const sessionStart = sessionStorage.getItem(SESSION_KEY);
-            if (!sessionStart || (Date.now() - parseInt(sessionStart, 10)) > SESSION_MAX_MS) {
-                // Session expired or missing — force logout
+            if (sessionStart && (Date.now() - parseInt(sessionStart, 10)) > SESSION_MAX_MS) {
+                // Session TTL exceeded — force logout
                 sessionStorage.removeItem(SESSION_KEY);
                 await signOut(auth);
                 currentUserData = null;
                 authReady = true;
                 authReadyResolve(null);
                 return;
+            }
+            // Initialize session key if not set (new login or existing session)
+            if (!sessionStart) {
+                sessionStorage.setItem(SESSION_KEY, Date.now().toString());
             }
 
             // User is logged in - fetch Firestore data
