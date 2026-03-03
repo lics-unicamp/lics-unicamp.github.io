@@ -1349,6 +1349,16 @@ tbody td {
   table {
     font-size: 0.75rem;
   }
+
+  .badge-title {
+    font-size: 0.6rem;
+    padding: 1px 4px;
+  }
+
+  .badge {
+    font-size: 0.6rem;
+    padding: 1px 4px;
+  }
 }
 
 /* ---------- Utility Classes ---------- */

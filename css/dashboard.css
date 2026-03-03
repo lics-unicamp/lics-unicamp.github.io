@@ -250,6 +250,14 @@
 
 /* ---------- Responsive: Mobile ---------- */
 @media (max-width: 480px) {
+    .dashboard-controls {
+        gap: var(--space-sm);
+    }
+
+    .dashboard-title-row h1 {
+        font-size: 1rem;
+    }
+
     .dashboard-stats {
         grid-template-columns: 1fr;
     }
@@ -260,6 +268,14 @@
 
     .ranking-table .rank-pos {
         width: 30px;
+        font-size: 0.8rem;
+    }
+
+    .ranking-table .points-cell {
+        font-size: 0.8rem;
+    }
+
+    .ranking-table .member-name {
         font-size: 0.8rem;
     }
 

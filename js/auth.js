@@ -14,6 +14,10 @@ import { showToast } from './utils.js';
 const ALLOWED_DOMAINS = ['dac.unicamp.br'];
 const ADMIN_EMAILS = ['lics.unicamp@gmail.com', 'lics@unicamp.br'];
 
+// Session timeout (50 minutes)
+const SESSION_MAX_MS = 50 * 60 * 1000;
+const SESSION_KEY = 'lics_session_start';
+
 // Cached user datav (Firestore)
 let currentUserData = null;
 let authReady = false;
@@ -88,6 +92,8 @@ export async function doLogin() {
             userData = await fetchMemberByUid(user.uid);
         }
 
+        // Record session start
+        sessionStorage.setItem(SESSION_KEY, Date.now().toString());
         currentUserData = userData;
 
         // Redirect based on role
@@ -176,10 +182,23 @@ export function updateHeaderUser(user) {
 function initAuthListener() {
     onAuthStateChanged(auth, async (firebaseUser) => {
         if (firebaseUser) {
+            // Check session timeout
+            const sessionStart = sessionStorage.getItem(SESSION_KEY);
+            if (!sessionStart || (Date.now() - parseInt(sessionStart, 10)) > SESSION_MAX_MS) {
+                // Session expired or missing — force logout
+                sessionStorage.removeItem(SESSION_KEY);
+                await signOut(auth);
+                currentUserData = null;
+                authReady = true;
+                authReadyResolve(null);
+                return;
+            }
+
             // User is logged in - fetch Firestore data
             const userData = await fetchMemberByUid(firebaseUser.uid);
             currentUserData = userData;
         } else {
+            sessionStorage.removeItem(SESSION_KEY);
             currentUserData = null;
         }
         authReady = true;

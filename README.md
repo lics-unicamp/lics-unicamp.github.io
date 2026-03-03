@@ -77,7 +77,8 @@ lics-dashboard/
 | E-mail | Permissão | Notas |
 |--------|-----------|-------|
 | `*@dac.unicamp.br` | Membro (self-register como `pendente`) | Domínio DAC |
-| `lics.unicamp@gmail.com` | **Único admin** | Exceção ao domínio |
+| `lics.unicamp@gmail.com` | **Admin (diretoria)** | Exceção ao domínio |
+| `lics@unicamp.br` | **Admin (diretoria)** | Domínio institucional |
 
 ### Modelo de Dados (Firestore)
 
@@ -86,7 +87,7 @@ lics-dashboard/
 |----------------|----------|----------------------------------|
 | `nome`         | string   | Nome completo                    |
 | `email`        | string   | E-mail do membro                 |
-| `role`         | string   | `admin` \| `membro` \| `pendente`|
+| `role`         | string   | `admin` \| `membro` \| `pendente` \| `bloqueado` |
 | `slug`         | string   | Slug p/ perfil lics.tec.br       |
 | `pontosTotais` | number   | Pontuação acumulada              |
 | `pontosSemestre`| number  | Pontuação do semestre atual      |
@@ -178,10 +179,11 @@ lics-dashboard/
 
 ## Segurança
 
-- **Firestore Security Rules** validam domínio server-side (`@dac.unicamp.br` + admin Gmail)
+- **Firestore Security Rules** validam domínio server-side (`@dac.unicamp.br` + admins Gmail/institucional)
 - **Transactions imutáveis** — `update` e `delete` bloqueados nas rules
 - **Self-register restrito** — novos usuários só podem criar doc com `role: 'pendente'` e pontos `0`
 - **Admin verificado via Firestore** — campo `role` no documento, não no client
+- **Session timeout (50 min)** — sessão expira automaticamente via `sessionStorage` + TTL; fechar o navegador também encerra a sessão
 - **API Key pública** é normal no Firebase — Security Rules são a proteção real
 
 

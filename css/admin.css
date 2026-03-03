@@ -10,6 +10,22 @@
     align-items: start;
 }
 
+/* ---------- Admin Page Title ---------- */
+.admin-page-title {
+    margin-bottom: var(--space-lg);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.admin-export-btn {
+    font-size: 0.7rem;
+}
+
 /* ---------- Member Selection Panel ---------- */
 .member-select-panel {
     background-color: var(--color-bg-card);
@@ -394,5 +410,50 @@
         flex-direction: column;
         align-items: flex-start;
         gap: var(--space-sm);
+    }
+}
+
+/* ---------- Responsive: Small Mobile ---------- */
+@media (max-width: 480px) {
+
+    /* Hide Email and Title columns in member-select table */
+    .member-select-table thead th:nth-child(3),
+    .member-select-table tbody td:nth-child(3),
+    .member-select-table thead th:nth-child(4),
+    .member-select-table tbody td:nth-child(4) {
+        display: none;
+    }
+
+    /* Full-width submit button */
+    .submit-btn {
+        width: 100%;
+        min-width: unset;
+        font-size: 0.85rem;
+        padding: var(--space-md) var(--space-lg);
+    }
+
+    .submit-section {
+        padding: var(--space-md);
+    }
+
+    /* Reduce member select list height */
+    .member-select-list {
+        max-height: 200px;
+    }
+
+    /* Transaction log adjustments */
+    .transaction-row {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.75rem;
+    }
+
+    .transaction-log-title {
+        font-size: 0.75rem;
+    }
+
+    /* Manage table: hide email column */
+    .manage-table thead th:nth-child(3),
+    .manage-table tbody td:nth-child(3) {
+        display: none;
     }
 }
