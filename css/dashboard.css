@@ -266,17 +266,31 @@
         font-size: 1.2rem;
     }
 
+    /* Hide "Título LICS" column (3rd) — too wide for mobile */
+    .ranking-table thead th:nth-child(3),
+    .ranking-table tbody td:nth-child(3) {
+        display: none;
+    }
+
     .ranking-table .rank-pos {
-        width: 30px;
+        width: 28px;
         font-size: 0.8rem;
+        padding: var(--space-xs) var(--space-xs);
     }
 
     .ranking-table .points-cell {
         font-size: 0.8rem;
+        padding-right: var(--space-sm);
     }
 
     .ranking-table .member-name {
         font-size: 0.8rem;
+        word-break: break-word;
+    }
+
+    .ranking-table td,
+    .ranking-table th {
+        padding: var(--space-xs) var(--space-sm);
     }
 
     .profile-card-avatar {
