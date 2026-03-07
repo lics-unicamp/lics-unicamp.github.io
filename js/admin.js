@@ -82,7 +82,8 @@ function populateCategorias() {
         actSelect.innerHTML = '<option value="">Selecione a atividade...</option>';
         if (categoria && CATALOGO_PONTOS[categoria]) {
             CATALOGO_PONTOS[categoria].forEach(item => {
-                actSelect.innerHTML += `<option value="${item.nome}" data-pontos="${item.pontos}">${item.nome} (+${item.pontos})</option>`;
+                const sinal = item.pontos > 0 ? '+' : '';
+                actSelect.innerHTML += `<option value="${item.nome}" data-pontos="${item.pontos}">${item.nome} (${sinal}${item.pontos})</option>`;
             });
         }
         updatePointsPreview();
