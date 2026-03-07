@@ -18,11 +18,20 @@ export const CATALOGO_PONTOS = {
     { nome: 'Curadoria de notícias', pontos: 10 }
   ],
   'Engajamento e Operação': [
-    { nome: 'Presença em reuniões', pontos: 5 },
+    { nome: 'Presença em reuniões convencionais', pontos: 5 },
+    { nome: 'Presença em reuniões estratégicas', pontos: 30 },
     { nome: 'Organização de eventos', pontos: 100 },
     { nome: 'Mentoria', pontos: 80 },
     { nome: 'Participação em projetos internos', pontos: 50 },
     { nome: 'Recrutamento ativo', pontos: 20 }
+  ],
+  'Penalizações': [
+    { nome: 'Falta não justificada em reuniões', pontos: -5 },
+    { nome: 'Atraso em entregas críticas de projeto', pontos: -30 },
+    { nome: 'Falta não justificada em eventos oficiais da LICS', pontos: -5 },
+    { nome: 'Plágio ou violação de diretrizes em CTFs/Produções', pontos: -10 },
+    { nome: 'Inatividade não reportada (congelamento de presença)', pontos: -10 },
+    { nome: 'Desistência de cargo em organização de evento', pontos: -30 }
   ]
 };
 

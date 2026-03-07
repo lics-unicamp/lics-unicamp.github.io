@@ -142,11 +142,42 @@ lics-dashboard/
 - Curadoria de notícias — **10 pts**
 
 ### Engajamento e Operação
-- Presença em reuniões — **5 pts**
+- Presença em reuniões convencionais — **5 pts**
+- Presença em reuniões estratégicas — **30 pts**
 - Organização de eventos — **100 pts**
 - Mentoria — **80 pts**
 - Participação em projetos internos — **50 pts**
 - Recrutamento ativo — **20 pts**
+
+### Penalizações
+- Falta não justificada em reuniões — **-5 pts**
+- Atraso em entregas críticas de projeto — **-30 pts**
+- Falta não justificada em eventos oficiais da LICS — **-5 pts**
+- Plágio ou violação de diretrizes em CTFs/Produções — **-10 pts**
+- Inatividade não reportada (congelamento de presença superior a 1 mês sem aviso) — **-10 pts**
+- Desistência de cargo em organização de evento sem aviso prévio — **-30 pts**
+
+---
+
+## Como Criar Novas Regras de Pontuação
+
+O sistema de pontos foi projetado para ser totalmente dinâmico. Para adicionar, remover ou modificar categorias e pontuações, **não é necessário alterar o HTML nem o Banco de Dados**.
+
+1. Abra o local do arquivo: `js/utils.js`.
+2. Localize a constante em torno da linha 8: `export const CATALOGO_PONTOS`.
+3. Adicione uma nova categoria no formato de chave do objeto, ou insira um novo item de atividade dentro do array de uma categoria já existente.
+4. Salve o arquivo. A interface Web (no Painel Admin) puxará as atualizações processando o arquivo JavaScript automaticamente.
+
+**Exemplo Prático (Criando regras e penalidades):**
+```javascript
+export const CATALOGO_PONTOS = {
+  // ... outras categorias ...
+  'Eventos Especiais': [
+    { nome: 'Ajudou a organizar Hackathon', pontos: 50 },
+    { nome: 'Faltou no Hackathon sem avisar', pontos: -20 } // Valores negativos funcionam nativamente!
+  ]
+};
+```
 
 ---
 
