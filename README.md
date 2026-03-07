@@ -106,6 +106,11 @@ lics-dashboard/
 | `data`      | timestamp | Data do lançamento                   |
 | `semestreId`| string    | Ex: `2026.1`                         |
 
+> **⚠️ Requisito de Banco de Dados (Índice Composto):**
+> Para o Dashboard conseguir exibir o *Histórico de Transações* quando você clica em um perfil, ele busca pelo `userId` e ordena os dados pela `data`. Como o Firestore não suporta ordenação em múltiplas chaves nativamente para preservar performance, **é obrigatoriamente necessário criar um "Índice Composto" manualmente no console web do Firebase**. 
+> - **Onde:** Painel Firebase > Firestore > Índices (Composto)
+> - **Índice:** Coleção `transactions` > Campos: `userId` (Crescente) e `data` (Decrescente) > Escopo: `Coleção`. Sem esse índice, o Firebase engolirá a query silenciosamente e a UI mostrará a mensagem de fallback ("Nenhuma transação registrada").
+
 ---
 
 ## Gamificação: Títulos LICS
