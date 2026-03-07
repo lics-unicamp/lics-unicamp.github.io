@@ -102,7 +102,9 @@ function updatePointsPreview() {
 
     const selectedOption = actSelect.options[actSelect.selectedIndex];
     if (selectedOption && selectedOption.dataset.pontos) {
-        preview.textContent = `+${selectedOption.dataset.pontos} pts`;
+        const p = Number(selectedOption.dataset.pontos);
+        const sign = p > 0 ? '+' : '';
+        preview.textContent = `${sign}${p} pts`;
         preview.style.display = 'block';
     } else {
         preview.style.display = 'none';
@@ -236,7 +238,8 @@ async function submitPoints() {
         }, { uid: user.uid, nome: user.nome });
 
         const memberNames = uids.map(uid => membersCache.find(m => m.uid === uid)?.nome).filter(Boolean).join(', ');
-        showToast(`+${pontos} pts atribuídos a ${uids.length} membro(s): ${memberNames}`, 'success', 4000);
+        const sign = pontos > 0 ? '+' : '';
+        showToast(`${sign}${pontos} pts atribuídos a ${uids.length} membro(s): ${memberNames}`, 'success', 4000);
 
         uids.forEach(uid => {
             const member = membersCache.find(m => m.uid === uid);
@@ -458,7 +461,7 @@ function renderTransactionLog() {
           <strong>${member ? member.nome : 'Desconhecido'}</strong> — ${t.descricao || t.atividade}
           <span class="text-muted" style="font-size: 0.75rem;">(${t.categoria})</span>
         </span>
-        <span class="transaction-points">+${t.pontos} pts</span>
+        <span class="transaction-points">${t.pontos > 0 ? '+' : ''}${t.pontos} pts</span>
       </div>
     `;
     }).join('');

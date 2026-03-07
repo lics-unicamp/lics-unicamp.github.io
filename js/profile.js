@@ -149,7 +149,7 @@ async function renderTimeline(uid) {
             <div class="timeline-date">${formatDate(t.data)} | ${t.categoria.toUpperCase()}</div>
             <div class="timeline-content">
               ${t.descricao || t.atividade}
-              <span class="timeline-points">+${t.pontos} pts</span>
+              <span class="timeline-points">${t.pontos > 0 ? '+' : ''}${t.pontos} pts</span>
             </div>
             <div class="timeline-admin">Admin: ${t.adminNome}</div>
           </div>

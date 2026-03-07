@@ -277,7 +277,7 @@ async function openProfileModal(uid) {
               <div class="timeline-category">${t.categoria}</div>
               <div class="timeline-content">
                 ${t.descricao || t.atividade}
-                <span class="timeline-points">+${t.pontos} pts</span>
+                <span class="timeline-points">${t.pontos > 0 ? '+' : ''}${t.pontos} pts</span>
               </div>
               <div class="timeline-admin">Admin: ${t.adminNome}</div>
             </div>
