@@ -260,6 +260,8 @@ async function initLP() {
     }
 
     renderModules();
+    buildSidebarLinks();
+    initScrollTracking();
     setupCheckboxListeners();
 }
 
@@ -273,7 +275,7 @@ function renderModules() {
     const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
 
     container.innerHTML = LEARNING_PATH_DATA.map(mod => `
-        <div class="module-card">
+        <div class="module-card" id="module-${mod.id}">
             <div class="module-header">
                 <h2 class="module-title">${mod.title}</h2>
                 <div class="module-objective">${mod.objective}</div>
@@ -308,6 +310,57 @@ function renderModules() {
  */
 function setupCheckboxListeners() {
     // Logic removed as per user request to disable marking
+}
+
+/**
+ * Dynamically populate sidebar links from LEARNING_PATH_DATA.
+ */
+function buildSidebarLinks() {
+    const sidebarContainer = document.getElementById('sidebar-modules');
+    if (!sidebarContainer) return;
+
+    sidebarContainer.innerHTML = LEARNING_PATH_DATA.map(mod => `
+        <a href="#module-${mod.id}" class="lp-sidebar-link" data-section="module-${mod.id}">
+            <span class="lp-sidebar-num">${String(mod.id).padStart(2, '0')}</span> ${mod.title}
+        </a>
+    `).join('');
+
+    // Smooth-scroll click handlers
+    document.querySelectorAll('.lp-sidebar-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('data-section');
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+}
+
+/**
+ * Highlight the active sidebar link based on scroll position.
+ */
+function initScrollTracking() {
+    const sections = document.querySelectorAll('.module-card[id]');
+    const links = document.querySelectorAll('.lp-sidebar-link');
+    if (!sections.length || !links.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                links.forEach(link => {
+                    link.classList.toggle('active', link.dataset.section === id);
+                });
+            }
+        });
+    }, {
+        rootMargin: '-80px 0px -60% 0px',
+        threshold: 0
+    });
+
+    sections.forEach(section => observer.observe(section));
 }
 
 // Initialize on page load

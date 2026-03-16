@@ -4,8 +4,90 @@
 
 /* ---------- Container ---------- */
 .lp-container {
-    max-width: 900px;
+    max-width: 1200px;
     margin: var(--space-xl) auto;
+}
+
+/* ---------- Layout (Sidebar + Content) ---------- */
+.lp-layout {
+    display: flex;
+    gap: var(--space-xl);
+    align-items: flex-start;
+}
+
+.lp-main {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ---------- Sidebar Navigation ---------- */
+.lp-sidebar {
+    position: sticky;
+    top: 80px;
+    width: 240px;
+    flex-shrink: 0;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--border-dim);
+    border-left: 3px solid var(--color-primary);
+    padding: var(--space-md) 0;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary-dim) transparent;
+}
+
+.lp-sidebar-header {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: var(--space-xs) var(--space-md) var(--space-sm);
+    border-bottom: 1px solid var(--border-dim);
+    margin-bottom: var(--space-sm);
+}
+
+.lp-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-xs) var(--space-md);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    line-height: 1.35;
+}
+
+.lp-sidebar-link:hover {
+    color: var(--color-primary);
+    background-color: rgba(0, 170, 0, 0.06);
+    border-left-color: rgba(0, 170, 0, 0.4);
+    text-shadow: none;
+}
+
+.lp-sidebar-link.active {
+    color: var(--color-primary);
+    background-color: var(--color-primary-dim);
+    border-left-color: var(--color-primary);
+    font-weight: 700;
+}
+
+.lp-sidebar-num {
+    flex-shrink: 0;
+    width: 20px;
+    text-align: right;
+    opacity: 0.5;
+    font-size: 0.65rem;
+}
+
+.lp-sidebar-link.active .lp-sidebar-num {
+    opacity: 1;
 }
 
 /* ---------- Module Card ---------- */
@@ -123,4 +205,19 @@
     padding: var(--space-md);
     margin-top: var(--space-xl);
     font-size: 0.9rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+    .lp-sidebar {
+        display: none;
+    }
+
+    .lp-layout {
+        display: block;
+    }
+
+    .lp-container {
+        max-width: 900px;
+    }
 }
