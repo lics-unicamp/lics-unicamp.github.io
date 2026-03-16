@@ -27,6 +27,10 @@ const MOCK_USER = {
     semestreAtual: '2026.1'
 };
 
+// Session management constants
+const SESSION_KEY = 'lics_session_start';
+const SESSION_MAX_MS = 1 * 60 * 60 * 1000; // 1 hour
+
 // Cached user data (Firestore)
 let currentUserData = BYPASS_AUTH ? MOCK_USER : null;
 let authReady = BYPASS_AUTH;
