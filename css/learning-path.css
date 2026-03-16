@@ -1,0 +1,126 @@
+/* ============================================
+   LICS Dashboard — Learning Path Styles
+   ============================================ */
+
+/* ---------- Container ---------- */
+.lp-container {
+    max-width: 900px;
+    margin: var(--space-xl) auto;
+}
+
+/* ---------- Module Card ---------- */
+.module-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--border-dim);
+    margin-bottom: var(--space-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.module-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--color-primary);
+}
+
+/* ---------- Module Header ---------- */
+.module-header {
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-dim);
+    background-color: rgba(0, 170, 0, 0.03);
+}
+
+.module-title {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.module-objective {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: var(--space-xs);
+    font-style: italic;
+}
+
+/* ---------- Module Content ---------- */
+.module-content {
+    padding: var(--space-lg);
+}
+
+/* ---------- Task List ---------- */
+.task-list {
+    list-style: none;
+}
+
+.task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.task-checkbox {
+    margin-top: 4px;
+}
+
+.task-info {
+    flex: 1;
+}
+
+.task-name {
+    font-weight: 600;
+    color: var(--color-text-bright);
+    display: block;
+}
+
+.task-link {
+    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.task-link:hover {
+    color: var(--color-text-bright);
+}
+
+/* ---------- Intro Section ---------- */
+.lp-intro {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+    position: relative;
+}
+
+.lp-intro-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-md);
+    color: var(--color-primary);
+}
+
+/* ---------- Tip Box ---------- */
+.lp-tip {
+    background-color: rgba(0, 170, 0, 0.1);
+    border: 1px dashed var(--color-primary);
+    padding: var(--space-md);
+    margin-top: var(--space-xl);
+    font-size: 0.9rem;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Path | LICS Scoreboard</title>
+    <meta name="description"
+        content="Trilha de aprendizado da Liga de Cibersegurança da UNICAMP. O ponto de partida para sua jornada em segurança.">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/learning-path.css">
+</head>
+
+<body style="display: none;">
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-brand">
+                    <img src="assets/img/logo-without-bg.png" alt="LICS">
+                    <div class="header-brand-text">
+                        <span class="header-brand-title">LICS Scoreboard</span>
+                        <span class="header-brand-subtitle">Liga de Cibersegurança da UNICAMP</span>
+                    </div>
+                </div>
+                <div class="header-nav">
+                    <a href="dashboard.html" class="btn btn-sm">Ranking</a>
+                    <a href="rules.html" class="btn btn-sm">Regras</a>
+                    <a href="learning-path.html" class="btn btn-sm"
+                        style="background-color: var(--color-primary-dim);">Learning Path</a>
+                    <a href="admin.html" class="btn btn-sm" id="nav-admin" style="display: none;">Admin</a>
+                    <button class="btn btn-sm btn-danger" onclick="doLogout()">Logout</button>
+                </div>
+                <div class="header-user">
+                    <div class="header-user-info">
+                        <div class="header-user-name">Carregando...</div>
+                        <div class="header-user-role">---</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-content">
+            <div class="container">
+                <!-- Binary decoration -->
+                <div class="binary-decoration" style="margin-bottom: var(--space-md);">0010101 LEARNING_PATH 0010110
+                </div>
+
+                <div class="lp-container">
+                    <!-- Intro -->
+                    <div class="lp-intro">
+                        <h1 class="lp-intro-title">Roadmap de Estudo — LICS</h1>
+                        <p>Este é o roadmap oficial de estudo da Liga de Cibersegurança da UNICAMP. Cada módulo foi montado pela diretoria para nivelar o conhecimento dos membros e preparar o time para CTFs, projetos internos e operações da liga.</p>
+                        <p style="margin-top: var(--space-sm); font-size: 0.9em; color: var(--color-text-muted);"><em>A ordem dos módulos é a sugerida para um aprendizado progressivo, mas não é obrigatória. Sinta-se livre para focar no que mais te interessa.</em></p>
+                    </div>
+
+                    <!-- Modules Container -->
+                    <div id="modules-container">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <!-- Final Tip -->
+                    <div class="lp-tip">
+                        <strong>💡 Dica de Ouro:</strong> Não tenha pressa. Em Cibersegurança, entender o "porquê" um comando funciona é infinitamente mais importante do que apenas copiar e colar. Boa sorte e bons estudos! 💻🔥
+                    </div>
+                </div>
+
+                <!-- Terminal Footer -->
+                <div style="margin-top: var(--space-xl);">
+                    <div class="binary-decoration">0010110</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <span class="footer-binary">0010110</span>
+                <span>LICS — 2026.1 </span>
+                <span class="footer-binary">0010110</span>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="js/learning-path.js"></script>
+</body>
+
+</html>

@@ -14,15 +14,27 @@ import { showToast } from './utils.js';
 const ALLOWED_DOMAINS = ['dac.unicamp.br'];
 const ADMIN_EMAILS = ['lics.unicamp@gmail.com', 'lics@unicamp.br'];
 
-// Session timeout (50 minutes)
-const SESSION_MAX_MS = 50 * 60 * 1000;
-const SESSION_KEY = 'lics_session_start';
+// LOCAL TESTING FLAG (DISABLE BEFORE DEPLOYMENT)
+const BYPASS_AUTH = false; 
 
-// Cached user datav (Firestore)
-let currentUserData = null;
-let authReady = false;
+const MOCK_USER = {
+    uid: 'local-mock-uid',
+    nome: 'Tester Local (Admin)',
+    email: 'tester@dac.unicamp.br',
+    role: 'admin',
+    pontosTotais: 1337,
+    pontosSemestre: 80,
+    semestreAtual: '2026.1'
+};
+
+// Cached user data (Firestore)
+let currentUserData = BYPASS_AUTH ? MOCK_USER : null;
+let authReady = BYPASS_AUTH;
 let authReadyResolve = null;
-const authReadyPromise = new Promise(resolve => { authReadyResolve = resolve; });
+const authReadyPromise = new Promise(resolve => { 
+    authReadyResolve = resolve; 
+    if (BYPASS_AUTH) resolve(MOCK_USER);
+});
 
 /**
  * Check if the email is allowed
@@ -72,6 +84,10 @@ export function isPending() {
  * Flow: Google Sign-In -> Verify domain -> Verify/create Firestore doc
  */
 export async function doLogin() {
+    if (BYPASS_AUTH) {
+        window.location.href = 'dashboard.html';
+        return;
+    }
     try {
         const result = await signInWithPopup(auth, provider);
         const user = result.user;
@@ -135,6 +151,10 @@ export async function doLogout() {
  * @returns {Promise<Object|null>} user data or null
  */
 export async function requireAuth(requireAdminRole = false) {
+    if (BYPASS_AUTH) {
+        document.body.style.display = '';
+        return MOCK_USER;
+    }
     const userData = await waitForAuth();
 
     if (!userData) {

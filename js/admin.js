@@ -364,7 +364,7 @@ function renderMemberStatusSection(id, members, title, colorClass) {
 
     body.innerHTML = `
     <table class="manage-table">
-      <thead><tr><th>Nome</th><th>E-mail</th><th>Título</th><th>Pts Semestre</th><th>Ação</th></tr></thead>
+      <thead><tr><th>Nome</th><th>E-mail</th><th>Patente</th><th>Pts Semestre</th><th>Ação</th></tr></thead>
       <tbody>
         ${members.map(m => {
         const titulo = getTitulo(m.pontosTotais);

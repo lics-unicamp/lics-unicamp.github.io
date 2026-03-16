@@ -1,0 +1,122 @@
+/* ============================================
+   LICS Dashboard — Rules Page Styles
+   ============================================ */
+
+/* ---------- Rules Grid Layout ---------- */
+.rules-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+}
+
+/* ---------- Category Card ---------- */
+.category-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--border-dim);
+    padding: var(--space-lg);
+    border-left: 4px solid var(--color-primary);
+}
+
+.category-title {
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-md);
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--border-dim);
+    padding-bottom: var(--space-sm);
+}
+
+.category-card h3 {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+    padding-bottom: var(--space-xs);
+}
+
+/* ---------- Rule Items ---------- */
+.rule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 1rem;
+}
+
+.rule-item:last-child {
+    border-bottom: none;
+}
+
+.rule-name {
+    color: var(--color-text-bright);
+    flex: 1;
+    line-height: 1.4;
+}
+
+.rule-points {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    flex-shrink: 0;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* ---------- Titles Grid ---------- */
+.titles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+}
+
+/* ---------- Title Card ---------- */
+.title-card {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: var(--space-md);
+    text-align: center;
+    transition: transform var(--transition-fast);
+}
+
+.title-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--glow-sm);
+}
+
+.title-icon {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-xs);
+}
+
+.title-name {
+    display: block;
+    font-weight: 800;
+    color: var(--color-text-bright);
+}
+
+.title-points {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: var(--space-xs) 0;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.title-range {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-primary);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+    .rules-container {
+        grid-template-columns: 1fr;
+    }
+}

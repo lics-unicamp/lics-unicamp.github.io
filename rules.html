@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regras de Pontuação | LICS Scoreboard</title>
+    <meta name="description"
+        content="Critérios de pontuação da Liga de Cibersegurança da UNICAMP. Saiba como ganhar pontos e subir no ranking.">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/rules.css">
+</head>
+
+<body style="display: none;">
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-brand">
+                    <img src="assets/img/logo-without-bg.png" alt="LICS">
+                    <div class="header-brand-text">
+                        <span class="header-brand-title">LICS Scoreboard</span>
+                        <span class="header-brand-subtitle">Liga de Cibersegurança da UNICAMP</span>
+                    </div>
+                </div>
+                <div class="header-nav">
+                    <a href="dashboard.html" class="btn btn-sm">Ranking</a>
+                    <a href="rules.html" class="btn btn-sm"
+                        style="background-color: var(--color-primary-dim);">Regras</a>
+                    <a href="learning-path.html" class="btn btn-sm">Learning Path</a>
+                    <a href="admin.html" class="btn btn-sm" id="nav-admin" style="display: none;">Admin</a>
+                    <button class="btn btn-sm btn-danger" onclick="doLogout()">Logout</button>
+                </div>
+                <div class="header-user">
+                    <div class="header-user-info">
+                        <div class="header-user-name">Carregando...</div>
+                        <div class="header-user-role">---</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-content">
+            <div class="container">
+                <!-- Binary decoration -->
+                <div class="binary-decoration" style="margin-bottom: var(--space-lg);">10101 REGRAS_DO_SISTEMA 01010
+                </div>
+
+                <h1 style="margin-bottom: var(--space-md);">Regras de Pontuação</h1>
+                <p class="text-muted" style="margin-bottom: var(--space-xl);">Entenda como cada ação fortalece a liga e
+                    impacta sua pontuação.</p>
+
+                <!-- Titles Section -->
+                <section style="margin-bottom: var(--space-2xl);">
+                    <h2 class="section-title" style="margin-bottom: var(--space-lg);">Patentes</h2>
+                    <div id="titles-grid" class="titles-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </section>
+
+                <!-- Point Categories -->
+                <h2 style="margin-top: var(--space-2xl); font-size: 1.2rem; text-transform: uppercase;">Guia de
+                    Atividades</h2>
+                <div id="categories-container" class="rules-container">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Terminal Footer -->
+                <div style="margin-top: var(--space-xl);">
+                    <div class="binary-decoration">0010110</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <span class="footer-binary">0010110</span>
+                <span>LICS — 2026.1 </span>
+                <span class="footer-binary">0010110</span>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="js/rules.js"></script>
+</body>
+
+</html>

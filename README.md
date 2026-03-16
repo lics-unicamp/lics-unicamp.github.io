@@ -113,9 +113,8 @@ lics-dashboard/
 
 ---
 
-## Gamificação: Títulos LICS
-
-| Ícone | Título        | Faixa de Pontos  |
+## Gamificação: Patentes
+| Ícone | Patente       | Faixa de Pontos  |
 |-------|---------------|------------------|
 | `>_`  | Script Kiddie | 0 – 50 pts       |
 | `$_`  | Trainee       | 51 – 200 pts     |
